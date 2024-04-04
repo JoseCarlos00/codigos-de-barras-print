@@ -12,8 +12,62 @@
 </head>
 
 <body>
-  <h1>title</h1>
+  <div class="container">
 
+    <header>
+      <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
+      <div class="dropdown-container">
+        <button id="dropdownButton" class="btn btn-primary dropdown-toggle" type="button" aria-expanded=" false">
+          Code-128
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu hidden">
+          <li><a class="dropdown-item" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a></li>
+          <li><a class="dropdown-item" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="codigo-container">
+      <form name="FormCode" class="barcodeData">
+        <h2 id="barcodeType" id="barcodeType">
+          Code-128
+        </h2>
+        <div class="editor-label"><label for="Data">Datos</label></div>
+
+        <div class="editor-field">
+          <textarea id="Data" name="DataCode" required></textarea>
+        </div>
+
+        <div class="barcodeRefresh">
+          <input class="btn btn-success" name="DataType" value="Crear" type="submit" data-id="Code128">
+          <input class="btn btn-danger" type="reset" value="Limpiar">
+
+        </div>
+      </form>
+    </section>
+
+
+    <main>
+      <h2>Area de Impresión</h2>
+
+      <section class="area-de-impresion">
+        <div class="limite">Prueba de contenido en Impresion</div>
+        <div class="medida2">Cuadro</div>
+        <br />
+
+      </section>
+
+    </main>
+
+    <footer>
+      <!-- back-linking to www.tec-it.com is required -->
+      <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
+        TEC-IT Barcode Generator
+        <!-- logos are optional -->
+        <img alt='TEC-IT Barcode Software' border='0' src='http://www.tec-it.com/pics/banner/web/TEC-IT_Logo_75x75.gif'>
+      </a>
+    </footer>
+  </div>
   <script type="module" src="./public/JS/index.js"></script>
 </body>
 
