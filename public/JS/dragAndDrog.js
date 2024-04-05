@@ -1,6 +1,6 @@
 function inicio() {
   const dropElement = document.querySelector('.custum-file-upload');
-  const ariaDeimpresion = document.querySelector('.area-de-impresion');
+  const areaDeImpresion = document.querySelector('#areaDeImpresion');
 
   /**
    * Un artículo se suelta en un destino de colocación válido.
@@ -16,7 +16,7 @@ function inicio() {
 
     // Obtener el ID del elemento a eliminar
     const dataSetId = e.dataTransfer.getData('text/plain');
-    const elementToDelete = document.querySelector(`.area-de-impresion [data-id="${dataSetId}"]`);
+    const elementToDelete = document.querySelector(`#areaDeImpresion [data-id="${dataSetId}"]`);
 
     console.log('elementId:', dataSetId);
     // console.log('elementToDelete:', elementToDelete);
@@ -83,6 +83,8 @@ function inicio() {
       const elemento = e.target;
       elemento.style.opacity = '0.4';
 
+      elemento.classList.add('dragging');
+
       setEventoDragEnd(elemento);
       const dataSetId = elemento.dataset['id'];
 
@@ -101,7 +103,33 @@ function inicio() {
     this.style.opacity = '1';
   }
 
-  ariaDeimpresion.addEventListener('dragstart', handleDragStart);
+  areaDeImpresion.addEventListener('dragstart', handleDragStart);
+
+  // Agregar evento 'drop' para manejar la caída de elementos en esta área
+  areaDeImpresion.addEventListener('drop', function (e) {
+    e.preventDefault(); // Evitar el comportamiento predeterminado de abrir la imagen o el enlace cuando se suelta el elemento aquí
+    const draggableElement = document.querySelector('.dragging'); // Obtener el elemento que está siendo arrastrado
+    if (draggableElement) {
+      // Obtener las coordenadas del área de impresión
+      const areaRect = areaDeImpresion.getBoundingClientRect();
+      console.log(areaRect);
+      // Calcular las coordenadas relativas del punto de soltado dentro del área de impresión
+      const posX = e.clientX - areaRect.left - 50;
+      const posY = e.clientY - areaRect.top - 50;
+
+      console.log('top:', posY);
+      // Establecer las coordenadas del elemento arrastrado para que se coloque donde fue soltado
+      draggableElement.style.left = posX + 'px';
+      draggableElement.style.top = posY + 'px';
+      // Eliminar la clase 'dragging' para indicar que el elemento ya no está siendo arrastrado
+      draggableElement.classList.remove('dragging');
+    }
+  });
+
+  // Agregar evento 'dragover' para permitir que los elementos sean soltados en esta área
+  areaDeImpresion.addEventListener('dragover', function (e) {
+    e.preventDefault(); // Evitar el comportamiento predeterminado de no permitir soltar elementos aquí
+  });
 
   function setEventoDragEnd(element) {
     // Verificar si ya existe un evento 'dragend' antes de agregarlo

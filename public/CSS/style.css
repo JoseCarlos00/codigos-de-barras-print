@@ -340,11 +340,18 @@ main {
     border: 3px dashed #8b8b8b;
     padding: 4px;
     box-sizing: content-box;
+
+    position: relative;
   }
 
   .area-de-impresion div:hover,
   .area-de-impresion img:hover {
     cursor: grab;
+  }
+
+  .area-de-impresion div,
+  .area-de-impresion img {
+    position: absolute;
   }
 
   div {
@@ -367,7 +374,6 @@ footer {
   width: 100%;
   margin-top: 50px;
   background-color: transparent;
-  /* height: 1; */
   display: flex;
   justify-content: center;
   padding: 8px;
@@ -390,7 +396,8 @@ footer {
   .codigo-container,
   footer,
   header,
-  .titte {
+  .titte,
+  .eliminar-elemento {
     display: none;
   }
 
