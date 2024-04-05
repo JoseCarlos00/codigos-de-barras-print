@@ -61,26 +61,26 @@
 
       <form class="filters-width" name="FormWidth">
         <label>Ancho:
-          <input type="number" name="ancho" value="200">
+          <input type="number" name="ancho" step="any">
         </label>
 
         <select name="unidadAncho">
-          <option value="px">px</option>
           <option value="cm">cm</option>
+          <option value="px">px</option>
           <option value="in">in</option>
         </select>
 
         <label>Alto:
-          <input type="number" name="alto" value="200">
+          <input type="number" name="alto" step="any">
         </label>
 
         <select name="unidadAlto">
-          <option value="px">px</option>
           <option value="cm">cm</option>
+          <option value="px">px</option>
           <option value="in">in</option>
         </select>
 
-        <input type="submit" value="Cambiar Dimensiones">
+        <input type="submit" value="Cambiar Dimensiones" hidden>
       </form>
 
     </section>
