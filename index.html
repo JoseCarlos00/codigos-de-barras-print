@@ -46,15 +46,34 @@
       </form>
     </section>
 
+    <section class="eliminar-elemento">
+      <label class="custum-file-upload" for="file">
+
+        <div class="text">
+          <span>Arrastra para eliminar elemento</span>
+        </div>
+
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
+            </path>
+          </svg>
+        </div>
+      </label>
+
+    </section>
 
     <main>
       <h2>Area de Impresión</h2>
 
       <section class="area-de-impresion">
-        <div class="limite">Prueba de contenido en Impresion</div>
-        <div class="medida2">Cuadro</div>
+        <div class="limite" draggable="true" data-id="99">Prueba de contenido en Impresion</div>
+        <div class="medida2" draggable="true" data-id="98">Cuadro1</div>
+        <div class="medida2" draggable="true" data-id="97">Cuadro2</div>
         <br />
-
+        <img alt="Barcode Generator TEC-IT" draggable="true" class="codigo-128" data-id="100"
+          src="https://barcode.tec-it.com/barcode.ashx?data=jose&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
       </section>
 
     </main>
@@ -69,6 +88,7 @@
     </footer>
   </div>
   <script type="module" src="./public/JS/index.js"></script>
+  <script type="module" src="./public/JS/dragAndDrog.js"></script>
 </body>
 
 </html>

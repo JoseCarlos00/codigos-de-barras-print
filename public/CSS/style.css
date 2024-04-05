@@ -278,6 +278,55 @@ body {
   }
 }
 
+.eliminar-elemento {
+  .custum-file-upload {
+    height: 150px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+  }
+
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custum-file-upload .icon svg {
+    height: 50px;
+    fill: #dc3545;
+  }
+
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+  }
+
+  .custum-file-upload input {
+    display: none;
+  }
+
+  .over {
+    /* border: 3px dotted #666; */
+    border-style: dashed;
+  }
+}
+
 main {
   .area-de-impresion {
     background-color: #fff;
@@ -291,6 +340,11 @@ main {
     border: 3px dashed #8b8b8b;
     padding: 4px;
     box-sizing: content-box;
+  }
+
+  .area-de-impresion div:hover,
+  .area-de-impresion img:hover {
+    cursor: grab;
   }
 
   div {
@@ -319,6 +373,18 @@ footer {
   padding: 8px;
   gap: 8px;
 }
+
+/* Animaciones */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Impresiones */
 
 @media print {
   .codigo-container,
