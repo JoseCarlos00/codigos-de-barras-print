@@ -1,29 +1,12 @@
 let dataSetId = 1;
 function inicio() {
-  const dropdownButton = document.querySelector('#dropdownButton');
   const dropdownItem = document.querySelector('#dropdownMenu');
 
-  if (dropdownButton) {
-    dropdownButton.addEventListener('click', toggleDropdown);
-  }
-
   if (dropdownItem) {
-    dropdownItem.addEventListener('click', e => changeBarcode(e));
+    dropdownItem.addEventListener('click', changeBarcode);
   }
 
   insertarCodigos();
-}
-
-function toggleDropdown() {
-  console.log('[Toggle Dropdown]');
-
-  if (dropdownMenu.classList.contains('hidden')) {
-    dropdownMenu.classList.remove('hidden');
-    this.ariaExpanded = true;
-  } else {
-    dropdownMenu.classList.add('hidden');
-    this.ariaExpanded = false;
-  }
 }
 
 function changeBarcode(e) {
@@ -63,6 +46,8 @@ function insertarCodigos() {
       setInsertCode128(data, areaDeImpresion);
     } else if (typeCode === 'CodeQR') {
       setInsertCodeQr(data, areaDeImpresion);
+    } else if (typeCode === 'Texto') {
+      setInsertText(data, areaDeImpresion);
     }
 
     this.reset();
@@ -93,6 +78,19 @@ function setInsertCodeQr(value, element) {
   <img alt='Barcode Generator TEC-IT' draggable="true"
      class="codigo-QR" data-id="${dataSetId}"
      src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
+  `;
+
+  element.insertAdjacentHTML('beforeend', html);
+  dataSetId++;
+}
+
+function setInsertText(value, element) {
+  if (!value) return;
+
+  value = value.trim();
+
+  const html = `
+  <div draggable="true" class="texto-plano" data-id="${dataSetId}">${value}</div>
   `;
 
   element.insertAdjacentHTML('beforeend', html);

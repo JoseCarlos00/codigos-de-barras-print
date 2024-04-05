@@ -17,12 +17,10 @@
     <header>
       <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
       <div class="dropdown-container">
-        <button id="dropdownButton" class="btn btn-primary dropdown-toggle" type="button" aria-expanded=" false">
-          Code-128
-        </button>
-        <ul id="dropdownMenu" class="dropdown-menu hidden">
-          <li><a class="dropdown-item" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a></li>
-          <li><a class="dropdown-item" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
+        <ul id="dropdownMenu" class="dropdown-container-list">
+          <li><a class="btn btn-primary" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a></li>
+          <li><a class="btn btn-primary" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
+          <li><a class="btn btn-primary" href="#" data-id="Texto" data-type="Texto">Texto</a></li>
         </ul>
       </div>
     </header>
@@ -46,9 +44,8 @@
       </form>
     </section>
 
-    <section class="eliminar-elemento">
-      <label class="custum-file-upload" for="file">
-
+    <section class="filters-and-drash">
+      <div class="custum-file-upload" for="file">
         <div class="text">
           <span>Arrastra para eliminar elemento</span>
         </div>
@@ -60,20 +57,43 @@
             </path>
           </svg>
         </div>
-      </label>
+      </div>
+
+      <form class="filters-width" name="FormWidth">
+        <label>Ancho:
+          <input type="number" name="ancho" value="200">
+        </label>
+
+        <select name="unidadAncho">
+          <option value="px">px</option>
+          <option value="cm">cm</option>
+          <option value="in">in</option>
+        </select>
+
+        <label>Alto:
+          <input type="number" name="alto" value="200">
+        </label>
+
+        <select name="unidadAlto">
+          <option value="px">px</option>
+          <option value="cm">cm</option>
+          <option value="in">in</option>
+        </select>
+
+        <input type="submit" value="Cambiar Dimensiones">
+      </form>
 
     </section>
 
+    <h2 class="title">Area de Impresión</h2>
     <main>
-      <h2 class="title">Area de Impresión</h2>
 
       <section class="area-de-impresion" id="areaDeImpresion">
-        <!-- <div class="limite" draggable="true" data-id="99">Prueba de contenido en Impresion</div> -->
-        <div class="medida2" draggable="true" data-id="98">Cuadro1</div>
         <!-- <div class="medida2" draggable="true" data-id="97">Cuadro2</div> -->
         <br />
-        <!-- <img alt="Barcode Generator TEC-IT" draggable="true" class="codigo-128" data-id="100"
-          src="https://barcode.tec-it.com/barcode.ashx?data=jose&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L"> -->
+        <img alt="Barcode Generator TEC-IT" draggable="true" class="codigo-128 img borde-derecho" data-id="100"
+          src="https://barcode.tec-it.com/barcode.ashx?data=Test&code=Code128&amp;translate-esc=on&amp;eclevel=L">
+        <!-- <div class="control-resize"></div> -->
       </section>
 
     </main>
@@ -82,13 +102,13 @@
       <!-- back-linking to www.tec-it.com is required -->
       <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
         TEC-IT Barcode Generator
-        <!-- logos are optional -->
         <img alt='TEC-IT Barcode Software' border='0' src='http://www.tec-it.com/pics/banner/web/TEC-IT_Logo_75x75.gif'>
       </a>
     </footer>
   </div>
   <script type="module" src="./public/JS/index.js"></script>
   <script type="module" src="./public/JS/dragAndDrog.js"></script>
+  <script type="module" src="./public/JS/rezize.js"></script>
 </body>
 
 </html>

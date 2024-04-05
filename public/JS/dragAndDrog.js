@@ -1,3 +1,5 @@
+import { toggleRedimensionarListener, cambiarDimensiones } from './rezize.js';
+
 function inicio() {
   const dropElement = document.querySelector('.custum-file-upload');
   const areaDeImpresion = document.querySelector('#areaDeImpresion');
@@ -112,12 +114,10 @@ function inicio() {
     if (draggableElement) {
       // Obtener las coordenadas del área de impresión
       const areaRect = areaDeImpresion.getBoundingClientRect();
-      console.log(areaRect);
       // Calcular las coordenadas relativas del punto de soltado dentro del área de impresión
       const posX = e.clientX - areaRect.left - 50;
       const posY = e.clientY - areaRect.top - 50;
 
-      console.log('top:', posY);
       // Establecer las coordenadas del elemento arrastrado para que se coloque donde fue soltado
       draggableElement.style.left = posX + 'px';
       draggableElement.style.top = posY + 'px';
@@ -131,12 +131,43 @@ function inicio() {
     e.preventDefault(); // Evitar el comportamiento predeterminado de no permitir soltar elementos aquí
   });
 
+  // Agregar evento de click a los elementos para seleccionarlos
+  areaDeImpresion.addEventListener('click', function (e) {
+    // Marcar el elemento seleccionado
+    if (e.target.nodeName === 'IMG' || e.target.nodeName === 'DIV') {
+      const elemento = e.target;
+      elemento.classList.add('selected');
+      /** Redimencinar elementos */
+      toggleRedimensionarListener(elemento);
+      cambiarDimensiones(elemento);
+    } else {
+      // Desmarcar todos los elementos
+      const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
+      if (elementosSelected) {
+        elementosSelected.forEach(function (element) {
+          element.classList.remove('selected');
+        });
+      }
+    }
+  });
+
   function setEventoDragEnd(element) {
     // Verificar si ya existe un evento 'dragend' antes de agregarlo
     if (!element.hasEventListener('dragend')) {
       element.addEventListener('dragend', handleDragEnd, false);
     }
   }
+
+  function eliminarElemento(e) {
+    if (e.key === 'Delete' || e.key === 'Backspace') {
+      const selectedElement = document.querySelector('.selected');
+      if (selectedElement) {
+        selectedElement.remove(); // Eliminar el elemento seleccionado
+      }
+    }
+  }
+
+  document.addEventListener('keydown', eliminarElemento);
 }
 
 Element.prototype.hasEventListener = function (eventName) {
