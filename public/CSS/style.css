@@ -319,6 +319,7 @@ main {
     width: var(--container_width);
     height: var(--container_width);
     outline: 3px dashed #8b8b8b;
+    outline-offset: 0px;
 
     position: relative;
   }
@@ -441,5 +442,14 @@ footer {
   .area-de-impresion .selected,
   .texto-plano {
     outline: none !important;
+  }
+
+  figure,
+  .texto-plano {
+    resize: none !important;
+  }
+
+  .area-de-impresion {
+    overflow: hidden;
   }
 }
