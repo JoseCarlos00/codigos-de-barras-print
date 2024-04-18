@@ -340,7 +340,7 @@ main {
     position: absolute;
   }
 
-  figure {
+  figure.selected {
     overflow: hidden;
     resize: both;
     z-index: 2;

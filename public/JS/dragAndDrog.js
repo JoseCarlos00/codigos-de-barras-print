@@ -121,7 +121,9 @@ function inicio() {
   // Agregar evento 'drop' para manejar la caída de elementos en esta área
   areaDeImpresion.addEventListener('drop', function (e) {
     e.preventDefault(); // Evitar el comportamiento predeterminado de abrir la imagen o el enlace cuando se suelta el elemento aquí
-    const draggableElement = document.querySelector('.dragging'); // Obtener el elemento que está siendo arrastrado
+    const draggableElement = document.querySelector('.dragging:not(.texto-plano)'); // Obtener el elemento que está siendo arrastrado
+    const textoPLanoElement = document.querySelector('.dragging.texto-plano');
+
     if (draggableElement) {
       // Obtener las coordenadas del área de impresión
       const areaRect = areaDeImpresion.getBoundingClientRect();
@@ -134,6 +136,55 @@ function inicio() {
       draggableElement.style.top = posY + 'px';
       // Eliminar la clase 'dragging' para indicar que el elemento ya no está siendo arrastrado
       draggableElement.classList.remove('dragging');
+    } else if (textoPLanoElement) {
+      // Elementos
+      let isDragging = false;
+      let offsetX, offsetY;
+      let isSelected = textoPLanoElement.classList.contains('selected');
+
+      // Función que maneja el evento mousedown
+      function onMouseDown(event) {
+        // Inicia el arrastre
+        isDragging = true;
+
+        // Calcula la posición relativa del clic dentro del elemento
+        offsetX = event.clientX - textoPLanoElement.offsetLeft;
+        offsetY = event.clientY - textoPLanoElement.offsetTop;
+
+        // Añade un evento mousemove al documento para manejar el arrastre
+        document.addEventListener('mousemove', onMouseMove);
+
+        // Añade un evento mouseup para finalizar el arrastre
+        document.addEventListener('mouseup', onMouseUp);
+      }
+
+      // Función que maneja el evento mousemove
+      function onMouseMove(event) {
+        if (isDragging) {
+          console.log('onMouseMove:', isSelected);
+          // Calcula la nueva posición del elemento
+          const newLeft = event.clientX - offsetX;
+          const newTop = event.clientY - offsetY;
+
+          // Actualiza la posición del elemento
+          textoPLanoElement.style.left = `${newLeft}px`;
+          textoPLanoElement.style.top = `${newTop}px`;
+        }
+      }
+
+      // Función que maneja el evento mouseup
+      function onMouseUp() {
+        // Finaliza el arrastre
+        isDragging = false;
+        console.log('Eliminar EVENTOS');
+        // Elimina los eventos mousemove y mouseup del documento
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+        textoPLanoElement.removeEventListener('mousedown', onMouseDown);
+      }
+
+      // Añade un evento mousedown al elemento
+      textoPLanoElement.addEventListener('mousedown', onMouseDown);
     }
   });
 
