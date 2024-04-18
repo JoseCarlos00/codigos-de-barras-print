@@ -1,4 +1,4 @@
-import { toggleRedimensionarListener, cambiarDimensiones } from './rezize.js';
+import { toggleRedimensionarListener, cambiarDimensiones, resetElement } from './rezize.js';
 
 function inicio() {
   const dropElement = document.querySelector('.custum-file-upload');
@@ -9,6 +9,7 @@ function inicio() {
    */
   dropElement.addEventListener('drop', function (e) {
     console.log('[Drop delete]');
+
     // Evitar redirección del navegador
     if (e.stopPropagation) {
       e.stopPropagation();
@@ -19,13 +20,12 @@ function inicio() {
     // Obtener el ID del elemento a eliminar
     const dataSetId = e.dataTransfer.getData('text/plain');
     const elementToDelete = document.querySelector(`#areaDeImpresion [data-id="${dataSetId}"]`);
-
-    console.log('elementId:', dataSetId);
-    // console.log('elementToDelete:', elementToDelete);
+    console.log(dataSetId);
 
     // Si se encontró el elemento, eliminarlo
     if (elementToDelete) {
       elementToDelete.remove();
+      resetElement();
     }
 
     return false; // Evitar comportamiento predeterminado
@@ -81,8 +81,19 @@ function inicio() {
   function handleDragStart(e) {
     const nodeName = e.target.nodeName;
 
-    if (nodeName === 'IMG' || nodeName === 'DIV') {
+    if (nodeName === 'FIGURE' || nodeName === 'DIV') {
       const elemento = e.target;
+      getDataId(elemento);
+    } else if (nodeName === 'IMG') {
+      const elemento = e.target.closest('figure');
+      getDataId(elemento);
+    } else if (nodeName === 'P') {
+      const elemento = e.target.closest('div.texto-plano');
+      getDataId(elemento);
+    }
+
+    function getDataId(elemento) {
+      if (!elemento) return;
       elemento.style.opacity = '0.4';
 
       elemento.classList.add('dragging');
@@ -134,12 +145,15 @@ function inicio() {
   // Agregar evento de click a los elementos para seleccionarlos
   areaDeImpresion.addEventListener('click', function (e) {
     // Marcar el elemento seleccionado
-    if (e.target.nodeName === 'IMG' || e.target.nodeName === 'DIV') {
+    if (e.target.nodeName === 'FIGURE' || e.target.nodeName === 'DIV') {
       const elemento = e.target;
-      elemento.classList.add('selected');
-      /** Redimencinar elementos */
-      toggleRedimensionarListener(elemento);
-      cambiarDimensiones(elemento);
+      setData(elemento);
+    } else if (e.target.nodeName === 'IMG') {
+      const elemento = e.target.closest('figure');
+      setData(elemento);
+    } else if (e.target.nodeName === 'P') {
+      const elemento = e.target.closest('div.texto-plano');
+      setData(elemento);
     } else {
       // Desmarcar todos los elementos
       const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
@@ -147,9 +161,21 @@ function inicio() {
         elementosSelected.forEach(function (element) {
           element.classList.remove('selected');
         });
+
+        resetElement();
       }
     }
   });
+
+  function setData(elemento) {
+    console.log('[SetData]');
+    if (!elemento) return;
+    elemento.classList.add('selected');
+
+    /** Redimencinar elementos */
+    toggleRedimensionarListener(elemento);
+    cambiarDimensiones(elemento);
+  }
 
   function setEventoDragEnd(element) {
     // Verificar si ya existe un evento 'dragend' antes de agregarlo
@@ -163,6 +189,7 @@ function inicio() {
       const selectedElement = document.querySelector('.selected');
       if (selectedElement) {
         selectedElement.remove(); // Eliminar el elemento seleccionado
+        resetElement();
       }
     }
   }

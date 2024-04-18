@@ -60,9 +60,10 @@ function setInsertCode128(value, element) {
   value = value.trim();
 
   const html = `
-<img alt='Barcode Generator TEC-IT' draggable="true" 
-    class="codigo-128"  data-id="${dataSetId}"
+  <figure draggable="true" class="codigo-128" data-id="${dataSetId}">
+    <img alt='Barcode Generator TEC-IT' 
     src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=Code128&translate-esc=on&eclevel=L' />
+  </figure>
 `;
 
   element.insertAdjacentHTML('beforeend', html);
@@ -75,9 +76,11 @@ function setInsertCodeQr(value, element) {
   value = value.trim();
 
   const html = `
-  <img alt='Barcode Generator TEC-IT' draggable="true"
-     class="codigo-QR" data-id="${dataSetId}"
-     src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
+  <figure draggable="true" class="codigo-QR" data-id="${dataSetId}">
+    <img alt='Barcode Generator TEC-IT' 
+    src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
+    <figcaption>${value}</figcaption>
+  </figure>
   `;
 
   element.insertAdjacentHTML('beforeend', html);
@@ -90,7 +93,9 @@ function setInsertText(value, element) {
   value = value.trim();
 
   const html = `
-  <div draggable="true" class="texto-plano" data-id="${dataSetId}">${value}</div>
+  <div draggable="true" class="texto-plano" data-id="${dataSetId}">
+    <p class="texto">${value}</p>
+  </div>
   `;
 
   element.insertAdjacentHTML('beforeend', html);
