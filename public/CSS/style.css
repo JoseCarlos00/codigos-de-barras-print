@@ -388,12 +388,6 @@ main {
     /* Ajusta el tamaño del texto al 5% del tamaño del padre */
     .texto {
       font-weight: bold;
-      outline: 1px solid red;
-      /* font-size: 1rem; */
-    }
-
-    .texto::before {
-      content: attr(data-tooltip);
     }
 
     &.selected {
