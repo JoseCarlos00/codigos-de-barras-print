@@ -392,6 +392,7 @@ main {
     outline-offset: 2px;
 
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
