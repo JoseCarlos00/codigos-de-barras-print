@@ -90,16 +90,29 @@ function setInsertCodeQr(value, element) {
 function setInsertText(value, element) {
   if (!value) return;
 
-  value = value.trim();
+  const textoValue = value.trim().split('\n');
 
-  const html = `
-  <div draggable="true" class="texto-plano" data-id="${dataSetId}">
-    <p class="texto">${value}</p>
-  </div>
-  `;
+  const div = document.createElement('div');
+  div.draggable = true;
+  div.className = 'texto-plano';
+  div.dataset['id'] = `${dataSetId}`;
 
-  element.insertAdjacentHTML('beforeend', html);
+  textoValue.forEach(texto => {
+    const p = document.createElement('p');
+    p.textContent = texto;
+    p.className = 'texto';
+
+    div.appendChild(p);
+  });
+
+  element.insertAdjacentHTML('beforeend', div);
   dataSetId++;
+
+  // const html = `
+  // <div draggable="true" class="texto-plano" data-id="${dataSetId}">
+  //   <p class="texto">${value}</p>
+  // </div>
+  // `;
 }
 
 window.addEventListener('load', inicio, { once: true });
