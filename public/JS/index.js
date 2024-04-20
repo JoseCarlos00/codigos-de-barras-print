@@ -105,7 +105,7 @@ function setInsertText(value, element) {
     div.appendChild(p);
   });
 
-  element.insertAdjacentHTML('beforeend', div);
+  element.appendChild(div);
   dataSetId++;
 
   // const html = `
