@@ -1,4 +1,5 @@
 import { toggleRedimensionarListener, cambiarDimensiones, resetElement } from './rezize.js';
+import { setElementoSize } from './fontSize.js';
 
 function inicio() {
   const dropElement = document.querySelector('.custum-file-upload');
@@ -20,7 +21,7 @@ function inicio() {
     // Obtener el ID del elemento a eliminar
     const dataSetId = e.dataTransfer.getData('text/plain');
     const elementToDelete = document.querySelector(`#areaDeImpresion [data-id="${dataSetId}"]`);
-    console.log(dataSetId);
+    console.log('dataSetId:', dataSetId);
 
     // Si se encontró el elemento, eliminarlo
     if (elementToDelete) {
@@ -124,6 +125,9 @@ function inicio() {
     const draggableElement = document.querySelector('.dragging:not(.texto-plano)'); // Obtener el elemento que está siendo arrastrado
     const textoPLanoElement = document.querySelector('.dragging.texto-plano');
 
+    console.log('draggableElement:', draggableElement);
+    console.log('textoPLanoElement:', textoPLanoElement);
+
     if (draggableElement) {
       // Obtener las coordenadas del área de impresión
       const areaRect = areaDeImpresion.getBoundingClientRect();
@@ -142,9 +146,9 @@ function inicio() {
       let offsetX, offsetY;
       let isSelected = textoPLanoElement.classList.contains('selected');
 
-      // Función que maneja el evento mousedown
-      function onMouseDown(event) {
+      function inciarArastre(event) {
         // Inicia el arrastre
+        console.log('Inicia el arrastre');
         isDragging = true;
 
         // Calcula la posición relativa del clic dentro del elemento
@@ -156,6 +160,11 @@ function inicio() {
 
         // Añade un evento mouseup para finalizar el arrastre
         document.addEventListener('mouseup', onMouseUp);
+      }
+
+      // Función que maneja el evento mousedown
+      function onMouseDown(event) {
+        inciarArastre(event);
       }
 
       // Función que maneja el evento mousemove
@@ -205,6 +214,7 @@ function inicio() {
     } else if (e.target.nodeName === 'P') {
       const elemento = e.target.closest('div.texto-plano');
       setData(elemento);
+      setElementoSize(elemento, true);
     } else {
       // Desmarcar todos los elementos
       const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
@@ -214,6 +224,7 @@ function inicio() {
         });
 
         resetElement();
+        setElementoSize(null, false);
       }
     }
   });

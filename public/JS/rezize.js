@@ -4,9 +4,7 @@ let elementEvent = null;
 
 export function toggleRedimensionarListener(elementoParams) {
   if (!elementoParams) return;
-  elemento = elementoParams;
-
-  if (elemento) return;
+  if (!elemento) return;
 
   elemento.addEventListener('mousedown', function (event) {
     /** Inicia Movimiento */
@@ -83,8 +81,8 @@ window.addEventListener('load', () => {
     const anchoInput = FormWidth.ancho;
     const altoInput = FormWidth.alto;
 
-    anchoInput.addEventListener('click', seleccionarContenido);
-    altoInput.addEventListener('click', seleccionarContenido);
+    anchoInput.addEventListener('focus', seleccionarContenido);
+    altoInput.addEventListener('focus', seleccionarContenido);
 
     FormWidth.addEventListener('submit', formWidthSubmitEvent);
   }

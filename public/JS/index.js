@@ -107,12 +107,6 @@ function setInsertText(value, element) {
 
   element.appendChild(div);
   dataSetId++;
-
-  // const html = `
-  // <div draggable="true" class="texto-plano" data-id="${dataSetId}">
-  //   <p class="texto">${value}</p>
-  // </div>
-  // `;
 }
 
 window.addEventListener('load', inicio, { once: true });

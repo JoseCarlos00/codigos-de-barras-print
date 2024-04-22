@@ -322,8 +322,8 @@ header {
 
 main {
   /* --container_width: 3.4in; */
-  --container_width: calc(4in - 2cm);
-  --main_width: 4in;
+  /* --container_width: calc(4in - 2cm); */
+  --container_width: 4in;
 
   display: flex;
 
@@ -335,6 +335,7 @@ main {
     outline-offset: 0px;
 
     position: relative;
+    border-radius: 8px;
   }
 
   .area-de-impresion figure:not(.selected),
@@ -392,11 +393,11 @@ main {
     outline-offset: 2px;
 
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    align-items: start;
+    align-content: start;
+    justify-content: start;
     gap: 4px;
 
     /* Ajusta el tamaño del texto al 5% del tamaño del padre */
@@ -442,7 +443,8 @@ footer {
   footer,
   header,
   .title,
-  .filters-and-drash {
+  .filters-and-drash,
+  .form-font-size {
     display: none;
   }
 
