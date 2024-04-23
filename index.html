@@ -9,6 +9,29 @@
   <link rel="shortcut icon" href="./public/images/favicon.png" type="image/x-icon">
 
   <title>Imprimir Codigos de Barras/QR</title>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(202, 204, 206, 0.04);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #474c50;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(202, 204, 206, 0.3);
+    }
+  </style>
 </head>
 
 <body>
@@ -56,7 +79,7 @@
     </form>
 
     <section class="filters-and-drash">
-      <div class="custum-file-upload" for="file">
+      <div class="custum-file-upload" for="file" style="display: none;">
         <div class="text">
           <span>Arrastra para eliminar elemento</span>
         </div>
@@ -70,7 +93,7 @@
         </div>
       </div>
 
-      <form class="filters-width" name="FormWidth">
+      <form class="filters-width" name="FormWidth" style="display: none;">
         <label>Ancho:
           <input type="number" name="ancho" step="any">
         </label>
@@ -96,7 +119,7 @@
 
     </section>
 
-    <footer style="display: none;">
+    <footer>
       <!-- back-linking to www.tec-it.com is required -->
       <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
         TEC-IT Barcode Generator

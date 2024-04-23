@@ -15,17 +15,13 @@
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  min-width: 100vw;
   height: auto;
   font-size: 16px;
   color: #1a1a1a;
-  background: #4cb8c4; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3cd3ad, #4cb8c4); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #3cd3ad,
-    #4cb8c4
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3BmLXMxMjUtYWtlNzAwNV8yLmpwZw.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .btn {
@@ -149,13 +145,14 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 16px; */
   z-index: 2;
 
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* display: grid; */
 }
 
 header {
@@ -164,6 +161,10 @@ header {
   h1 {
     width: 100%;
     text-wrap: nowrap;
+
+    text-shadow: 0 0 0.2em rgba(0, 153, 255, 0.379), 0 0 0.2em rgba(0, 153, 255, 0.379),
+      0 0 0.2em rgba(0, 153, 255, 0.379);
+    padding-bottom: 8px;
   }
 }
 
@@ -193,9 +194,11 @@ header {
 
 .codigo-container {
   width: var(--Width-header);
+
   h2 {
     font-weight: normal;
     font-size: 1.2rem;
+    text-shadow: #222 0.1em 0.1em 0.2em;
   }
 
   .barcodeData {
@@ -319,6 +322,10 @@ header {
     border-style: dashed;
     border-width: 4px;
   }
+}
+
+.title {
+  text-shadow: 0 0 0.2em #09f, 0 0 0.2em #09f, 0 0 0.2em #09f;
 }
 
 main {

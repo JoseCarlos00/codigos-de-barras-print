@@ -79,49 +79,6 @@ function inicio() {
    * Iniciar arrastre del elemento
    * @param {event} e Evento
    */
-  function handleDragStartt(e) {
-    const nodeName = e.target.nodeName;
-
-    if (nodeName === 'FIGURE' || nodeName === 'DIV') {
-      const elemento = e.target;
-      getDataId(elemento);
-    } else if (nodeName === 'IMG') {
-      const elemento = e.target.closest('figure');
-      getDataId(elemento);
-    } else if (nodeName === 'P') {
-      const elemento = e.target.closest('div.texto-plano');
-      getDataId(elemento);
-    }
-
-    function getDataId(elemento) {
-      if (!elemento) return;
-      elemento.style.opacity = '0.4';
-
-      elemento.classList.add('dragging');
-
-      setEventoDragEnd(elemento);
-      const dataSetId = elemento.dataset['id'];
-
-      e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/plain', dataSetId);
-
-      console.log('dataSetId:', dataSetId);
-
-      const offsetX = e.offsetX;
-      const offsetY = e.offsetY;
-
-      console.log('e.offsetX:', offsetX, ' e.offsetY:', offsetY);
-
-      // Agregar evento 'drop' para manejar la caída de elementos en esta área
-      areaDeImpresion.addEventListener('drop', function (e) {
-        e.preventDefault();
-        const x = e.clientX - areaDeImpresion.getBoundingClientRect().left - offsetX;
-        const y = e.clientY - areaDeImpresion.getBoundingClientRect().top - offsetY;
-        elemento.style.transform = `translate(${x}px, ${y}px)`;
-      });
-    }
-  }
-
   let handleDrop = () => {};
 
   function handleDragStart(e) {
