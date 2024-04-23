@@ -276,7 +276,7 @@ function inicio() {
 
   function eliminarElemento(e) {
     if (e.key === 'Delete') {
-      const selectedElement = document.querySelector('.selected');
+      const selectedElement = document.querySelector('main .selected');
       if (selectedElement) {
         selectedElement.remove(); // Eliminar el elemento seleccionado
         resetElement();

@@ -1,30 +1,63 @@
 let dataSetId = 1;
+
 function inicio() {
   const dropdownItem = document.querySelector('#dropdownMenu');
 
   if (dropdownItem) {
-    dropdownItem.addEventListener('click', changeBarcode);
+    dropdownItem.addEventListener('click', function (e) {
+      if (e.target.nodeName === 'A') {
+        const valueId = e.target.dataset['id'];
+        const typeCode = e.target.dataset['type'];
+        const elemento = e.target;
+
+        changeBarcode(elemento, valueId, typeCode);
+      }
+    });
+  }
+
+  // Cargar selección guardada al iniciar
+  const savedSelection = localStorage.getItem('selectedBarcode') ?? 'Codigo de Barras';
+  if (savedSelection) {
+    const selectedItem = document.querySelector(`[data-id="${savedSelection}"]`);
+
+    if (selectedItem) {
+      toggleSelectedClass(selectedItem);
+      const valueId = selectedItem.dataset['id'];
+      const typeCode = selectedItem.dataset['type'];
+
+      changeBarcode(selectedItem, valueId, typeCode);
+    }
   }
 
   insertarCodigos();
 }
 
-function changeBarcode(e) {
-  if (e.target.nodeName === 'A') {
-    const valueId = e.target.dataset['id'];
-    const typeCode = e.target.dataset['type'];
-    // console.log(e.target.dataset);
+function changeBarcode(elemento, valueId, typeCode) {
+  // Guardar selección en localStorage
+  localStorage.setItem('selectedBarcode', valueId);
 
-    const titleElement = document.getElementById('titleDropdown');
-    const h2Element = document.getElementById('barcodeType');
-    const buttonElement = document.getElementById('dropdownButton');
+  const titleElement = document.getElementById('titleDropdown');
+  const h2Element = document.getElementById('barcodeType');
+  const buttonElement = document.getElementById('dropdownButton');
 
-    titleElement && (titleElement.innerHTML = valueId);
-    h2Element && (h2Element.innerHTML = valueId);
-    buttonElement && (buttonElement.innerHTML = valueId);
+  titleElement && (titleElement.innerHTML = valueId);
+  h2Element && (h2Element.innerHTML = valueId);
+  buttonElement && (buttonElement.innerHTML = valueId);
 
-    FormCode.DataType && (FormCode.DataType.dataset['id'] = typeCode);
-  }
+  FormCode.DataType && (FormCode.DataType.dataset['id'] = typeCode);
+
+  // Aplicar estilos de selección
+  toggleSelectedClass(elemento);
+}
+
+function toggleSelectedClass(element) {
+  const dropdownItems = document.querySelectorAll('#dropdownMenu a');
+
+  dropdownItems.forEach(function (item) {
+    item.classList.remove('selected');
+  });
+
+  element.classList.add('selected');
 }
 
 function insertarCodigos() {
@@ -77,7 +110,7 @@ function setInsertCodeQr(value, element) {
 
   const html = `
   <figure draggable="true" class="codigo-QR" data-id="${dataSetId}">
-    <img alt='Barcode Generator TEC-IT' 
+    <img alt='Barcode Generator TEC-IT'
     src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
     <figcaption>${value}</figcaption>
   </figure>
