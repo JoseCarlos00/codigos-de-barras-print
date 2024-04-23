@@ -79,7 +79,7 @@ function inicio() {
    * Iniciar arrastre del elemento
    * @param {event} e Evento
    */
-  function handleDragStart(e) {
+  function handleDragStartt(e) {
     const nodeName = e.target.nodeName;
 
     if (nodeName === 'FIGURE' || nodeName === 'DIV') {
@@ -105,8 +105,109 @@ function inicio() {
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData('text/plain', dataSetId);
 
-      console.log(dataSetId);
+      console.log('dataSetId:', dataSetId);
+
+      const offsetX = e.offsetX;
+      const offsetY = e.offsetY;
+
+      console.log('e.offsetX:', offsetX, ' e.offsetY:', offsetY);
+
+      // Agregar evento 'drop' para manejar la caída de elementos en esta área
+      areaDeImpresion.addEventListener('drop', function (e) {
+        e.preventDefault();
+        const x = e.clientX - areaDeImpresion.getBoundingClientRect().left - offsetX;
+        const y = e.clientY - areaDeImpresion.getBoundingClientRect().top - offsetY;
+        elemento.style.transform = `translate(${x}px, ${y}px)`;
+      });
     }
+  }
+
+  let handleDrop = () => {};
+
+  function handleDragStart(e) {
+    const nodeName = e.target.nodeName;
+
+    if (nodeName === 'FIGURE' || nodeName === 'DIV') {
+      const elemento = e.target;
+      handleDropWithOffset(e, elemento);
+    } else if (nodeName === 'IMG') {
+      const elemento = e.target.closest('figure');
+      handleDropWithOffset(e, elemento);
+    } else if (nodeName === 'P') {
+      const elemento = e.target.closest('div.texto-plano');
+      handleDropWithOffset(e, elemento);
+    }
+  }
+
+  function handleDropWithOffset(e, elemento) {
+    if (!elemento) return;
+
+    elemento.style.opacity = '0.4';
+    elemento.classList.add('dragging');
+    setEventoDragEnd(elemento);
+
+    const dataSetId = elemento.dataset['id'];
+
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dataSetId);
+
+    const offsetX = e.offsetX;
+    const offsetY = e.offsetY;
+
+    console.log('dataSetId:', dataSetId);
+    console.log('e.offsetX:', offsetX, ' e.offsetY:', offsetY);
+
+    // Función para manejar el evento drop
+
+    handleDrop = event => {
+      event.preventDefault();
+      let x = event.clientX - areaDeImpresion.getBoundingClientRect().left - offsetX;
+      let y = event.clientY - areaDeImpresion.getBoundingClientRect().top - offsetY;
+
+      // Verificar si el elemento está fuera del área de impresión
+      const areaRect = areaDeImpresion.getBoundingClientRect();
+      const elementoRect = elemento.getBoundingClientRect();
+
+      let collisionSide = '';
+
+      if (x < 0) {
+        collisionSide = 'left';
+        x = 0;
+      } else if (x + elementoRect.width > areaRect.width) {
+        collisionSide = 'right';
+        x = areaRect.width - elementoRect.width;
+      }
+
+      if (y < 0) {
+        collisionSide = 'top';
+        y = 0;
+      } else if (y + elementoRect.height > areaRect.height) {
+        collisionSide = 'bottom';
+        y = areaRect.height - elementoRect.height;
+      }
+      // Cambiar el borde específico dependiendo de la colisión
+      switch (collisionSide) {
+        case 'left':
+          areaDeImpresion.style.borderLeft = '2px solid red';
+          break;
+        case 'right':
+          areaDeImpresion.style.borderRight = '2px solid red';
+          break;
+        case 'top':
+          areaDeImpresion.style.borderTop = '2px solid red';
+          break;
+        case 'bottom':
+          areaDeImpresion.style.borderBottom = '2px solid red';
+          break;
+        default:
+          areaDeImpresion.style.border = ''; // Restaurar el borde predeterminado
+      }
+
+      elemento.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    // Agregar evento 'drop' para manejar la caída de elementos en esta área
+    areaDeImpresion.addEventListener('drop', handleDrop);
   }
 
   /**
@@ -115,87 +216,13 @@ function inicio() {
    */
   function handleDragEnd(e) {
     this.style.opacity = '1';
+
+    console.log('end');
+    this.classList.remove('dragging');
+    areaDeImpresion.removeEventListener('drop', handleDrop);
   }
 
   areaDeImpresion.addEventListener('dragstart', handleDragStart);
-
-  // Agregar evento 'drop' para manejar la caída de elementos en esta área
-  areaDeImpresion.addEventListener('drop', function (e) {
-    e.preventDefault(); // Evitar el comportamiento predeterminado de abrir la imagen o el enlace cuando se suelta el elemento aquí
-    const draggableElement = document.querySelector('.dragging:not(.texto-plano)'); // Obtener el elemento que está siendo arrastrado
-    const textoPLanoElement = document.querySelector('.dragging.texto-plano');
-
-    console.log('draggableElement:', draggableElement);
-    console.log('textoPLanoElement:', textoPLanoElement);
-
-    if (draggableElement) {
-      // Obtener las coordenadas del área de impresión
-      const areaRect = areaDeImpresion.getBoundingClientRect();
-      // Calcular las coordenadas relativas del punto de soltado dentro del área de impresión
-      const posX = e.clientX - areaRect.left - 50;
-      const posY = e.clientY - areaRect.top - 50;
-
-      // Establecer las coordenadas del elemento arrastrado para que se coloque donde fue soltado
-      draggableElement.style.left = posX + 'px';
-      draggableElement.style.top = posY + 'px';
-      // Eliminar la clase 'dragging' para indicar que el elemento ya no está siendo arrastrado
-      draggableElement.classList.remove('dragging');
-    } else if (textoPLanoElement) {
-      // Elementos
-      let isDragging = false;
-      let offsetX, offsetY;
-      let isSelected = textoPLanoElement.classList.contains('selected');
-
-      function inciarArastre(event) {
-        // Inicia el arrastre
-        console.log('Inicia el arrastre');
-        isDragging = true;
-
-        // Calcula la posición relativa del clic dentro del elemento
-        offsetX = event.clientX - textoPLanoElement.offsetLeft;
-        offsetY = event.clientY - textoPLanoElement.offsetTop;
-
-        // Añade un evento mousemove al documento para manejar el arrastre
-        document.addEventListener('mousemove', onMouseMove);
-
-        // Añade un evento mouseup para finalizar el arrastre
-        document.addEventListener('mouseup', onMouseUp);
-      }
-
-      // Función que maneja el evento mousedown
-      function onMouseDown(event) {
-        inciarArastre(event);
-      }
-
-      // Función que maneja el evento mousemove
-      function onMouseMove(event) {
-        if (isDragging) {
-          console.log('onMouseMove:', isSelected);
-          // Calcula la nueva posición del elemento
-          const newLeft = event.clientX - offsetX;
-          const newTop = event.clientY - offsetY;
-
-          // Actualiza la posición del elemento
-          textoPLanoElement.style.left = `${newLeft}px`;
-          textoPLanoElement.style.top = `${newTop}px`;
-        }
-      }
-
-      // Función que maneja el evento mouseup
-      function onMouseUp() {
-        // Finaliza el arrastre
-        isDragging = false;
-        console.log('Eliminar EVENTOS');
-        // Elimina los eventos mousemove y mouseup del documento
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-        textoPLanoElement.removeEventListener('mousedown', onMouseDown);
-      }
-
-      // Añade un evento mousedown al elemento
-      textoPLanoElement.addEventListener('mousedown', onMouseDown);
-    }
-  });
 
   // Agregar evento 'dragover' para permitir que los elementos sean soltados en esta área
   areaDeImpresion.addEventListener('dragover', function (e) {
@@ -215,6 +242,7 @@ function inicio() {
       const elemento = e.target.closest('div.texto-plano');
       setData(elemento);
       setElementoSize(elemento, true);
+      console.log('setElementoSize');
     } else {
       // Desmarcar todos los elementos
       const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
@@ -247,7 +275,7 @@ function inicio() {
   }
 
   function eliminarElemento(e) {
-    if (e.key === 'Delete' || e.key === 'Backspace') {
+    if (e.key === 'Delete') {
       const selectedElement = document.querySelector('.selected');
       if (selectedElement) {
         selectedElement.remove(); // Eliminar el elemento seleccionado

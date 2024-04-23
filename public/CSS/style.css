@@ -344,10 +344,7 @@ main {
   .area-de-impresion .texto-plano:not(.selected) p:hover,
   .area-de-impresion .texto-plano:not(.selected) {
     cursor: grab;
-  }
-
-  .img {
-    width: 3cm;
+    cursor: move;
   }
 
   figure {
@@ -398,7 +395,7 @@ main {
     align-items: start;
     align-content: start;
     justify-content: start;
-    gap: 4px;
+    gap: 8px;
 
     /* Ajusta el tamaño del texto al 5% del tamaño del padre */
     .texto {
@@ -414,6 +411,11 @@ main {
   .selected {
     outline: 3px dashed #8b8b8b !important;
     outline-offset: 2px !important;
+  }
+
+  .dragging {
+    transition: transform 0.2s ease;
+    /* Añadimos una transición para suavizar el movimiento */
   }
 }
 
