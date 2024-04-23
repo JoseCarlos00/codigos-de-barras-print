@@ -145,12 +145,12 @@ body {
 }
 
 .container {
-  display: flex; */
+  display: flex;
   flex-direction: column;
-   gap: 16px;
+  gap: 16px;
   z-index: 2;
 
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
