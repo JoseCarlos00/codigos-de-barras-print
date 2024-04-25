@@ -76,9 +76,9 @@ function insertarCodigos() {
     if (!data) return;
 
     if (typeCode === 'Code128') {
-      setInsertCode128(data, areaDeImpresion);
+      setInsertCode128(data, areaDeImpresion, typeCode);
     } else if (typeCode === 'CodeQR') {
-      setInsertCodeQr(data, areaDeImpresion);
+      setInsertCodeQr(data, areaDeImpresion, typeCode);
     } else if (typeCode === 'Texto') {
       setInsertText(data, areaDeImpresion);
     }
@@ -87,13 +87,13 @@ function insertarCodigos() {
   });
 }
 
-function setInsertCode128(value, element) {
+function setInsertCode128(value, element, type) {
   if (!value) return;
 
   value = value.trim();
 
   const html = `
-  <figure draggable="true" class="codigo-128" data-id="${dataSetId}">
+  <figure draggable="true" class="codigo-128" data-id="${dataSetId}" data-type="${type}">
     <img alt='Barcode Generator TEC-IT' 
     src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=Code128&translate-esc=on&eclevel=L' />
   </figure>
@@ -103,13 +103,13 @@ function setInsertCode128(value, element) {
   dataSetId++;
 }
 
-function setInsertCodeQr(value, element) {
+function setInsertCodeQr(value, element, type) {
   if (!value) return;
 
   value = value.trim();
 
   const html = `
-  <figure draggable="true" class="codigo-QR" data-id="${dataSetId}">
+  <figure draggable="true" class="codigo-QR" data-id="${dataSetId}" data-type="${type}">
     <img alt='Barcode Generator TEC-IT'
     src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
     <figcaption>${value}</figcaption>

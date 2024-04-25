@@ -2,7 +2,6 @@ let elemento = null;
 
 function changeFontZize(elemento, size) {
   if (size > 6) {
-    console.log('Size:', size);
     elemento.style.fontSize = size + 'px';
   }
 }

@@ -74,9 +74,124 @@
         <div draggable="true"></div>
       </section>
     </main>
+
     <form name="FormFontSize" class="form-font-size">
       <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
     </form>
+
+    <section>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Por favor, ingresa el nuevo contenido:</p>
+          <textarea id="newContent"></textarea>
+          <button id="submitBtn">Enviar</button>
+        </div>
+      </div>
+
+      <button id="openModalBtn">Abrir Modal</button>
+    </section>
+
+    <script>
+      // Obtener el modal
+      var modal = document.getElementById("myModal");
+
+      // Obtener el botón que abre el modal
+      var btn = document.getElementById("openModalBtn");
+
+      // Obtener el elemento de cierre (x)
+      var span = document.getElementsByClassName("close")[0];
+
+      // Cuando el usuario hace clic en el botón, abre el modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // Cuando el usuario hace clic en <span> (x), cierra el modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // Cuando el usuario hace clic fuera del modal, ciérralo
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      // Obtener el botón de envío
+      // var submitBtn = document.getElementById("submitBtn");
+
+      // // Manejar el clic en el botón de envío
+      // submitBtn.onclick = function () {
+      //   // Obtener el nuevo contenido del textarea
+      //   var nuevoContenido = document.getElementById("newContent").value;
+
+      //   // Llamar a la función para modificar el contenido con el nuevo texto
+      //   modificarContenido(nuevoContenido);
+
+      //   // Cerrar el modal
+      //   modal.style.display = "none";
+      // }
+
+      // // Función para modificar el contenido
+      // function modificarContenido(nuevoContenido) {
+      //   // Aquí puedes agregar la lógica para modificar el contenido según tu requerimiento
+      //   console.log("Nuevo contenido:", nuevoContenido);
+      //   // Por ejemplo, puedes agregar código aquí para modificar el contenido del elemento deseado.
+      // }
+
+    </script>
+
+    <style>
+      /* The Modal (background) */
+      .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.7);
+        /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
 
     <section class="filters-and-drash">
       <div class="custum-file-upload" for="file" style="display: none;">
@@ -132,6 +247,7 @@
   <script type="module" src="./public/JS/dragAndDrog.js"></script>
   <script type="module" src="./public/JS/rezize.js"></script>
   <script type="module" src="./public/JS/fontSize.js"></script>
+  <script type="module" src="./public/JS/editContent.js"></script>
 </body>
 
 </html>

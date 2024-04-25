@@ -9,8 +9,6 @@ function inicio() {
    * Un artículo se suelta en un destino de colocación válido.
    */
   dropElement.addEventListener('drop', function (e) {
-    console.log('[Drop delete]');
-
     // Evitar redirección del navegador
     if (e.stopPropagation) {
       e.stopPropagation();
@@ -21,7 +19,6 @@ function inicio() {
     // Obtener el ID del elemento a eliminar
     const dataSetId = e.dataTransfer.getData('text/plain');
     const elementToDelete = document.querySelector(`#areaDeImpresion [data-id="${dataSetId}"]`);
-    console.log('dataSetId:', dataSetId);
 
     // Si se encontró el elemento, eliminarlo
     if (elementToDelete) {
@@ -60,7 +57,6 @@ function inicio() {
    */
   function handleDragEnter(e) {
     this.classList.add('over');
-    // console.log(e);
   }
 
   /**
@@ -72,7 +68,6 @@ function inicio() {
    */
   function handleDragLeave(e) {
     this.classList.remove('over');
-    // console.log(e);
   }
 
   /**
@@ -111,11 +106,7 @@ function inicio() {
     const offsetX = e.offsetX;
     const offsetY = e.offsetY;
 
-    console.log('dataSetId:', dataSetId);
-    console.log('e.offsetX:', offsetX, ' e.offsetY:', offsetY);
-
     // Función para manejar el evento drop
-
     handleDrop = event => {
       event.preventDefault();
       let x = event.clientX - areaDeImpresion.getBoundingClientRect().left - offsetX;
@@ -174,7 +165,6 @@ function inicio() {
   function handleDragEnd(e) {
     this.style.opacity = '1';
 
-    console.log('end');
     this.classList.remove('dragging');
     areaDeImpresion.removeEventListener('drop', handleDrop);
   }
@@ -199,7 +189,6 @@ function inicio() {
       const elemento = e.target.closest('div.texto-plano');
       setData(elemento);
       setElementoSize(elemento, true);
-      console.log('setElementoSize');
     } else {
       // Desmarcar todos los elementos
       const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
@@ -215,7 +204,6 @@ function inicio() {
   });
 
   function setData(elemento) {
-    console.log('[SetData]');
     if (!elemento) return;
     elemento.classList.add('selected');
 
