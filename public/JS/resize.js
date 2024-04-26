@@ -1,6 +1,5 @@
 let isResizing = false;
 let elemento = null;
-let elementEvent = null;
 
 export function toggleRedimensionarListener(elementoParams) {
   if (!elementoParams) return;
@@ -45,7 +44,7 @@ function actualizarValores(UM = 'px') {
 export function cambiarDimensiones(elementoParams) {
   if (!FormWidth || !elementoParams) return;
 
-  elementEvent = elementoParams;
+  elemento = elementoParams;
   actualizarValores();
 }
 
@@ -70,9 +69,9 @@ function getValuesForm() {
 }
 
 function setValuesForm(ancho, alto, unidadAncho, unidadAlto) {
-  if (elementEvent && ancho && alto && unidadAncho && unidadAlto) {
-    elementEvent.style.width = ancho + unidadAncho;
-    elementEvent.style.height = alto + unidadAlto;
+  if (elemento && ancho && alto && unidadAncho && unidadAlto) {
+    elemento.style.width = ancho + unidadAncho;
+    elemento.style.height = alto + unidadAlto;
   }
 }
 
@@ -85,6 +84,7 @@ window.addEventListener('load', () => {
     altoInput.addEventListener('focus', seleccionarContenido);
 
     FormWidth.addEventListener('submit', formWidthSubmitEvent);
+    // FormWidth.addEventListener('input', getValuesForm);
   }
 
   function seleccionarContenido(e) {
@@ -99,7 +99,7 @@ window.addEventListener('load', () => {
 export function resetElement() {
   isResizing = false;
   elemento = null;
-  elementEvent = null;
+  elemento = null;
 
   if (FormWidth) {
     FormWidth.reset();

@@ -75,7 +75,12 @@
         <h2 class="title">Area de Impresión</h2>
       </header>
 
-      <section class="area-de-impresion" id="areaDeImpresion"></section>
+      <section class="area-de-impresion" id="areaDeImpresion">
+        <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR" style="opacity: 1; transform: translate(88.5454px, 20.5795px);">
+          <img alt="Barcode Generator TEC-IT" src="https://barcode.tec-it.com/barcode.ashx?data=test&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+          <figcaption>test</figcaption>
+        </figure>
+      </section>
     </main>
 
     <section class="trash-container">
@@ -100,7 +105,7 @@
         <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
       </form>
 
-      <form class="filters-width" name="FormWidth" style="display: none;">
+      <form class="filters-width" name="FormWidth">
         <label>Ancho:
           <input type="number" name="ancho" step="any">
         </label>
@@ -246,14 +251,12 @@
     </section>
 
     <footer>
-      <small>Create by Jose Carlos</small>
+      <small style="color: aqua;">Create by @Jose Carlos</small>
     </footer>
   </div>
 
   <script type="module" src="./public/JS/index.js"></script>
   <script type="module" src="./public/JS/dragAndDrog.js"></script>
-  <script type="module" src="./public/JS/rezize.js"></script>
-  <script type="module" src="./public/JS/fontSize.js"></script>
   <script type="module" src="./public/JS/editContent.js"></script>
 </body>
 
