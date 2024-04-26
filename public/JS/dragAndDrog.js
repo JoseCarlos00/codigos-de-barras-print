@@ -2,6 +2,7 @@ import { toggleRedimensionarListener, cambiarDimensiones, resetElement } from '.
 import { setElementoSize } from './fontSize.js';
 
 function inicio() {
+  const trashSection = document.querySelector('section.trash-container');
   const dropElement = document.querySelector('.custum-file-upload');
   const areaDeImpresion = document.querySelector('#areaDeImpresion');
 
@@ -70,6 +71,18 @@ function inicio() {
     this.classList.remove('over');
   }
 
+  function showTrash() {
+    if (!trashSection) return;
+
+    trashSection.classList.add('show');
+  }
+
+  function hiddenTrash() {
+    if (!trashSection) return;
+
+    trashSection.classList.remove('show');
+  }
+
   /**
    * Iniciar arrastre del elemento
    * @param {event} e Evento
@@ -82,12 +95,15 @@ function inicio() {
     if (nodeName === 'FIGURE' || nodeName === 'DIV') {
       const elemento = e.target;
       handleDropWithOffset(e, elemento);
+      showTrash();
     } else if (nodeName === 'IMG') {
       const elemento = e.target.closest('figure');
       handleDropWithOffset(e, elemento);
+      showTrash();
     } else if (nodeName === 'P') {
       const elemento = e.target.closest('div.texto-plano');
       handleDropWithOffset(e, elemento);
+      showTrash();
     }
   }
 
@@ -167,6 +183,8 @@ function inicio() {
 
     this.classList.remove('dragging');
     areaDeImpresion.removeEventListener('drop', handleDrop);
+
+    hiddenTrash();
   }
 
   areaDeImpresion.addEventListener('dragstart', handleDragStart);

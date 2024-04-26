@@ -1,0 +1,30 @@
+/* Impresiones */
+@media print {
+  header,
+  .codigo-container,
+  main > header,
+  .trash-container,
+  .filters,
+  .modal-container,
+  footer {
+    display: none;
+  }
+
+  .area-de-impresion,
+  .area-de-impresion .selected,
+  .area-de-impresion::before {
+    outline: none !important;
+    border: none !important;
+  }
+
+  figure,
+  .texto-plano {
+    resize: none !important;
+    outline: none !important;
+    border: none !important;
+  }
+
+  .area-de-impresion {
+    overflow: hidden;
+  }
+}

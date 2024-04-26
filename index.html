@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="./public/CSS/style.css">
+  <link rel="stylesheet" href="./public/CSS/print.css">
   <link rel="shortcut icon" href="./public/images/favicon.png" type="image/x-icon">
 
   <title>Imprimir Codigos de Barras/QR</title>
@@ -35,10 +36,11 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="grid-container">
 
     <header>
       <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
+
       <div class="dropdown-container">
         <ul id="dropdownMenu" class="dropdown-container-list">
           <li><a class="btn btn-primary" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a>
@@ -68,18 +70,65 @@
       </form>
     </section>
 
-    <h2 class="title">Area de Impresión</h2>
     <main>
-      <section class="area-de-impresion" id="areaDeImpresion">
-        <div draggable="true"></div>
-      </section>
+      <header>
+        <h2 class="title">Area de Impresión</h2>
+      </header>
+
+      <section class="area-de-impresion" id="areaDeImpresion"></section>
     </main>
 
-    <form name="FormFontSize" class="form-font-size">
-      <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
-    </form>
+    <section class="trash-container">
+      <div class="custum-file-upload" for="file">
+        <div class="text">
+          <span>Arrastra para eliminar elemento</span>
+        </div>
 
-    <section>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
+            </path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters">
+
+      <form name="FormFontSize" class="form-font-size">
+        <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
+      </form>
+
+      <form class="filters-width" name="FormWidth" style="display: none;">
+        <label>Ancho:
+          <input type="number" name="ancho" step="any">
+        </label>
+
+        <select name="unidadAncho">
+          <option value="cm">cm</option>
+          <option value="px">px</option>
+          <option value="in">in</option>
+        </select>
+
+        <label>Alto:
+          <input type="number" name="alto" step="any">
+        </label>
+
+        <select name="unidadAlto">
+          <option value="cm">cm</option>
+          <option value="px">px</option>
+          <option value="in">in</option>
+        </select>
+
+        <input type="submit" value="Enviar">
+      </form>
+
+    </section>
+
+
+     <!-- Modal -->
+     <section class="modal-container">
       <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
@@ -89,7 +138,7 @@
         </div>
       </div>
 
-      <button id="openModalBtn">Abrir Modal</button>
+      <button id="openModalBtn" hidden>Abrir Modal</button>
 
       <script>
         // Obtener el modal
@@ -163,6 +212,7 @@
           /* Fallback color */
           background-color: rgba(0, 0, 0, 0.7);
           /* Black w/ opacity */
+
         }
   
         /* Modal Content/Box */
@@ -174,6 +224,8 @@
           border: 1px solid #888;
           width: 80%;
           /* Could be more or less, depending on screen size */
+
+          max-width: 4in;
         }
   
         /* The Close Button */
@@ -193,55 +245,8 @@
       </style>
     </section>
 
-   
-
-    <section class="filters-and-drash">
-      <div class="custum-file-upload" for="file" style="display: none;">
-        <div class="text">
-          <span>Arrastra para eliminar elemento</span>
-        </div>
-
-        <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
-            </path>
-          </svg>
-        </div>
-      </div>
-
-      <form class="filters-width" name="FormWidth" style="display: none;">
-        <label>Ancho:
-          <input type="number" name="ancho" step="any">
-        </label>
-
-        <select name="unidadAncho">
-          <option value="cm">cm</option>
-          <option value="px">px</option>
-          <option value="in">in</option>
-        </select>
-
-        <label>Alto:
-          <input type="number" name="alto" step="any">
-        </label>
-
-        <select name="unidadAlto">
-          <option value="cm">cm</option>
-          <option value="px">px</option>
-          <option value="in">in</option>
-        </select>
-
-        <input type="submit" value="Enviar">
-      </form>
-
-    </section>
-
     <footer>
-      <!-- back-linking to www.tec-it.com is required -->
-      <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
-        TEC-IT Barcode Generator
-        <img alt='TEC-IT Barcode Software' border='0' src='http://www.tec-it.com/pics/banner/web/TEC-IT_Logo_75x75.gif'>
-      </a>
+      <small>Create by Jose Carlos</small>
     </footer>
   </div>
 
