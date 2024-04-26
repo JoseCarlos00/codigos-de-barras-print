@@ -46,6 +46,8 @@ function changeBarcode(elemento, valueId, typeCode) {
 
   FormCode.DataType && (FormCode.DataType.dataset['id'] = typeCode);
 
+  changeBackGroundImage(typeCode);
+
   // Aplicar estilos de selección
   toggleSelectedClass(elemento);
 }
@@ -60,6 +62,26 @@ function toggleSelectedClass(element) {
   element.classList.add('selected');
 }
 
+function changeBackGroundImage(typeCode) {
+  const editorField = document.querySelector('.codigo-container > form > div.editor-field');
+
+  if (!editorField) return;
+
+  const urlImage = {
+    Code128: './public/images/128.png',
+    CodeQR: './public/images/qr.png',
+    Texto: './public/images/pencil.png',
+  };
+
+  if (typeCode === 'Code128') {
+    editorField.style.backgroundImage = "url('" + urlImage[typeCode] + "')";
+  } else if (typeCode === 'CodeQR') {
+    editorField.style.backgroundImage = "url('" + urlImage[typeCode] + "')";
+  } else if (typeCode === 'Texto') {
+    editorField.style.backgroundImage = "url('" + urlImage[typeCode] + "')";
+  }
+}
+
 function insertarCodigos() {
   const areaDeImpresion = document.querySelector('.area-de-impresion');
 
@@ -68,10 +90,6 @@ function insertarCodigos() {
 
     const data = FormCode.DataCode.value.trim();
     const typeCode = FormCode.DataType.dataset['id'];
-
-    console.log(typeCode);
-
-    console.log('DataCode:', data);
 
     if (!data) return;
 

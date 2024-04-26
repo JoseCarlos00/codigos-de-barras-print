@@ -18,7 +18,7 @@ body {
   height: auto;
   font-size: 16px;
   color: #1a1a1a;
-  background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3BmLXMxMjUtYWtlNzAwNV8yLmpwZw.jpg');
+  background-image: url('https://i.postimg.cc/8Cc9JfLp/04.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -228,6 +228,10 @@ header {
     font-size: 9pt;
     line-height: 12pt;
     outline: none;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 
     textarea {
       text-size-adjust: none;
