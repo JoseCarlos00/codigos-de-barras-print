@@ -101,8 +101,6 @@ function inicio() {
     const xInicial = elementoRect.left - areaDeImpresionRect.left;
     const yInicial = elementoRect.top - areaDeImpresionRect.top;
 
-    console.log(`xInicial:${xInicial} | yInicial:${yInicial}`);
-
     // Función para manejar el evento drop
     handleDrop = event => {
       event.preventDefault();
@@ -112,7 +110,9 @@ function inicio() {
 
       // Guardar la posición anterior
       savePosition({ xInicial, yInicial, xActual, yActual, elemento });
-      console.log(`xActual:${xActual} | yActual:${yActual}`);
+      console.log(
+        `[xInicial:${xInicial} | yInicial:${yInicial}] - [xActual:${xActual} | yActual:${yActual}]`
+      );
 
       // Verificar si el elemento está fuera del área de impresión
       let collisionSide = '';

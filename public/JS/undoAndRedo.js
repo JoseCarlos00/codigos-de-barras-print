@@ -1,7 +1,9 @@
-import { Stack } from './class.js';
+import { Stack, DataHistory } from './class.js';
 
 const undoStack = new Stack();
 const redoStack = new Stack();
+// const historyStack = new ListaDoblementeEnlazada();
+const historyStack = new DataHistory();
 
 let currentElement = null;
 
@@ -11,8 +13,18 @@ export function savePosition(position) {
 
   currentElement = elemento;
 
-  // undoStack.push({ xInicial, yInicial });
+  undoStack.push({ xInicial, yInicial, xActual, yActual });
   // redoStack.push({ xActual, yActual });
+
+  historyStack.addData({ xInicial, yInicial, xActual, yActual });
+  // historyStack.print();
+  console.log(
+    'History:',
+    historyStack.getHistory().length,
+    historyStack.getHistory(),
+    'Actual:',
+    historyStack.getCurrentData()
+  );
 }
 
 // Función para aplicar una acción
@@ -36,18 +48,31 @@ function undo() {
 
     console.log('Redu:', redoStack.peek(), redoStack.print());
 
-    if ((redoSize - undoSize) = 2) {
-      redoStack.pop();
-    }
+    // if (redoSize - undoSize == 2) {
+    //   redoStack.pop();
+    // }
 
     applyAction({ x, y });
+
+    // console.log('Deshacer Value:', historyStack.deshacer());
   }
+  console.log('back:', historyStack.back());
+
+  console.log(
+    'History:',
+    historyStack.getHistory().length,
+    historyStack.getHistory(),
+    'Actual:',
+    historyStack.getCurrentData()
+  );
 }
 
 // Función para rehacer la última acción deshecha
 function redo() {
   const redoSize = redoStack.size();
   const undoSize = undoStack.size();
+
+  // console.log('Reacer Value:', historyStack.rehacer());
   /**
    * Mientras sean del mismo size no hacer nada
    */
@@ -56,6 +81,24 @@ function redo() {
     console.log('size:', redoSize);
     const { xActual: x, yActual: y } = redoStack.pop();
     undoStack.push({ xInicial: x, yInicial: y });
+    applyAction({ x, y });
+  }
+
+  const reduForward = historyStack.forward();
+
+  if (reduForward) {
+    const { xInicial: x, yInicial: y } = reduForward;
+
+    console.log('forward:', reduForward);
+
+    console.log(
+      'History:',
+      historyStack.getHistory().length,
+      historyStack.getHistory(),
+      'Actual:',
+      historyStack.getCurrentData()
+    );
+
     applyAction({ x, y });
   }
 }
