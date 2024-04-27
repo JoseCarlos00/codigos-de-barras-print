@@ -1,6 +1,7 @@
 import { toggleRedimensionarListener, cambiarDimensiones, resetElement } from './resize.js';
 import { setElementoSize } from './fontSize.js';
 import { handleDragOver, handleDragLeave } from './drag-and-drog/functions.js';
+import { savePosition } from './undoAndRedo.js';
 
 function inicio() {
   const trashSection = document.querySelector('section.trash-container');
@@ -76,50 +77,6 @@ function inicio() {
     }
   }
 
-  let xPosition = 0;
-  let yPosition = 0;
-
-  let undoStack = []; // Pila para almacenar las acciones deshacer
-  let redoStack = []; // Pila para almacenar las acciones rehacer
-
-  let currentElement = null;
-
-  // Función para guardar la posición actual
-  function savePosition(position) {
-    const { x, y, element } = position;
-    xPosition = x;
-    yPosition = y;
-    currentElement = element;
-    undoStack.push({ x: xPosition, y: yPosition });
-  }
-
-  // Función para deshacer la última acción
-  function undo() {
-    if (undoStack.length > 0) {
-      const lastAction = undoStack.pop();
-      redoStack.push(lastAction);
-      applyAction(lastAction);
-    }
-  }
-
-  // Función para rehacer la última acción deshecha
-  function redo() {
-    if (redoStack.length > 0) {
-      const lastUndoAction = redoStack.pop();
-      undoStack.push(lastUndoAction);
-      applyAction(lastUndoAction);
-    }
-  }
-
-  // Función para aplicar una acción
-  function applyAction(action) {
-    const { x, y } = action;
-
-    if (currentElement) {
-      currentElement.style.transform = `translate(${x}px, ${y}px)`;
-    }
-  }
-
   // TODO: Errro en la colicion
 
   function handleDropWithOffset(e, elemento) {
@@ -139,7 +96,6 @@ function inicio() {
 
     const areaDeImpresionRect = areaDeImpresion.getBoundingClientRect();
     const elementoRect = elemento.getBoundingClientRect();
-    console.log('elementoRect 1:', elementoRect);
 
     // Almacenar la posición inicial
     const xInicial = elementoRect.left - areaDeImpresionRect.left;
@@ -155,7 +111,8 @@ function inicio() {
       const yActual = event.clientY - areaDeImpresionRect.top - offsetY;
 
       // Guardar la posición anterior
-      savePosition({ x: xInicial, y: yInicial, element: elemento });
+      savePosition({ xInicial, yInicial, xActual, yActual, elemento });
+      console.log(`xActual:${xActual} | yActual:${yActual}`);
 
       // Verificar si el elemento está fuera del área de impresión
       let collisionSide = '';
@@ -200,20 +157,6 @@ function inicio() {
     // Agregar evento 'drop' para manejar la caída de elementos en esta área
     areaDeImpresion.addEventListener('drop', handleDrop);
   }
-
-  // Escuchar el evento de teclado para Ctrl + Z (deshacer)
-  document.addEventListener('keydown', function (event) {
-    if (event.ctrlKey && event.key === 'z') {
-      undo();
-    }
-  });
-
-  // Escuchar el evento de teclado para Ctrl + Y (rehacer)
-  document.addEventListener('keydown', function (event) {
-    if (event.ctrlKey && event.key === 'y') {
-      redo();
-    }
-  });
 
   /**
    * Una operación de arrastre finaliza
