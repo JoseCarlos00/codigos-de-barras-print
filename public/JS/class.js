@@ -103,6 +103,7 @@ export class DataHistory {
     if (this.currentIndex < this.history.length - 1) {
       this.history = this.history.slice(0, this.currentIndex + 1);
     }
+
     this.history.push(data);
     this.currentIndex++;
   }
@@ -127,6 +128,10 @@ export class DataHistory {
     return this.history[this.currentIndex];
   }
 
+  getCurrentIndex() {
+    return this.currentIndex;
+  }
+
   getHistory() {
     return this.history;
   }
@@ -139,9 +144,9 @@ dataHistory.addData('Datos 1');
 dataHistory.addData('Datos 2');
 dataHistory.addData('Datos 3');
 
-console.log('getCurrentData:', dataHistory.getCurrentData()); // Datos 3
+// console.log('getCurrentData:', dataHistory.getCurrentData()); // Datos 3
 
-console.log('back:', dataHistory.back()); // Datos 2
-console.log('back:', dataHistory.back()); // Datos 1
-console.log('forward:', dataHistory.forward()); // Datos 2
-console.log('forward:', dataHistory.forward()); // Datos 3
+// console.log('back:', dataHistory.back()); // Datos 2
+// console.log('back:', dataHistory.back()); // Datos 1
+// console.log('forward:', dataHistory.forward()); // Datos 2
+// console.log('forward:', dataHistory.forward()); // Datos 3
