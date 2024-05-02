@@ -1,104 +1,60 @@
 import { Stack, DataHistory } from './class.js';
 
-const undoStack = new Stack();
-const redoStack = new Stack();
-// const historyStack = new ListaDoblementeEnlazada();
 const historyStack = new DataHistory();
 
 let currentElement = null;
 
 // Función para guardar la posición actual
 export function savePosition(position) {
-  const { xInicial, yInicial, xActual, yActual, elemento } = position;
+  const { xInicial, yInicial, xActual, yActual, elemento, position: pos } = position;
 
   currentElement = elemento;
 
-  undoStack.push({ xInicial, yInicial, xActual, yActual });
-  // redoStack.push({ xActual, yActual });
+  if (historyStack.getHistory().length === 0) {
+    historyStack.addData({ xActual: xInicial, yActual: yInicial, pos });
+    let poss = Number(pos);
+    ++poss;
+    historyStack.addData({ xActual, yActual, poss });
+  } else {
+    historyStack.addData({ xActual, yActual, pos });
+  }
 
-  historyStack.addData({ xInicial, yInicial, xActual, yActual });
-  // historyStack.print();
-  console.log(
-    'History:',
-    historyStack.getHistory().length,
-    historyStack.getHistory(),
-    'Actual:',
-    historyStack.getCurrentData()
-  );
+  // console.log(
+  //   `History: index[${historyStack.getCurrentIndex()}] length`,
+  //   historyStack.getHistory().length,
+  //   historyStack.getHistory(),
+  //   'Actual:',
+  //   historyStack.getCurrentData()
+  // );
 }
 
 // Función para aplicar una acción
 function applyAction(action) {
   const { x, y } = action;
 
-  if (currentElement) {
+  if (currentElement && x && y) {
     currentElement.style.transform = `translate(${x}px, ${y}px)`;
-    console.log('[applyAction] currentElement: x:', x, ' y:', y);
   }
 }
 
 // Función para deshacer la última acción
 function undo() {
-  const redoSize = redoStack.size();
-  const undoSize = undoStack.size();
+  const undoBack = historyStack.back();
+  // console.log('back:', undoBack);
 
-  if (undoSize > 0) {
-    console.log('Undo:', undoStack.peek(), undoStack.print());
-    const { xInicial: x, yInicial: y } = undoStack.pop();
-
-    console.log('Redu:', redoStack.peek(), redoStack.print());
-
-    // if (redoSize - undoSize == 2) {
-    //   redoStack.pop();
-    // }
-
+  if (undoBack) {
+    const { xActual: x, yActual: y } = undoBack;
     applyAction({ x, y });
-
-    // console.log('Deshacer Value:', historyStack.deshacer());
   }
-  console.log('back:', historyStack.back());
-
-  console.log(
-    'History:',
-    historyStack.getHistory().length,
-    historyStack.getHistory(),
-    'Actual:',
-    historyStack.getCurrentData()
-  );
 }
 
 // Función para rehacer la última acción deshecha
 function redo() {
-  const redoSize = redoStack.size();
-  const undoSize = undoStack.size();
-
-  // console.log('Reacer Value:', historyStack.rehacer());
-  /**
-   * Mientras sean del mismo size no hacer nada
-   */
-
-  if (redoSize > 0 && redoSize > undoSize) {
-    console.log('size:', redoSize);
-    const { xActual: x, yActual: y } = redoStack.pop();
-    undoStack.push({ xInicial: x, yInicial: y });
-    applyAction({ x, y });
-  }
-
   const reduForward = historyStack.forward();
+  // console.log('forward:', reduForward);
 
   if (reduForward) {
-    const { xInicial: x, yInicial: y } = reduForward;
-
-    console.log('forward:', reduForward);
-
-    console.log(
-      'History:',
-      historyStack.getHistory().length,
-      historyStack.getHistory(),
-      'Actual:',
-      historyStack.getCurrentData()
-    );
-
+    const { xActual: x, yActual: y } = reduForward;
     applyAction({ x, y });
   }
 }

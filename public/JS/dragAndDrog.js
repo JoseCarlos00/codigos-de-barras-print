@@ -78,7 +78,7 @@ function inicio() {
   }
 
   // TODO: Errro en la colicion
-
+  let position = 0;
   function handleDropWithOffset(e, elemento) {
     if (!elemento) return;
 
@@ -108,11 +108,12 @@ function inicio() {
       const xActual = event.clientX - areaDeImpresionRect.left - offsetX;
       const yActual = event.clientY - areaDeImpresionRect.top - offsetY;
 
-      // Guardar la posición anterior
-      savePosition({ xInicial, yInicial, xActual, yActual, elemento });
-      console.log(
-        `[xInicial:${xInicial} | yInicial:${yInicial}] - [xActual:${xActual} | yActual:${yActual}]`
-      );
+      ++position;
+      savePosition({ xInicial, yInicial, xActual, yActual, elemento, position });
+
+      // console.log(
+      //   `[xInicial:${xInicial} | yInicial:${yInicial}] - [xActual:${xActual} | yActual:${yActual}]`
+      // );
 
       // Verificar si el elemento está fuera del área de impresión
       let collisionSide = '';
