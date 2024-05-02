@@ -73,10 +73,69 @@
     <main>
       <header>
         <h2 class="title">Area de Impresión</h2>
-      </header>
+
+      <form class="radio-inputs">
+          <label class="radio">
+            <input type="radio" name="margin" checked="" value="Sin margen">
+            <span class="name">Sin Margen</span>
+          </label>
+        
+          <label class="radio">
+            <input type="radio" name="margin" value="Con margen">
+            <span class="name">Con margen</span>
+          </label>
+      </form>
       
-      <section class="area-de-impresion" id="areaDeImpresion"></section>
+      </header>
+
+      <section class="area-de-impresion not-margin" id="areaDeImpresion"></section>
     </main>
+
+    <script>
+      // Función para inicializar el estado seleccionado
+      function initSelectedState() {
+        const radioInputSelected = localStorage.getItem('selectMargin');
+        const areaDeImpresion = document.getElementById('areaDeImpresion');
+        const headerPrint = document.querySelector('main header')
+    
+        if (radioInputSelected) {
+          const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
+          radioInputs.forEach(input => {
+            input.checked = input.value === radioInputSelected;
+          });
+    
+          areaDeImpresion.classList.toggle('not-margin', radioInputSelected === 'Sin margen');
+          areaDeImpresion.classList.toggle('with-margin', radioInputSelected === 'Con margen');
+          // headerPrint.classList.toggle('mb-40', radioInputSelected === 'Sin margen');
+        }
+      }
+    
+      // Llama a la función de inicialización al cargar la página
+      window.addEventListener('load', initSelectedState);
+    
+      // Escucha los cambios en los inputs de radio
+      const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
+      const areaDeImpresion = document.getElementById('areaDeImpresion');
+      const headerPrint = document.querySelector('main header')
+      
+      radioInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          const valueInput = this.value;
+
+          // headerPrint.classList.toggle('mb-40', valueInput === 'Con margen');
+          areaDeImpresion.classList.toggle('with-margin', valueInput === 'Con margen');
+          areaDeImpresion.classList.toggle('not-margin', valueInput === 'Sin margen');
+
+          if (valueInput === 'Con margen' && this.checked) {
+            localStorage.setItem('selectMargin', valueInput);
+          } else {
+            localStorage.removeItem('selectMargin');
+          }
+        });
+      });
+    </script>
+    
+  
 
     <section class="trash-container">
       <div class="custum-file-upload" for="file">
