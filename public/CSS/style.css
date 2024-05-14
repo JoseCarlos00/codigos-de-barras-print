@@ -87,9 +87,8 @@ header {
   h1 {
     width: 100%;
     text-wrap: nowrap;
-
-    text-shadow: 0 0 0.2em rgba(0, 153, 255, 0.379), 0 0 0.2em rgba(0, 153, 255, 0.379),
-      0 0 0.2em rgba(0, 153, 255, 0.379);
+    text-shadow: 0 0 0.2em rgb(131 228 76 / 38%), 0 0 0.2em rgb(77 239 68 / 38%),
+      0 0 0.2em rgb(150 226 0 / 38%);
     padding-bottom: 8px;
   }
 
