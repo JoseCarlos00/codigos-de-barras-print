@@ -108,12 +108,12 @@ function insertarCodigos() {
 function setInsertCode128(value, element, type) {
   if (!value) return;
 
-  value = value.trim();
+  const encodedValue = encodeURIComponent(value.trim());
 
   const html = `
   <figure draggable="true" class="codigo-128" data-id="${dataSetId}" data-type="${type}">
     <img alt='Barcode Generator TEC-IT' 
-    src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=Code128&translate-esc=on&eclevel=L' />
+    src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=Code128&translate-esc=on&eclevel=L' />
   </figure>
 `;
 
@@ -124,12 +124,13 @@ function setInsertCode128(value, element, type) {
 function setInsertCodeQr(value, element, type) {
   if (!value) return;
 
+  const encodedValue = encodeURIComponent(value.trim());
   value = value.trim();
 
   const html = `
   <figure draggable="true" class="codigo-QR" data-id="${dataSetId}" data-type="${type}">
     <img alt='Barcode Generator TEC-IT'
-    src='https://barcode.tec-it.com/barcode.ashx?data=${value}&code=QRCode&eclevel=L&dmsize=Default' />
+    src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=QRCode&eclevel=L&dmsize=Default' />
     <figcaption>${value}</figcaption>
   </figure>
   `;

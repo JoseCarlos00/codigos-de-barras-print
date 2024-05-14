@@ -31,7 +31,7 @@ body {
   width: 100%;
   height: 100%;
 
-  grid-template-columns: 1fr 4.5in 1fr;
+  grid-template-columns: 1fr 6in 1fr;
 
   grid-template-areas:
     'header header header'
@@ -293,43 +293,97 @@ header {
 }
 
 main {
-  /* --container_width: 3.4in; */
-  --container_widt_paddign: calc(4in - 2cm);
-  --container_width: 4in;
+  --container_width_paddign: 6in;
+  --container_width: calc(var(--container_width_paddign) - 3.2cm);
+  --height: 60px;
+  --border-radius: 8px;
 
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   row-gap: 8px;
+
+  width: 100%;
+  /* height: calc(4in + 8px + var(--height)); */
+
+  .mb-40 {
+    margin-bottom: 40px;
+  }
 
   header {
     width: 100%;
+    height: var(--height);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .radio-inputs {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 0.5rem;
+      background-color: #eee;
+      box-sizing: border-box;
+      box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+      padding: 0.25rem;
+      width: fit-content;
+      font-size: 14px;
+      column-gap: 4px;
+    }
+
+    .radio-inputs .radio {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    .radio-inputs .radio input {
+      display: none;
+    }
+
+    .radio-inputs .radio .name {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      border: none;
+      color: rgba(51, 65, 85, 1);
+      transition: all 0.15s ease-in-out;
+      opacity: 0.5;
+    }
+
+    .radio-inputs .radio input:checked + .name {
+      background-color: #fff;
+      font-weight: 600;
+      opacity: 1;
+    }
   }
 
   .area-de-impresion {
     background-color: rgb(255, 255, 255, 0.35);
-    width: var(--container_width);
-    height: var(--container_width);
     outline: 3px dashed #8b8b8b;
     outline-offset: -3px;
-
     position: relative;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
+
+    width: var(--container_width_paddign);
+    height: var(--container_width_paddign);
   }
 
-  .area-de-impresion::before {
-    /* content: ''; */
-    width: var(--container_widt_paddign);
-    height: var(--container_widt_paddign);
-    outline: 3px dashed #8b8b8ba6;
+  .area-de-impresion.with-margin::before {
+    content: '';
+    width: var(--container_width);
+    height: var(--container_width);
+    outline: 3px dashed #080808a6;
     outline-offset: 3px;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 5px;
+    left: 5px;
+    border-radius: var(--border-radius);
   }
 
   .area-de-impresion figure:not(.selected),
