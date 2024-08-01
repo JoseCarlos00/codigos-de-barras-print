@@ -20,9 +20,6 @@ async function plantillas() {
   }
 
   function setPlantilla(e) {
-    console.log(e.target);
-    console.log(e.target.dataset.type);
-
     const type = e.target.dataset.type;
 
     if (type) {
