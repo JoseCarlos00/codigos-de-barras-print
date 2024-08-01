@@ -21,6 +21,7 @@ body {
   font-size: 16px;
   color: #1a1a1a;
   background-image: url('https://i.postimg.cc/8Cc9JfLp/04.jpg');
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -36,6 +37,7 @@ body {
   grid-template-areas:
     'header header header'
     '. codigo .'
+    'trash main plantillas'
     'trash main filtros'
     'footer footer footer';
 
@@ -62,6 +64,10 @@ body {
 
   > footer {
     grid-area: footer;
+  }
+
+  > .plantillas {
+    grid-area: plantillas;
   }
 }
 
@@ -414,7 +420,7 @@ main {
     }
 
     figcaption {
-      font-size: 16px;
+      font-size: 21px;
       font-weight: bold;
       text-align: center;
       margin-top: -4px;
@@ -485,4 +491,32 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.plantillas {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  justify-content: center;
+  padding-left: 16px;
+
+  .btn {
+    width: max-content;
+  }
+
+  .plantilla {
+    display: none;
+  }
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mt-1 {
+  margin-top: 1rem;
 }
