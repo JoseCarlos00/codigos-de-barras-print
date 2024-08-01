@@ -128,7 +128,7 @@ function setInsertCodeQr(value, element, type) {
   value = value.trim();
 
   const html = `
-  <figure draggable="true" class="codigo-QR" data-id="${dataSetId}" data-type="${type}">
+  <figure draggable="true" class="codigo-QR" data-id="${dataSetId}" data-type="${type}" style="width: 180px;height: 190px;transform: translate(55.8px, 44.5px);">
     <img alt='Barcode Generator TEC-IT'
     src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=QRCode&eclevel=L&dmsize=Default' />
     <figcaption>${value}</figcaption>

@@ -5,6 +5,7 @@
   main > header,
   .trash-container,
   .filters,
+  .plantillas,
   .modal-container,
   footer {
     display: none;
