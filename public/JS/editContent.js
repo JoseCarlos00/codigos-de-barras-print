@@ -1,96 +1,80 @@
 function inicio() {
-  try {
-    const areaDeImpresion = document.querySelector('#areaDeImpresion');
+  const areaDeImpresion = document.querySelector('#areaDeImpresion');
 
-    // Verificar si se encontró el elemento
-    if (!areaDeImpresion) {
-      throw new Error('No se encontró el área de impresión <main>');
-    }
-
-    areaDeImpresion.addEventListener('dblclick', editarContenido);
-  } catch (error) {
-    console.error('Error:', error);
+  // Verificar si se encontró el elemento
+  if (!areaDeImpresion) {
+    throw new Error('No se encontró el área de impresión <main>');
   }
+
+  areaDeImpresion.addEventListener('dblclick', editarContenido);
 }
+
+const MODAL_ID = 'myModaChangeText';
+const FORM_ID = 'FormChangeText';
+
+const nodeHandlers = {
+  FIGURE: ({ elemento }) => modifyFigureContent({ figureElement: elemento }),
+  IMG: ({ elemento }) => modifyFigureContent({ figureElement: elemento.closest('figure') }),
+  FIGCAPTION: ({ elemento }) => modifyFigureContent({ figureElement: elemento.closest('figure') }),
+  DIV: ({ elemento }) => modifyTextContent(elemento),
+  P: ({ elemento }) => modifyTextContent(elemento.closest('div.texto-plano')),
+};
 
 // Definir la función para editar el contenido
 function editarContenido(e) {
   const nodeName = e.target.nodeName;
   const elemento = e.target;
 
-  console.log(nodeName);
-  if (nodeName === 'FIGURE') {
-    if (elemento) modifyFigureContent(elemento);
-  } else if (nodeName === 'IMG' || nodeName === 'FIGCAPTION') {
-    const figure = elemento.closest('figure');
-    if (figure) modifyFigureContent(figure);
-  } else if (nodeName === 'DIV') {
-    elemento && modifyTextContent(elemento);
-  } else if (nodeName === 'P') {
-    const div = elemento.closest('div.texto-plano');
-    div && modifyTextContent(div);
+  if (nodeHandlers[nodeName]) {
+    nodeHandlers[nodeName]({ elemento });
   }
 }
 
-function getDataValueFromFigure(figureElement) {
-  return new Promise(resolve => {
-    // Encuentra la imagen dentro del elemento figure
-    const imgElement = figureElement.querySelector('img');
-
-    if (imgElement) {
-      const src = imgElement.src;
-
-      if (!src) return;
-
+async function getDataValueFromFigure(figureElement) {
+  const imgElement = figureElement.querySelector('img');
+  if (imgElement) {
+    const src = imgElement.src;
+    if (src) {
       const url = new URL(src);
-      const dataValue = url.searchParams.get('data');
-
-      resolve(dataValue);
+      return url.searchParams.get('data');
     } else {
-      resolve(null);
+      return null;
     }
-  });
+  }
+  return null;
 }
 
-async function modifyFigureContent(elemento) {
+async function modifyFigureContent({ figureElement }) {
   try {
-    const modal = document.getElementById('myModaChangeText');
-    const formChangeText = document.getElementById('FormChangeText');
+    const modal = document.getElementById(MODAL_ID);
+    const form = document.getElementById(FORM_ID);
 
-    if (!elemento) {
-      throw new Error('No se encontró el <elemento> del evento');
+    if (!figureElement) {
+      throw new Error('No se encontró el elemento figure');
     }
 
-    if (!modal) {
-      throw new Error('No se encontró el elemento <modal>');
+    if (!modal || !form) {
+      throw new Error('No se encontraron los elementos necesarios');
     }
 
-    if (!formChangeText) {
-      throw new Error('No se encontró el elemento <textarea>');
-    }
-
-    const dataValue = await getDataValueFromFigure(elemento);
+    const dataValue = await getDataValueFromFigure(figureElement);
 
     if (dataValue) {
-      formChangeText.changeData.value = dataValue;
+      form.changeData.value = dataValue;
     } else {
-      alert('Ha ocurrido un error al obtener el valor de data.');
+      alert('Ha ocurrido un error al obtener el valor actual de elemento');
     }
 
-    modal.style.display = 'block';
+    focusInputTextarea({ modal, form });
 
-    if (formChangeText.changeData) {
-      formChangeText.changeData.focus();
-      setTimeout(() => formChangeText.changeData.select(), 50);
-    }
-
-    // Remueve el listener previo si existe
-    modal.removeEventListener('submit', setNewValueFigureContent);
-    modal.addEventListener('submit', function (e) {
-      setNewValueFigureContent(e, elemento);
-    });
+    /**
+     * TODO: revisar si existe una sobrecarga del evento SUBMIT
+     */
+    modal.addEventListener('submit', e => setNewValueFigureContent(e, figureElement));
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error: a ocurrio un error al intentar modificar el contenido actual', error);
+    alert('Error: a ocurrio un error al intentar modificar el contenido actual');
+    return;
   }
 }
 
@@ -134,48 +118,48 @@ function setNewValueFigureContent(e, elemento) {
   }
 }
 
-function modifyTextContent(elemento) {
-  let nuevoContenido = getValueModal();
+async function getDataValueFromElement(element) {
+  const paragraphs = Array.from(element.querySelectorAll('p.texto'));
 
-  if (!nuevoContenido) return;
-  nuevoContenido = nuevoContenido.trim().split('\n');
+  if (!paragraphs.length) {
+    console.error('No se encontraron elementos de texto');
+    return '';
+  }
 
-  elemento.innerHTML = '';
-
-  nuevoContenido.forEach(texto => {
-    const p = document.createElement('p');
-    p.textContent = texto;
-    p.className = 'texto';
-
-    elemento.appendChild(p);
-  });
+  return paragraphs.map(p => p.textContent.trim()).join('\n');
 }
 
-function getValueModal() {
-  modal.style.display = 'block';
+async function modifyTextContent(elemento) {
+  console.log('Function [modifyTextContent]');
 
-  // Obtener el botón de envío
-  var submitBtn = document.getElementById('submitBtn');
+  const modal = document.getElementById(MODAL_ID);
+  const form = document.getElementById(FORM_ID);
 
-  // Manejar el clic en el botón de envío
-  submitBtn.onclick = function () {
-    // Obtener el nuevo contenido del textarea
-    var nuevoContenido = document.getElementById('newContent').value;
-
-    // Llamar a la función para modificar el contenido con el nuevo texto
-    modificarContenido(nuevoContenido);
-
-    // Cerrar el modal
-    modal.style.display = 'none';
-  };
-
-  // Función para modificar el contenido
-  function modificarContenido(nuevoContenido) {
-    // Aquí puedes agregar la lógica para modificar el contenido según tu requerimiento
-    console.log('Nuevo contenido:', nuevoContenido);
-    // Por ejemplo, puedes agregar código aquí para modificar el contenido del elemento deseado.}
-    return nuevoContenido;
+  if (!elemento) {
+    throw new Error('No se encontró el elemento figure');
   }
+
+  if (!modal || !form) {
+    throw new Error('No se encontraron los elementos necesarios');
+  }
+
+  const dataValue = await getDataValueFromElement(elemento);
+
+  if (dataValue) {
+    form.changeData.value = dataValue;
+  } else {
+    alert('Ha ocurrido un error al obtener el valor actual de elemento');
+  }
+
+  focusInputTextarea({ modal, form });
+
+  console.log('ELEMENT:', elemento);
+}
+
+function focusInputTextarea({ modal, form }) {
+  modal.style.display = 'block';
+  form.changeData.focus();
+  setTimeout(() => form.changeData.select(), 50);
 }
 
 window.addEventListener('load', inicio, { once: true });
