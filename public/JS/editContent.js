@@ -79,6 +79,11 @@ async function modifyFigureContent(elemento) {
 
     modal.style.display = 'block';
 
+    if (formChangeText.changeData) {
+      formChangeText.changeData.focus();
+      setTimeout(() => formChangeText.changeData.select(), 50);
+    }
+
     // Remueve el listener previo si existe
     modal.removeEventListener('submit', setNewValueFigureContent);
     modal.addEventListener('submit', function (e) {
@@ -127,35 +132,6 @@ function setNewValueFigureContent(e, elemento) {
   if (modal) {
     modal.style.display = 'none';
   }
-}
-
-function modifyFigureContent2(elemento) {
-  let nuevoContenido = prompt('Por favor, ingresa el nuevo contenido:');
-
-  if (!nuevoContenido) return;
-  nuevoContenido = nuevoContenido.trim();
-
-  const figure = elemento.closest('figure');
-  if (!figure) return;
-
-  const figcaption = figure.querySelector('figcaption');
-  const img = figure.querySelector('img');
-  const type = figure.dataset['type'];
-
-  const typeCodeMap = {
-    CodeQR: 'QRCode&eclevel=L&dmsize=Default',
-    Code128: 'Code128&translate-esc=on&eclevel=L',
-  };
-
-  const typeCode = type ? typeCodeMap[type] : '';
-
-  if (img) {
-    img.src = `https://barcode.tec-it.com/barcode.ashx?data=${encodeURIComponent(
-      nuevoContenido
-    )}&code=${typeCode}`;
-  }
-
-  figcaption && (figcaption.textContent = `${nuevoContenido}`);
 }
 
 function modifyTextContent(elemento) {
