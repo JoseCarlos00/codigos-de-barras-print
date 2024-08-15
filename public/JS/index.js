@@ -63,7 +63,7 @@ function toggleSelectedClass(element) {
 }
 
 function changeBackGroundImage(typeCode) {
-  const editorField = document.querySelector('.codigo-container > form > div.editor-field');
+  const editorField = document.querySelector('.barcodeData div.editor-field');
 
   if (!editorField) return;
 
@@ -71,9 +71,10 @@ function changeBackGroundImage(typeCode) {
     Code128: './public/images/128.png',
     CodeQR: './public/images/qr.png',
     Texto: './public/images/pencil.png',
+    CodeUPCA: './public/images/128.png',
   };
 
-  if (typeCode === 'Code128') {
+  if (typeCode === 'Code128' || typeCode === 'CodeUPCA') {
     editorField.style.backgroundImage = "url('" + urlImage[typeCode] + "')";
   } else if (typeCode === 'CodeQR') {
     editorField.style.backgroundImage = "url('" + urlImage[typeCode] + "')";

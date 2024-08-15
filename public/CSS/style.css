@@ -98,6 +98,10 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+
+    textarea {
+      background: transparent !important;
+    }
   }
 
   .barcodeRefresh {
