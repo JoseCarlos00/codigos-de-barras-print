@@ -74,10 +74,12 @@ async function modifyFigureContent({ figureElement }) {
   } catch (error) {
     console.error('Error: a ocurrio un error al intentar modificar el contenido actual', error);
     alert('Error: a ocurrio un error al intentar modificar el contenido actual');
-    return;
   }
 }
 
+/**
+ * TODO validar que el contenido nuevo sea diferente al actual
+ */
 function setNewValueFigureContent(e, elemento) {
   e.preventDefault();
 
@@ -112,10 +114,7 @@ function setNewValueFigureContent(e, elemento) {
   }
 
   // Ocultar el modal después de guardar los cambios
-  const modal = document.getElementById('myModaChangeText');
-  if (modal) {
-    modal.style.display = 'none';
-  }
+  hideModal();
 }
 
 async function getDataValueFromElement(element) {
@@ -130,30 +129,75 @@ async function getDataValueFromElement(element) {
 }
 
 async function modifyTextContent(elemento) {
-  console.log('Function [modifyTextContent]');
+  try {
+    const modal = document.getElementById(MODAL_ID);
+    const form = document.getElementById(FORM_ID);
 
-  const modal = document.getElementById(MODAL_ID);
-  const form = document.getElementById(FORM_ID);
+    if (!elemento) {
+      throw new Error('No se encontró el elemento div.texto-plano');
+    }
+
+    if (!modal || !form) {
+      throw new Error('No se encontraron los elementos necesarios');
+    }
+
+    const dataValue = await getDataValueFromElement(elemento);
+
+    if (dataValue) {
+      form.changeData.value = dataValue;
+    } else {
+      alert('Ha ocurrido un error al obtener el valor actual de elemento');
+    }
+
+    focusInputTextarea({ modal, form });
+
+    /**
+     * TODO: revisar si existe una sobrecarga del evento SUBMIT
+     */
+    modal.addEventListener('submit', e => setNewValueParagraphs({ e, elemento }));
+  } catch (error) {
+    console.error('Error: a ocurrio un error al intentar modificar el contenido actual', error);
+    alert('Error: a ocurrio un error al intentar modificar el contenido actual');
+  }
+}
+
+function setNewValueParagraphs({ e, elemento }) {
+  e.preventDefault();
 
   if (!elemento) {
-    throw new Error('No se encontró el elemento figure');
+    throw new Error('No se encontró el elemento div.texto-plano');
   }
 
-  if (!modal || !form) {
-    throw new Error('No se encontraron los elementos necesarios');
+  const formChangeData = e.target;
+
+  if (!formChangeData) {
+    console.error('No se encontró el formulario');
+    return;
   }
 
-  const dataValue = await getDataValueFromElement(elemento);
+  let newContent = formChangeData.changeData.value.trim();
+  if (newContent) {
+    // Limpiar contenido Anterior
+    elemento.innerHTML = '';
 
-  if (dataValue) {
-    form.changeData.value = dataValue;
-  } else {
-    alert('Ha ocurrido un error al obtener el valor actual de elemento');
+    // Agregar nuevo contenido
+    newContent = newContent.split('\n');
+    newContent.forEach(line => {
+      const paragraph = document.createElement('p');
+      paragraph.className = 'texto';
+      paragraph.textContent = line;
+      elemento.appendChild(paragraph);
+    });
   }
 
-  focusInputTextarea({ modal, form });
+  hideModal();
+}
 
-  console.log('ELEMENT:', elemento);
+function hideModal() {
+  const modal = document.getElementById(MODAL_ID);
+  if (modal) {
+    modal.style.display = 'none';
+  }
 }
 
 function focusInputTextarea({ modal, form }) {
