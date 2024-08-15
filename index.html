@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="./public/CSS/bootstrap.css">
   <link rel="stylesheet" href="./public/CSS/style.css">
-  <link rel="stylesheet" href="./public/CSS/print.css">
   <link rel="stylesheet" href="./public/CSS/modal.css">
+  <link rel="stylesheet" href="./public/CSS/print.css">
+
   <link rel="shortcut icon" href="./public/images/favicon.png" type="image/x-icon">
 
   <title>Imprimir Codigos de Barras/QR</title>
@@ -235,51 +237,48 @@
       </header>
 
       <section class="area-de-impresion not-margin" id="areaDeImpresion">
-        <div id="11151-BCO">
-          <div draggable="true" class="texto-plano" data-id="1"
-            style="opacity: 1; transform: translate(22.8px, 23.3px);">
-            <p class="texto">STYLE NO/MODELO NO</p>
-            <p class="texto">D258585550013</p>
-          </div>
-
-          <div draggable="true" class="texto-plano" data-id="2"
-            style="opacity: 1; transform: translate(290.8px, 25.3px);">
-            <p class="texto">Fantasias Miguel S.A. de C.V.</p>
-          </div>
-
-          <div draggable="true" class="texto-plano" data-id="7"
-            style="opacity: 1; transform: translate(27.8px, 184.3px);">
-            <p class="texto">Descripción:</p>
-          </div>
-
-          <div draggable="true" class="texto-plano" data-id="8"
-            style="opacity: 1; transform: translate(25.8px, 223.1px);">
-            <p class="texto">#1151 Adorno Rehilete 47x15cm (Diam) Aprox Verde</p>
-          </div>
-
-          <div draggable="true" class="texto-plano" data-id="3"
-            style="opacity: 1; transform: translate(56.8px, 298.1px);">
-            <p class="texto">Departamento:</p>
-            <p class="texto">Art. Temporada</p>
-          </div>
-          <div draggable="true" class="texto-plano" data-id="4"
-            style="opacity: 1; transform: translate(352.8px, 318.1px);">
-            <p class="texto">Total de Pz: 144 pz</p>
-          </div>
-          <figure draggable="true" class="codigo-QR" data-id="5" data-type="CodeQR"
-            style="width: 252px; height: 125px; transform: translate(14.8px, 404.7px); opacity: 1;">
-            <img alt="Barcode Generator TEC-IT"
-              src="https://barcode.tec-it.com/barcode.ashx?data=764784002963&amp;code=UPCA&amp;eclevel=L">
-
-          </figure>
-
-          <figure draggable="true" class="codigo-128" data-id="6" data-type="Code128"
-            style="opacity: 1; transform: translate(300.8px, 409.7px);">
-            <img alt="Barcode Generator TEC-IT"
-              src="https://barcode.tec-it.com/barcode.ashx?data=D258585550013&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
-          </figure>
-
+        <div draggable="true" class="texto-plano" data-id="1" style="opacity: 1; transform: translate(22.8px, 23.3px);">
+          <p class="texto">STYLE NO/MODELO NO</p>
+          <p class="texto">D258585550013</p>
         </div>
+
+        <div draggable="true" class="texto-plano" data-id="2"
+          style="opacity: 1; transform: translate(290.8px, 25.3px);">
+          <p class="texto">Fantasias Miguel S.A. de C.V.</p>
+        </div>
+
+        <div draggable="true" class="texto-plano" data-id="7"
+          style="opacity: 1; transform: translate(27.8px, 184.3px);">
+          <p class="texto">Descripción:</p>
+        </div>
+
+        <div draggable="true" class="texto-plano" data-id="8"
+          style="opacity: 1; transform: translate(25.8px, 223.1px);">
+          <p class="texto">#1151 Adorno Rehilete 47x15cm (Diam) Aprox Verde</p>
+        </div>
+
+        <div draggable="true" class="texto-plano" data-id="3"
+          style="opacity: 1; transform: translate(56.8px, 298.1px);">
+          <p class="texto">Departamento:</p>
+          <p class="texto">Art. Temporada</p>
+        </div>
+        <div draggable="true" class="texto-plano" data-id="4"
+          style="opacity: 1; transform: translate(352.8px, 318.1px);">
+          <p class="texto">Total de Pz: 144 pz</p>
+        </div>
+        <figure draggable="true" class="codigo-QR" data-id="5" data-type="CodeQR"
+          style="width: 252px; height: 125px; transform: translate(14.8px, 404.7px); opacity: 1;">
+          <img alt="Barcode Generator TEC-IT"
+            src="https://barcode.tec-it.com/barcode.ashx?data=764784002963&amp;code=UPCA&amp;eclevel=L">
+
+        </figure>
+
+        <figure draggable="true" class="codigo-128" data-id="6" data-type="Code128"
+          style="opacity: 1; transform: translate(300.8px, 409.7px);">
+          <img alt="Barcode Generator TEC-IT"
+            src="https://barcode.tec-it.com/barcode.ashx?data=D258585550013&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
+        </figure>
+
       </section>
     </main>
 
@@ -461,9 +460,15 @@
     </section>
 
     <footer>
-      <small style="color: rgb(13, 13, 13);">Create by @Jose Carlos</small>
+      <small style="color: rgb(165, 160, 160);">Create by @Jose Carlos</small>
     </footer>
   </div>
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
 
   <script type="module" src="./public/JS/index.js"></script>
   <script type="module" src="./public/JS/dragAndDrog.js"></script>
