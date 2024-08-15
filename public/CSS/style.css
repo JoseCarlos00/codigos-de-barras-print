@@ -10,6 +10,11 @@
 
 :root {
   --Width-header: 4.8in;
+
+  --container_width_paddign: 6in;
+  --container_width: calc(var(--container_width_paddign) - 3.2cm);
+  --height: 60px;
+  --border-radius: 8px;
 }
 
 body {
@@ -25,61 +30,7 @@ body {
   background-position: center;
 }
 
-.grid-container {
-  display: grid;
-  width: 100%;
-  height: 100%;
-
-  grid-template-columns: 1fr 6in 1fr;
-
-  grid-template-areas:
-    'header header header'
-    '. codigo .'
-    'trash main plantillas'
-    'trash main filtros'
-    'footer footer footer';
-
-  > header {
-    grid-area: header;
-    grid-column: 2/3;
-  }
-
-  > .codigo-container {
-    grid-area: codigo;
-  }
-
-  > main {
-    grid-area: main;
-  }
-
-  > .trash-container {
-    grid-area: trash;
-  }
-
-  > .filters {
-    grid-area: filtros;
-  }
-
-  > footer {
-    grid-area: footer;
-  }
-
-  > .plantillas {
-    grid-area: plantillas;
-  }
-}
-
 @media (width < 600px) {
-  .grid-container {
-    grid-template-areas:
-      'header header header'
-      ' .codigo .'
-      '. trash .'
-      '. main .'
-      '. filtros .'
-      '. footer .';
-  }
-
   body {
     background-repeat: repeat-y;
   }
@@ -97,8 +48,7 @@ header {
   }
 
   .dropdown-container {
-    padding-bottom: 40px;
-
+    width: 100%;
     .dropdown-container-list {
       display: flex;
       gap: 8px;
@@ -123,35 +73,13 @@ header {
   }
 }
 
-.codigo-container {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  flex-wrap: wrap;
-
-  h2 {
-    font-weight: normal;
-    font-size: 1.2rem;
-    text-shadow: #222 0.1em 0.1em 0.2em;
-  }
-
-  form.barcodeData {
-    width: 4in;
-    max-width: 4in;
-    box-shadow: inset 0 0 0 1px #d2d2d2;
-
-    background-color: rgb(255, 255, 255, 0.35);
-    padding: 6px;
-  }
+.insert-code {
+  width: var(--container_width_paddign);
 
   .editor-label {
     text-size-adjust: none;
     font-family: Source Sans Pro, Arial, sans-serif;
     color: #1a1a1a;
-    font-size: 9pt;
     line-height: 12pt;
     outline: none;
     padding: 4px;
@@ -164,28 +92,12 @@ header {
     text-size-adjust: none;
     font-family: Source Sans Pro, Arial, sans-serif;
     color: #1a1a1a;
-    font-size: 9pt;
     line-height: 12pt;
     outline: none;
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-
-    textarea {
-      text-size-adjust: none;
-      margin: 0;
-      overflow: auto;
-      vertical-align: top;
-      padding: 4px;
-      border: 0;
-      box-shadow: inset 0 0 0 1px #d2d2d2;
-      box-sizing: border-box;
-      resize: none;
-      width: 100%;
-      height: 100px;
-      background-color: #fffdfd61;
-    }
   }
 
   .barcodeRefresh {
@@ -297,11 +209,6 @@ header {
 }
 
 main {
-  --container_width_paddign: 6in;
-  --container_width: calc(var(--container_width_paddign) - 3.2cm);
-  --height: 60px;
-  --border-radius: 8px;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -490,30 +397,14 @@ footer {
   }
 }
 
-.plantillas {
-  width: 100%;
-  height: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  justify-content: center;
-  padding-left: 16px;
-
-  .btn {
-    width: max-content;
-  }
-
-  .plantilla {
-    display: none;
-  }
-}
-
 .mb-40 {
   margin-bottom: 40px;
 }
 
 .mt-1 {
   margin-top: 1rem;
+}
+
+.hidden {
+  display: none !important;
 }

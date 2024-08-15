@@ -39,144 +39,48 @@
 </head>
 
 <body>
-  <div class="grid-container">
+  <header class="container-fluid d-print-none">
+    <div class="row justify-content-md-center mt-3">
+      <div class="col-4 ps-0">
+        <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
 
-    <header>
-      <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
-
-      <div class="dropdown-container">
-        <ul id="dropdownMenu" class="dropdown-container-list">
-          <li><a class="btn btn-primary" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a>
-          </li>
-          <li><a class="btn btn-primary" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
-          <li><a class="btn btn-primary" href="#" data-id="Texto" data-type="Texto">Texto</a></li>
-        </ul>
+        <div class="dropdown-container">
+          <ul id="dropdownMenu" class="dropdown-container-list">
+            <li><a class="btn btn-primary" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a>
+            </li>
+            <li><a class="btn btn-primary" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
+            <li><a class="btn btn-primary" href="#" data-id="Texto" data-type="Texto">Texto</a></li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="codigo-container">
-      <form name="FormCode" class="barcodeData">
-        <h2 id="barcodeType">
-          Code-128
-        </h2>
-        <div class="editor-label"><label for="Data">Datos</label></div>
+  <section class="container-fluid d-print-none">
+    <div class="row justify-content-md-center mt-3">
+      <div class="col-4 shadow-sm p-3 mb-5 bg-info-subtle rounded insert-code">
+        <form name="FormCode" class="barcodeData">
+          <h2 id="barcodeType">
+            Code-128
+          </h2>
+          <div class="editor-label"><label for="Data">Datos</label></div>
 
-        <div class="editor-field" style="background-image: url('');">
-          <textarea id="Data" name="DataCode" required></textarea>
-        </div>
+          <div class="editor-field mb-3" style="background-image: url('');">
+            <textarea id="Data" class="form-control" name="DataCode" required rows="3"></textarea>
+          </div>
 
-        <div class="barcodeRefresh">
-          <input class="btn btn-success" name="DataType" value="Crear" type="submit" data-id="Code128">
-          <input class="btn btn-danger" type="reset" value="Limpiar">
+          <input class="btn btn-success btn-sm" name="DataType" value="Crear" type="submit" data-id="Code128">
+          <input class="btn btn-danger btn-sm" type="reset" value="Limpiar">
 
-        </div>
+      </div>
       </form>
-    </section>
+    </div>
+    </div>
+  </section>
 
-    <section class="plantillas">
-      <h3>Plantillas QR</h3>
-      <buton data-type="usuarios-mariano" class="btn btn-primary ">Usuarios Mariano</buton>
-      <buton data-type="banda-ascensor" class="btn btn-primary">Banda - Ascensor - Etiquetado | Individual</buton>
-      <buton data-type="banda-ascensor-multi" class="btn btn-primary" disabled>Banda - Ascensor - Etiquetado | Multiple
-      </buton>
-      <buton data-type="clean" class="btn btn-danger">Limpiar</buton>
+  <section class="main container-fluid">
 
-      <div class="plantilla usuarios-mariano">
-        <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
-          style="opacity: 1; transform: translate(52.4px, 33.89px); width: 156px; height: 172px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=mariano05%40fantasiasmiguel.com.mx&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>mariano05@fantasiasmiguel.com.mx</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
-          style="opacity: 1; transform: translate(52.4px, 351.3px); width: 120px; height: 130px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=Scale%402024&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>Scale@2024</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
-          style="opacity: 1; transform: translate(347.8px, 351.3px); width: 120px; height: 130px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=Scale%402025&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>Scale@2025</figcaption>
-        </figure>
-      </div>
-
-      <div class="plantilla banda-ascensor">
-        <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
-          style="opacity: 1; transform: translate(62.8px, 45.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>BANDA</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
-          style="opacity: 1; transform: translate(315.8px, 187.9px); width: 165px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ASCENSOR</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
-          style="opacity: 1; transform: translate(62.8px, 337.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ETIQUETADO</figcaption>
-        </figure>
-      </div>
-
-      <div class="plantilla banda-ascensor-multi">
-
-        <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
-          style="opacity: 1; transform: translate(43.8px, 15.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>BANDA</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
-          style="opacity: 1; transform: translate(325.8px, 15.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>BANDA</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
-          style="opacity: 1; transform: translate(43.8px, 198.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ASCENSOR</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
-          style="opacity: 1; transform: translate(325.8px, 198.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ASCENSOR</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
-          style="opacity: 1; transform: translate(43.8px, 393.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ETIQUETADO</figcaption>
-        </figure>
-
-        <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
-          style="opacity: 1; transform: translate(325.8px, 393.1px); width: 164px; height: 170px;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
-          <figcaption>ETIQUETADO</figcaption>
-        </figure>
-      </div>
-
-
-      <div class="plantilla clean"></div>
-    </section>
-
-    <section class="plantillas-personality" style="display: none;">
+    <section class="plantillas-personality d-none">
       <div id="11151-BCO">
         <div draggable="true" class="texto-plano" data-id="1" style="opacity: 1; transform: translate(22.8px, 23.3px);">
           <p class="texto">STYLE NO/MODELO NO</p>
@@ -218,251 +122,414 @@
       </div>
     </section>
 
-    <main>
-      <header>
-        <h2 class="title">Area de Impresión</h2>
+    <div class="row">
+      <div class="col-lg-4 col-md-12 d-print-none">
+        <section class="trash-container">
+          <div class="custum-file-upload" for="file">
+            <div class="text">
+              <span>Arrastra para eliminar elemento</span>
+            </div>
 
-        <form class="radio-inputs">
-          <label class="radio">
-            <input type="radio" name="margin" checked="" value="Sin margen">
-            <span class="name">Sin Margen</span>
-          </label>
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
+                </path>
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
 
-          <label class="radio">
-            <input type="radio" name="margin" value="Con margen">
-            <span class="name">Con margen</span>
-          </label>
-        </form>
+      <div class="col-lg-4 col-md-12 mb-3">
+        <main>
+          <header class="d-print-none mb-3">
+            <h2 class="title">Area de Impresión</h2>
 
-      </header>
+            <form class="radio-inputs">
+              <label class="radio">
+                <input type="radio" name="margin" checked="" value="Sin margen">
+                <span class="name">Sin Margen</span>
+              </label>
 
-      <section class="area-de-impresion not-margin" id="areaDeImpresion">
-        <div draggable="true" class="texto-plano" data-id="1" style="opacity: 1; transform: translate(22.8px, 23.3px);">
-          <p class="texto">STYLE NO/MODELO NO</p>
-          <p class="texto">D258585550013</p>
-        </div>
+              <label class="radio">
+                <input type="radio" name="margin" value="Con margen">
+                <span class="name">Con margen</span>
+              </label>
+            </form>
+          </header>
 
-        <div draggable="true" class="texto-plano" data-id="2"
-          style="opacity: 1; transform: translate(290.8px, 25.3px);">
-          <p class="texto">Fantasias Miguel S.A. de C.V.</p>
-        </div>
+          <section class="area-de-impresion not-margin" id="areaDeImpresion">
+            <div draggable="true" class="texto-plano" data-id="1"
+              style="opacity: 1; transform: translate(22.8px, 23.3px);">
+              <p class="texto">STYLE NO/MODELO NO</p>
+              <p class="texto">D258585550013</p>
+            </div>
 
-        <div draggable="true" class="texto-plano" data-id="7"
-          style="opacity: 1; transform: translate(27.8px, 184.3px);">
-          <p class="texto">Descripción:</p>
-        </div>
+            <div draggable="true" class="texto-plano" data-id="2"
+              style="opacity: 1; transform: translate(290.8px, 25.3px);">
+              <p class="texto">Fantasias Miguel S.A. de C.V.</p>
+            </div>
 
-        <div draggable="true" class="texto-plano" data-id="8"
-          style="opacity: 1; transform: translate(25.8px, 223.1px);">
-          <p class="texto">#1151 Adorno Rehilete 47x15cm (Diam) Aprox Verde</p>
-        </div>
+            <div draggable="true" class="texto-plano" data-id="7"
+              style="opacity: 1; transform: translate(27.8px, 184.3px);">
+              <p class="texto">Descripción:</p>
+            </div>
 
-        <div draggable="true" class="texto-plano" data-id="3"
-          style="opacity: 1; transform: translate(56.8px, 298.1px);">
-          <p class="texto">Departamento:</p>
-          <p class="texto">Art. Temporada</p>
-        </div>
-        <div draggable="true" class="texto-plano" data-id="4"
-          style="opacity: 1; transform: translate(352.8px, 318.1px);">
-          <p class="texto">Total de Pz: 144 pz</p>
-        </div>
-        <figure draggable="true" class="codigo-QR" data-id="5" data-type="CodeQR"
-          style="width: 252px; height: 125px; transform: translate(14.8px, 404.7px); opacity: 1;">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=764784002963&amp;code=UPCA&amp;eclevel=L">
+            <div draggable="true" class="texto-plano" data-id="8"
+              style="opacity: 1; transform: translate(25.8px, 223.1px);">
+              <p class="texto">#1151 Adorno Rehilete 47x15cm (Diam) Aprox Verde</p>
+            </div>
 
-        </figure>
+            <div draggable="true" class="texto-plano" data-id="3"
+              style="opacity: 1; transform: translate(56.8px, 298.1px);">
+              <p class="texto">Departamento:</p>
+              <p class="texto">Art. Temporada</p>
+            </div>
+            <div draggable="true" class="texto-plano" data-id="4"
+              style="opacity: 1; transform: translate(352.8px, 318.1px);">
+              <p class="texto">Total de Pz: 144 pz</p>
+            </div>
+            <figure draggable="true" class="codigo-QR" data-id="5" data-type="CodeQR"
+              style="width: 252px; height: 125px; transform: translate(14.8px, 404.7px); opacity: 1;">
+              <img alt="Barcode Generator TEC-IT"
+                src="https://barcode.tec-it.com/barcode.ashx?data=764784002963&amp;code=UPCA&amp;eclevel=L">
 
-        <figure draggable="true" class="codigo-128" data-id="6" data-type="Code128"
-          style="opacity: 1; transform: translate(300.8px, 409.7px);">
-          <img alt="Barcode Generator TEC-IT"
-            src="https://barcode.tec-it.com/barcode.ashx?data=D258585550013&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
-        </figure>
+            </figure>
 
-      </section>
-    </main>
+            <figure draggable="true" class="codigo-128" data-id="6" data-type="Code128"
+              style="opacity: 1; transform: translate(300.8px, 409.7px);">
+              <img alt="Barcode Generator TEC-IT"
+                src="https://barcode.tec-it.com/barcode.ashx?data=D258585550013&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
+            </figure>
 
-    <script>
-      // Función para inicializar el estado seleccionado
-      function initSelectedState() {
-        const radioInputSelected = localStorage.getItem('selectMargin');
-        const areaDeImpresion = document.getElementById('areaDeImpresion');
-        const headerPrint = document.querySelector('main header')
+          </section>
+        </main>
+      </div>
 
-        if (radioInputSelected) {
-          const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
-          radioInputs.forEach(input => {
-            input.checked = input.value === radioInputSelected;
-          });
+      <!-- Plantillas -->
+      <div class="col-lg-4 col-md-12 d-print-none">
+        <section class="row plantillas justify-content-center">
+          <div class="col-md-6 col-lg-12">
+            <h3>Plantillas <buton id="clean-area-print" class="btn btn-danger">Limpiar</buton>
+            </h3>
 
-          areaDeImpresion.classList.toggle('not-margin', radioInputSelected === 'Sin margen');
-          areaDeImpresion.classList.toggle('with-margin', radioInputSelected === 'Con margen');
-          // headerPrint.classList.toggle('mb-40', radioInputSelected === 'Sin margen');
-        }
-      }
+            <!-- Acordion Plantillas -->
+            <div class="accordion w-75" id="plantillas">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-qr" aria-expanded="false" aria-controls="code-qr">
+                    Codigo QR
+                  </button>
+                </h2>
 
-      // Llama a la función de inicialización al cargar la página
-      window.addEventListener('load', initSelectedState);
+                <div id="code-qr" class="accordion-collapse collapse">
+                  <div class="accordion-body">
 
-      // Escucha los cambios en los inputs de radio
-      const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
+                    <div class="d-grid gap-2">
+                      <buton data-type="usuarios-mariano" class="plantilla-qr btn btn-primary">Usuarios Mariano
+                      </buton>
+                      <buton data-type="banda-ascensor" class="plantilla-qr btn btn-primary">Banda - Ascensor -
+                        Etiquetado |
+                        Individual
+                      </buton>
+                      <buton data-type="banda-ascensor-multi" class="plantilla-qr btn btn-primary" disabled>Banda -
+                        Ascensor -
+                        Etiquetado |
+                        Multiple
+                      </buton>
+                    </div>
+
+                    <!-- Elementos plantillas .hidden -->
+                    <div class="hidden plantilla usuarios-mariano">
+                      <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(52.4px, 33.89px); width: 156px; height: 172px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=mariano05%40fantasiasmiguel.com.mx&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>mariano05@fantasiasmiguel.com.mx</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(52.4px, 351.3px); width: 120px; height: 130px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=Scale%402024&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>Scale@2024</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(347.8px, 351.3px); width: 120px; height: 130px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=Scale%402025&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>Scale@2025</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="hidden plantilla banda-ascensor">
+                      <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(62.8px, 45.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>BANDA</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(315.8px, 187.9px); width: 165px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ASCENSOR</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(62.8px, 337.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ETIQUETADO</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="hidden plantilla banda-ascensor-multi">
+
+                      <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(43.8px, 15.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>BANDA</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="1" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(325.8px, 15.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=BANDA&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>BANDA</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(43.8px, 198.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ASCENSOR</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="2" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(325.8px, 198.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ASCENSOR&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ASCENSOR</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(43.8px, 393.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ETIQUETADO</figcaption>
+                      </figure>
+
+                      <figure draggable="true" class="codigo-QR" data-id="3" data-type="CodeQR"
+                        style="opacity: 1; transform: translate(325.8px, 393.1px); width: 164px; height: 170px;">
+                        <img alt="Barcode Generator TEC-IT"
+                          src="https://barcode.tec-it.com/barcode.ashx?data=ETIQUETADO&amp;code=QRCode&amp;eclevel=L&amp;dmsize=Default">
+                        <figcaption>ETIQUETADO</figcaption>
+                      </figure>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-128" aria-expanded="false" aria-controls="code-128">
+                    Code-128
+                  </button>
+                </h2>
+                <div id="code-128" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    Vacio
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-personality" aria-expanded="false" aria-controls="code-personality">
+                    Personalizado
+                  </button>
+                </h2>
+                <div id="code-personality" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    Vacio.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Función para inicializar el estado seleccionado
+    function initSelectedState() {
+      const radioInputSelected = localStorage.getItem('selectMargin');
       const areaDeImpresion = document.getElementById('areaDeImpresion');
       const headerPrint = document.querySelector('main header')
 
-      radioInputs.forEach(input => {
-        input.addEventListener('change', function () {
-          const valueInput = this.value;
-
-          // headerPrint.classList.toggle('mb-40', valueInput === 'Con margen');
-          areaDeImpresion.classList.toggle('with-margin', valueInput === 'Con margen');
-          areaDeImpresion.classList.toggle('not-margin', valueInput === 'Sin margen');
-
-          if (valueInput === 'Con margen' && this.checked) {
-            localStorage.setItem('selectMargin', valueInput);
-          } else {
-            localStorage.removeItem('selectMargin');
-          }
+      if (radioInputSelected) {
+        const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
+        radioInputs.forEach(input => {
+          input.checked = input.value === radioInputSelected;
         });
+
+        areaDeImpresion.classList.toggle('not-margin', radioInputSelected === 'Sin margen');
+        areaDeImpresion.classList.toggle('with-margin', radioInputSelected === 'Con margen');
+        // headerPrint.classList.toggle('mb-40', radioInputSelected === 'Sin margen');
+      }
+    }
+
+    // Llama a la función de inicialización al cargar la página
+    window.addEventListener('load', initSelectedState);
+
+    // Escucha los cambios en los inputs de radio
+    const radioInputs = document.querySelectorAll('main header .radio-inputs input[type="radio"]');
+    const areaDeImpresion = document.getElementById('areaDeImpresion');
+    const headerPrint = document.querySelector('main header')
+
+    radioInputs.forEach(input => {
+      input.addEventListener('change', function () {
+        const valueInput = this.value;
+
+        // headerPrint.classList.toggle('mb-40', valueInput === 'Con margen');
+        areaDeImpresion.classList.toggle('with-margin', valueInput === 'Con margen');
+        areaDeImpresion.classList.toggle('not-margin', valueInput === 'Sin margen');
+
+        if (valueInput === 'Con margen' && this.checked) {
+          localStorage.setItem('selectMargin', valueInput);
+        } else {
+          localStorage.removeItem('selectMargin');
+        }
       });
-    </script>
+    });
+  </script>
 
 
+  <section class="filters d-print-none">
+    <form name="FormFontSize" class="form-font-size">
+      <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
+    </form>
 
-    <section class="trash-container">
-      <div class="custum-file-upload" for="file">
-        <div class="text">
-          <span>Arrastra para eliminar elemento</span>
-        </div>
+    <form class="filters-width" name="FormWidth">
+      <label>Ancho:
+        <input type="number" name="ancho" step="any">
+      </label>
 
-        <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
-            </path>
+      <select name="unidadAncho">
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="in">in</option>
+      </select>
+
+      <label>Alto:
+        <input type="number" name="alto" step="any">
+      </label>
+
+      <select name="unidadAlto">
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="in">in</option>
+      </select>
+
+      <input type="submit" value="Enviar">
+    </form>
+
+  </section>
+
+
+  <section class="modal-container-insert d-print-none">
+    <div id="myModaChangeText" class="modal">
+      <div class="modal-content">
+
+        <button type="button" aria-label="Close" data-balloon-pos="left" class="close">
+          <svg aria-hidden="true" focusable="false" data-prefix="fad" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512" class="fa-circle-xmark">
+            <path fill="currentColor"
+              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
+              class="fa-secondary"></path>
+            <path fill="currentColor"
+              d="M209 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47z"
+              class="fa-primary"></path>
           </svg>
-        </div>
+        </button>
+
+        <form id="FormChangeText" action="" class="insertar-item">
+          <label for="changeData">Por favor, ingresa el nuevo contenido:</label>
+          <textarea id="changeData" name="itemsRegisters" required class="form-control" rows="2"></textarea>
+
+          <div class="form-buttons">
+            <button class="btn btn-primary" type="submit">
+              <span class="text">Cambiar</span>
+            </button>
+
+            <button id="clearInsertitems" class="btn btn-danger btn-sm" type="reset" aria-label="Limpiar"
+              data-balloon-pos="right">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+                  fill="#fff" />
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <button id="insertList" hidden>Abrir Modal</button>
       </div>
-    </section>
+    </div>
 
-    <section class="filters">
-
-      <form name="FormFontSize" class="form-font-size">
-        <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
-      </form>
-
-      <form class="filters-width" name="FormWidth">
-        <label>Ancho:
-          <input type="number" name="ancho" step="any">
-        </label>
-
-        <select name="unidadAncho">
-          <option value="cm">cm</option>
-          <option value="px">px</option>
-          <option value="in">in</option>
-        </select>
-
-        <label>Alto:
-          <input type="number" name="alto" step="any">
-        </label>
-
-        <select name="unidadAlto">
-          <option value="cm">cm</option>
-          <option value="px">px</option>
-          <option value="in">in</option>
-        </select>
-
-        <input type="submit" value="Enviar">
-      </form>
-
-    </section>
+    <script>
+      const modalInsert = document.getElementById('myModaChangeText');
+      const btnOpenModal = document.getElementById('insertList');
+      const btnCloseModal = document.querySelector('.modal-container-insert .close');
+      const inputTextarea = document.getElementById('changeData')
 
 
-    <section class="modal-container-insert">
-      <div id="myModaChangeText" class="modal">
-        <div class="modal-content">
+      // Cuando el usuario hace clic en el botón, abre el modal
+      btnOpenModal.addEventListener('click', function () {
+        modalInsert.style.display = 'block';
+      });
 
-          <button type="button" aria-label="Close" data-balloon-pos="left" class="close">
-            <svg aria-hidden="true" focusable="false" data-prefix="fad" role="img" xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512" class="fa-circle-xmark">
-              <path fill="currentColor"
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
-                class="fa-secondary"></path>
-              <path fill="currentColor"
-                d="M209 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47z"
-                class="fa-primary"></path>
-            </svg>
-          </button>
-
-          <form id="FormChangeText" action="" class="insertar-item">
-            <label for="changeData">Por favor, ingresa el nuevo contenido:</label>
-            <textarea id="changeData" name="itemsRegisters" required class="form-control" rows="2"></textarea>
-
-            <div class="form-buttons">
-              <button class="btn btn-primary" type="submit">
-                <span class="text">Cambiar</span>
-              </button>
-
-              <button id="clearInsertitems" class="btn btn-danger btn-sm" type="reset" aria-label="Limpiar"
-                data-balloon-pos="right">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <path
-                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
-                    fill="#fff" />
-                </svg>
-              </button>
-            </div>
-          </form>
-
-          <button id="insertList" hidden>Abrir Modal</button>
-        </div>
-      </div>
-
-      <script>
-        const modalInsert = document.getElementById('myModaChangeText');
-        const btnOpenModal = document.getElementById('insertList');
-        const btnCloseModal = document.querySelector('.modal-container-insert .close');
-        const inputTextarea = document.getElementById('changeData')
+      // Cuando el usuario hace clic en <span> (x), cierra el modal
+      btnCloseModal.addEventListener('click', function () {
+        modalInsert.style.display = 'none';
+      });
 
 
-        // Cuando el usuario hace clic en el botón, abre el modal
-        btnOpenModal.addEventListener('click', function () {
-          modalInsert.style.display = 'block';
-        });
+      // Cuando el usuario hace clic fuera del modal, ciérralo
+      window.addEventListener('click', function (e) {
+        const element = e.target;
 
-        // Cuando el usuario hace clic en <span> (x), cierra el modal
-        btnCloseModal.addEventListener('click', function () {
+        if (element == modalInsert) {
           modalInsert.style.display = 'none';
-        });
+        }
+      });
 
-
-        // Cuando el usuario hace clic fuera del modal, ciérralo
-        window.addEventListener('click', function (e) {
-          const element = e.target;
-
-          if (element == modalInsert) {
+      // Cuando el usuario apreta la tecla Esc, ciérralo
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (modalInsert.style.display === 'block') {
             modalInsert.style.display = 'none';
           }
-        });
+        }
+      });
 
-        // Cuando el usuario apreta la tecla Esc, ciérralo
-        window.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') {
-            if (modalInsert.style.display === 'block') {
-              modalInsert.style.display = 'none';
-            }
-          }
-        });
 
-        inputTextarea.addEventListener('click', function (e) {
-          e.target.select();
-        })
-      </script>
-    </section>
+    </script>
+  </section>
 
-    <footer>
-      <small style="color: rgb(165, 160, 160);">Create by @Jose Carlos</small>
-    </footer>
-  </div>
+  <footer class="d-print-none">
+    <small style="color: rgb(165, 160, 160);">Create by @Jose Carlos</small>
+  </footer>
 
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->

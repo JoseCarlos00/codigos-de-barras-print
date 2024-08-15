@@ -1,12 +1,19 @@
 async function plantillas() {
   try {
-    const btnPlantilla = document.querySelectorAll('.plantillas .btn');
+    const cleanAreaPrint = document.getElementById('clean-area-print');
+    const areaDeImpresion = document.getElementById('areaDeImpresion');
 
-    if (btnPlantilla.length === 0) {
+    if (cleanAreaPrint && areaDeImpresion) {
+      cleanAreaPrint.addEventListener('click', () => (areaDeImpresion.innerHTML = ''));
+    }
+
+    const btnsPlantillaQr = document.querySelectorAll('.plantillas .plantilla-qr.btn');
+
+    if (btnsPlantillaQr.length === 0) {
       throw new Error('No se enontraron botones de plantilla');
     }
 
-    await setEventListener(btnPlantilla);
+    await setEventListener(btnsPlantillaQr);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -30,7 +37,7 @@ async function plantillas() {
   function getPlantilla(type = 'none') {
     return new Promise((resolve, reject) => {
       const platillaElementHTML = document.querySelector(
-        `section.plantillas > div.plantilla.${type}`
+        `section.plantillas .accordion div.plantilla.${type}`
       );
 
       if (!platillaElementHTML) {
