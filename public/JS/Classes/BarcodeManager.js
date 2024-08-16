@@ -1,4 +1,5 @@
 import { createCodeQr } from '../CrearCodes/CodeQr.js';
+import { ValidateValue } from './Validations.js';
 
 export class BarcodeManager {
   constructor(areaDeImpresionSelector) {
@@ -35,8 +36,10 @@ export class BarcodeManager {
 
       if (typeCode === 'CodeUPCA') {
         // Validar el código UPC-A
-        if (!this.isValidUPCA({ valueNumeric: Number(data), value: data })) {
-          alert('Código UPC-A no válido.');
+        const validate = ValidateValue.isValidUPCA({ value: data });
+
+        if (!validate.result) {
+          alert(validate.msg);
           return;
         }
       }
@@ -76,39 +79,6 @@ export class BarcodeManager {
     `;
     this.areaDeImpresion.insertAdjacentHTML('beforeend', html);
     this.dataSetId++;
-  }
-
-  isValidUPCA({ value: upcCode }) {
-    // Validar el código UPC-A
-    // Verificar que el código tenga 12 dígitos
-    if (upcCode.length !== 12) {
-      return false;
-    }
-
-    // Calcular el dígito de verificación
-    let sum = 0;
-    for (let i = 0; i < 11; i++) {
-      let digit = parseInt(upcCode[i], 10);
-      if (i % 2 === 0) {
-        sum += digit;
-      } else {
-        sum += digit * 3;
-      }
-    }
-
-    // Calcular el resto de la división entre la suma y 10
-    let remainder = sum % 10;
-
-    // Verificar que el dígito de verificación sea correcto
-    let checkDigit = parseInt(upcCode[11], 10);
-    // Dígito de control erróneo
-    if (remainder === 0) {
-      console.log('Validacion 1');
-      return checkDigit === 0;
-    } else {
-      console.log('Validacion 2');
-      return checkDigit === 10 - remainder;
-    }
   }
 
   setInsetCodeUPCA({ value, type }) {
