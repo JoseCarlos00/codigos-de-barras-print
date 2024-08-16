@@ -10,8 +10,12 @@ const selectors = {
 window.addEventListener(
   'load',
   () => {
-    new BarcodeManager('.area-de-impresion');
-    new DropdownManager(selectors);
+    try {
+      new BarcodeManager('.area-de-impresion');
+      new DropdownManager(selectors);
+    } catch (error) {
+      console.error('Error al inicializar la creacion de codigos:');
+    }
   },
   { once: true }
 );
