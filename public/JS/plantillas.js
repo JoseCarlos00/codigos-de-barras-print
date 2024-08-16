@@ -1,36 +1,49 @@
 async function plantillas() {
   try {
-    const btnPlantilla = document.querySelectorAll('.plantillas .btn');
+    const plantillaSelector = 'plantillas';
+    const cleanAreaPrint = document.getElementById('clean-area-print');
+    const areaDeImpresion = document.getElementById('areaDeImpresion');
 
-    if (btnPlantilla.length === 0) {
-      throw new Error('No se enontraron botones de plantilla');
+    if (cleanAreaPrint && areaDeImpresion) {
+      cleanAreaPrint.addEventListener('click', () => (areaDeImpresion.innerHTML = ''));
     }
 
-    await setEventListener(btnPlantilla);
+    const plantillaAcordion = document.getElementById(plantillaSelector);
+
+    if (plantillaAcordion) {
+      plantillaAcordion.addEventListener('click', handeCLickAcordionButtons);
+    } else {
+      throw new Error('No se enontro el elemento .plantillas acordion');
+    }
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error al crear las plantillas:', error);
   }
 
-  function setEventListener(btnPlantilla) {
-    return new Promise((resolve, reject) => {
-      btnPlantilla.forEach(btn => {
-        btn.addEventListener('click', setPlantilla);
-      });
-    });
+  function handeCLickAcordionButtons(e) {
+    const element = e.target;
+
+    // Verificar si el elemento tiene una clase que comienza con "plantilla-"
+    const hasPlantillaClass = Array.from(element.classList).some(className =>
+      className.startsWith('plantilla-')
+    );
+
+    if (hasPlantillaClass) {
+      setPlantilla({ element });
+    }
   }
 
-  function setPlantilla(e) {
-    const type = e.target.dataset.type;
+  function setPlantilla({ element }) {
+    const type = element.dataset.type;
 
     if (type) {
       insertPlantilla(type);
     }
   }
 
-  function getPlantilla(type = 'none') {
+  function getPlantilla(type) {
     return new Promise((resolve, reject) => {
       const platillaElementHTML = document.querySelector(
-        `section.plantillas > div.plantilla.${type}`
+        `section.plantillas .accordion div.plantilla.${type}`
       );
 
       if (!platillaElementHTML) {

@@ -2,7 +2,7 @@
 @media print {
   header,
   .codigo-container,
-  main > header,
+  .main > header,
   .trash-container,
   .filters,
   .plantillas,
