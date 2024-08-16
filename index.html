@@ -83,29 +83,51 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-lg-3 col-md-12 d-print-none">
-        <section class="trash-container fade">
-          <div class="custum-file-upload" for="file">
-            <div class="text">
-              <span>Arrastra para eliminar elemento</span>
-            </div>
+        <div class="row justify-content-center flex-column w-100 h-100">
+          <div class="col">
+            <section class="trash-container fade">
+              <div class="custum-file-upload" for="file">
+                <div class="text">
+                  <span>Arrastra para eliminar elemento</span>
+                </div>
 
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
-                </path>
-              </svg>
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M3 6V8H5V21C5 21.5523 5.44772 22 6 22H18C18.5523 22 19 21.5523 19 21V8H21V6H15V3C15 2.44772 14.5523 2 14 2H10C9.44771 2 9 2.44772 9 3V6H3ZM17 8V21H7V8H17ZM8 10H9V19H8V10ZM11 10H12V19H11V10ZM14 10H15V19H14V10Z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Cambio de Font-Size -->
+          <div class="col">
+            <div class="d-block w-100 h-100" id="formChangeFontSize" tabindex="-1">
+              <form name="FormFontSize" class="form-font-size mb-3 bg-info rounded-1 p-2">
+                <label class="form-label">Tamaño de fuente:</label>
+
+                <div class="input-group mb-3 w-50">
+                  <input class="form-control form-control-sm" type="number" name="fontSize" min="6" max="100"
+                    value="16">
+                  <span class="input-group-text">px</span>
+                </div>
+
+                <input type="range" class="form-range" min="6" max="100" name="fontSize2" value="16">
+              </form>
             </div>
           </div>
-        </section>
+        </div>
+
       </div>
 
       <div class="col-lg-6 col-md-12 mb-3">
-        <div class="main">
-          <header class="d-print-none mb-3">
+        <div class="main row">
+          <header class="col d-print-none">
             <h2 class="title">Area de Impresión</h2>
 
-            <form class="radio-inputs">
+            <form class="radio-inputs mb-2">
               <label class="radio">
                 <input type="radio" name="margin" checked="" value="Sin margen">
                 <span class="name">Sin Margen</span>
@@ -116,44 +138,10 @@
                 <span class="name">Con margen</span>
               </label>
             </form>
-
-            <section class="filters d-print-none">
-              <form name="FormFontSize" class="form-font-size">
-                <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
-              </form>
-
-              <form class="filters-width d-none" name="FormWidth">
-                <label>Ancho:
-                  <input type="number" name="ancho" step="any">
-                </label>
-
-                <select name="unidadAncho">
-                  <option value="cm">cm</option>
-                  <option value="px">px</option>
-                  <option value="in">in</option>
-                </select>
-
-                <label>Alto:
-                  <input type="number" name="alto" step="any">
-                </label>
-
-                <select name="unidadAlto">
-                  <option value="cm">cm</option>
-                  <option value="px">px</option>
-                  <option value="in">in</option>
-                </select>
-
-                <input hidden type="submit" value="Enviar">
-              </form>
-
-            </section>
           </header>
 
-          <section class="area-de-impresion not-margin" id="areaDeImpresion">
-
-          </section>
+          <section class="area-de-impresion not-margin" id="areaDeImpresion"></section>
         </div>
-
       </div>
 
       <!-- Plantillas -->
@@ -327,42 +315,42 @@
                     <!-- Plantilla -->
                     <div class="d-none">
                       <div class="plantilla personality-1">
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-1"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-1"
                           style="opacity: 1; transform: translate(22.8px, 23.3px);">
                           <p class="texto">STYLE NO/MODELO NO</p>
                           <p class="texto">D258585550014</p>
                         </div>
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-2"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-2"
                           style="opacity: 1; transform: translate(290.8px, 25.3px);">
                           <p class="texto">Fantasias Miguel S.A. de C.V.</p>
                         </div>
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-3"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-3"
                           style="opacity: 1; transform: translate(56.8px, 298.1px);">
                           <p class="texto">Departamento:</p>
                           <p class="texto">Art. Temporada</p>
                         </div>
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-4"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-4"
                           style="opacity: 1; transform: translate(382.8px, 318.1px);">
-                          <p class="texto">Total de Pz: 24 pz</p>
+                          <p class="texto plantilla-quantity">Total de Pz: <span class="qty">24</span> pz</p>
                         </div>
 
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-5"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-5"
                           style="opacity: 1; transform: translate(15.8px, 184.3px);">
                           <p class="texto">Descripción:</p>
                         </div>
-                        <div draggable="true" class="texto-plano" data-id="personality-1-TEXTO-5"
+                        <div draggable="false" class="texto-plano" data-id="personality-1-TEXTO-5"
                           style="opacity: 1; transform: translate(17.8px, 223.1px);">
                           <p class="texto">#1151 Adorno Rehilete 47x15cm (Diam) Aprox Blanco Ab</p>
                         </div>
 
-                        <figure draggable="true" class="codigo-upca" data-id="personality-1-FIGURE-1"
+                        <figure draggable="false" class="codigo-upca" data-id="personality-1-FIGURE-1"
                           data-type="CodeUPCA" style="transform: translate(14.8px, 409.7px); opacity: 1;">
                           <img alt="Barcode Generator TEC-IT"
                             src="https://barcode.tec-it.com/barcode.ashx?data=764784055228&amp;code=UPCA">
                         </figure>
 
-                        <figure draggable="true" class="codigo-128" data-id="personality-1-FIGURE-2" data-type="Code128"
-                          style="opacity: 1; transform: translate(300.8px, 409.7px);">
+                        <figure draggable="false" class="codigo-128" data-id="personality-1-FIGURE-2"
+                          data-type="Code128" style="opacity: 1; transform: translate(300.8px, 409.7px);">
                           <img alt="Barcode Generator TEC-IT"
                             src="https://barcode.tec-it.com/barcode.ashx?data=D258585550014&amp;code=Code128&amp;translate-esc=on&amp;eclevel=L">
                         </figure>
@@ -380,7 +368,6 @@
       </div>
     </div>
   </section>
-
   <script>
     // Función para inicializar el estado seleccionado
     function initSelectedState() {
@@ -425,7 +412,37 @@
     });
   </script>
 
+  <!-- Cambio de  Dimensiones -->
+  <section class="d-print-none fade d-none">
 
+    <form class="filters-width d-none" name="FormWidth">
+      <label>Ancho:
+        <input type="number" name="ancho" step="any">
+      </label>
+
+      <select name="unidadAncho">
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="in">in</option>
+      </select>
+
+      <label>Alto:
+        <input type="number" name="alto" step="any">
+      </label>
+
+      <select name="unidadAlto">
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="in">in</option>
+      </select>
+
+      <input hidden type="submit" value="Enviar">
+    </form>
+
+  </section>
+
+
+  <!-- Modal Cambio de Contenido -->
   <section class="modal-container-insert d-print-none">
     <div id="myModaChangeText" class="modal">
       <div class="modal-content">
@@ -442,7 +459,7 @@
           </svg>
         </button>
 
-        <form id="FormChangeText" action="" class="insertar-item">
+        <form id="FormChangeText" action="" class="insertar-item" data-type="">
           <label for="changeData">Por favor, ingresa el nuevo contenido:</label>
           <textarea id="changeData" name="itemsRegisters" required class="form-control" rows="2"></textarea>
 

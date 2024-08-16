@@ -179,33 +179,6 @@ header {
   }
 }
 
-/* Cambio de Font Size y Tamaño de figure */
-.filters {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  .filters-width {
-    display: grid;
-    gap: 8px;
-    width: 150px;
-    width: fit-content;
-
-    select {
-      align-self: flex-end;
-      width: min-content;
-      height: 20px;
-    }
-  }
-
-  form {
-    color: #fff;
-    background-color: #ffffff1f;
-  }
-}
-
 /* Area de Impresion */
 .title {
   text-shadow: 0 0 0.2em #09f, 0 0 0.2em #09f, 0 0 0.2em #09f;
@@ -359,9 +332,10 @@ header {
     justify-content: start;
 
     /* Ajusta el tamaño del texto al 5% del tamaño del padre */
+    font-size: 1.25rem;
+
     .texto {
       font-weight: bold;
-      font-size: 1.25rem;
     }
 
     &.selected:not(.texto-plano) {
