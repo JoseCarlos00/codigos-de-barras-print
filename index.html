@@ -116,6 +116,37 @@
                 <span class="name">Con margen</span>
               </label>
             </form>
+
+            <section class="filters d-print-none">
+              <form name="FormFontSize" class="form-font-size">
+                <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
+              </form>
+
+              <form class="filters-width d-none" name="FormWidth">
+                <label>Ancho:
+                  <input type="number" name="ancho" step="any">
+                </label>
+
+                <select name="unidadAncho">
+                  <option value="cm">cm</option>
+                  <option value="px">px</option>
+                  <option value="in">in</option>
+                </select>
+
+                <label>Alto:
+                  <input type="number" name="alto" step="any">
+                </label>
+
+                <select name="unidadAlto">
+                  <option value="cm">cm</option>
+                  <option value="px">px</option>
+                  <option value="in">in</option>
+                </select>
+
+                <input hidden type="submit" value="Enviar">
+              </form>
+
+            </section>
           </header>
 
           <section class="area-de-impresion not-margin" id="areaDeImpresion">
@@ -393,38 +424,6 @@
       });
     });
   </script>
-
-
-  <section class="filters d-print-none d-none">
-    <form name="FormFontSize" class="form-font-size">
-      <label>Tamaño de fuente: <input type="number" name="fontSize" min="6" max="100" value="16"></label>
-    </form>
-
-    <form class="filters-width" name="FormWidth">
-      <label>Ancho:
-        <input type="number" name="ancho" step="any">
-      </label>
-
-      <select name="unidadAncho">
-        <option value="cm">cm</option>
-        <option value="px">px</option>
-        <option value="in">in</option>
-      </select>
-
-      <label>Alto:
-        <input type="number" name="alto" step="any">
-      </label>
-
-      <select name="unidadAlto">
-        <option value="cm">cm</option>
-        <option value="px">px</option>
-        <option value="in">in</option>
-      </select>
-
-      <input type="submit" value="Enviar">
-    </form>
-
-  </section>
 
 
   <section class="modal-container-insert d-print-none">
