@@ -1,9 +1,8 @@
 export class DropdownManager {
-  constructor(dropdownSelector, titleSelector, barcodeTypeSelector, buttonSelector) {
+  constructor({ dropdownSelector, titleSelector, barcodeTypeSelector }) {
     this.dropdownItem = document.querySelector(dropdownSelector);
     this.titleElement = document.getElementById(titleSelector);
     this.h2Element = document.getElementById(barcodeTypeSelector);
-    this.buttonElement = document.getElementById(buttonSelector);
 
     this.initializeDropdown();
   }
@@ -38,7 +37,6 @@ export class DropdownManager {
 
     if (this.titleElement) this.titleElement.innerHTML = valueId;
     if (this.h2Element) this.h2Element.innerHTML = valueId;
-    if (this.buttonElement) this.buttonElement.innerHTML = valueId;
 
     if (FormCode.DataType) {
       FormCode.DataType.dataset['id'] = typeCode;

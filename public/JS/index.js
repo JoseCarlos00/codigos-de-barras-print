@@ -1,22 +1,17 @@
 import { BarcodeManager } from './Classes/BarcodeManager.js';
 import { DropdownManager } from './Classes/DropdownManager.js';
 
+const selectors = {
+  dropdownSelector: '#dropdownMenu',
+  titleSelector: 'titleDropdown',
+  barcodeTypeSelector: 'barcodeType',
+};
+
 window.addEventListener(
   'load',
   () => {
-    // const barcodeManager = new BarcodeManager('.area-de-impresion');
     new BarcodeManager('.area-de-impresion');
-    const dropdownManager = new DropdownManager(
-      '#dropdownMenu',
-      'titleDropdown',
-      'barcodeType',
-      'dropdownButton'
-    );
-
-    // dropdownManager.initializeDropdown();
-
-    console.log('dropdownManager:', dropdownManager);
+    new DropdownManager(selectors);
   },
   { once: true }
 );
-console.log('INDEX');

@@ -101,6 +101,7 @@ header {
 
     textarea {
       background: transparent !important;
+      border: 1px solid #b7a8ee;
     }
   }
 
@@ -123,11 +124,7 @@ header {
   align-items: center;
   align-content: center;
 
-  display: none;
-
   .custum-file-upload {
-    /* height: 150px; */
-    /* width: 280px; */
     cursor: pointer;
 
     display: flex;
@@ -182,6 +179,7 @@ header {
   }
 }
 
+/* Cambio de Font Size y Tamaño de figure */
 .filters {
   display: flex;
   flex-direction: column;
@@ -208,16 +206,17 @@ header {
   }
 }
 
+/* Area de Impresion */
 .title {
   text-shadow: 0 0 0.2em #09f, 0 0 0.2em #09f, 0 0 0.2em #09f;
 }
 
-main {
+.main {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   row-gap: 8px;
 
   width: 100%;
@@ -354,17 +353,18 @@ main {
 
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: start;
+    justify-content: start;
 
     /* Ajusta el tamaño del texto al 5% del tamaño del padre */
     .texto {
       font-weight: bold;
+      font-size: 1.5rem;
     }
 
-    &.selected {
+    &.selected:not(.texto-plano) {
       overflow: hidden;
       resize: both;
     }
