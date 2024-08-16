@@ -1,5 +1,6 @@
 async function plantillas() {
   try {
+    const plantillaSelector = 'plantillas';
     const cleanAreaPrint = document.getElementById('clean-area-print');
     const areaDeImpresion = document.getElementById('areaDeImpresion');
 
@@ -7,34 +8,39 @@ async function plantillas() {
       cleanAreaPrint.addEventListener('click', () => (areaDeImpresion.innerHTML = ''));
     }
 
-    const btnsPlantillaQr = document.querySelectorAll('.plantillas .plantilla-qr.btn');
+    const plantillaAcordion = document.getElementById(plantillaSelector);
 
-    if (btnsPlantillaQr.length === 0) {
-      throw new Error('No se enontraron botones de plantilla');
+    if (plantillaAcordion) {
+      plantillaAcordion.addEventListener('click', handeCLickAcordionButtons);
+    } else {
+      throw new Error('No se enontro el elemento .plantillas acordion');
     }
-
-    await setEventListener(btnsPlantillaQr);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error al crear las plantillas:', error);
   }
 
-  function setEventListener(btnPlantilla) {
-    return new Promise((resolve, reject) => {
-      btnPlantilla.forEach(btn => {
-        btn.addEventListener('click', setPlantilla);
-      });
-    });
+  function handeCLickAcordionButtons(e) {
+    const element = e.target;
+
+    // Verificar si el elemento tiene una clase que comienza con "plantilla-"
+    const hasPlantillaClass = Array.from(element.classList).some(className =>
+      className.startsWith('plantilla-')
+    );
+
+    if (hasPlantillaClass) {
+      setPlantilla({ element });
+    }
   }
 
-  function setPlantilla(e) {
-    const type = e.target.dataset.type;
+  function setPlantilla({ element }) {
+    const type = element.dataset.type;
 
     if (type) {
       insertPlantilla(type);
     }
   }
 
-  function getPlantilla(type = 'none') {
+  function getPlantilla(type) {
     return new Promise((resolve, reject) => {
       const platillaElementHTML = document.querySelector(
         `section.plantillas .accordion div.plantilla.${type}`
