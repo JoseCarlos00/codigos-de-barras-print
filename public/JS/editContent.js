@@ -1,3 +1,5 @@
+import { ValidateValue } from './Classes/Validations.js';
+
 function inicio() {
   const areaDeImpresion = document.querySelector('#areaDeImpresion');
 
@@ -88,6 +90,19 @@ function setNewValueFigureContent(e, elemento) {
   if (!formChangeData) {
     console.error('No se encontró el formulario');
     return;
+  }
+
+  const dataType = elemento.dataset['type'] ?? '';
+
+  console.log('elemento:', dataType, elemento);
+
+  if (dataType === 'CodeUPCA') {
+    const result = ValidateValue.isValidUPCA({ value: formChangeData.changeData.value.trim() });
+
+    if (!result.result) {
+      alert(result.msg);
+      return;
+    }
   }
 
   const nuevoContenido = formChangeData.changeData.value.trim();
