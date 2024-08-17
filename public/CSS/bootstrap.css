@@ -3094,6 +3094,7 @@ textarea.form-control.is-invalid {
   background-color: var(--bs-btn-bg);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
 }
 @media (prefers-reduced-motion: reduce) {
   .btn {
