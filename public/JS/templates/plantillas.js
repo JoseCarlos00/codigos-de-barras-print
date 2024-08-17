@@ -1,3 +1,6 @@
+import { PersonalizedTemplates } from './Template.js';
+import { personality } from './templateContent.js';
+
 async function plantillas() {
   try {
     const plantillaSelector = 'plantillas';
@@ -33,9 +36,24 @@ async function plantillas() {
   }
 
   function setPlantilla({ element }) {
-    const type = element.dataset.type;
+    const { type, id } = element.dataset;
 
-    if (type) {
+    if (!type || !id) {
+      throw new Error("No se encontro el Data Set ['type'] || ['id']");
+    }
+
+    if (type.includes('personality-')) {
+      console.log('type:', type);
+      console.log('id:', id);
+
+      // Crear una instancia de la clase PersonalizedTemplates
+      const template = new PersonalizedTemplates({
+        ...templateType[id],
+        prefixDataId: type,
+      });
+
+      template.insertTemplate();
+    } else {
       insertPlantilla(type);
     }
   }
@@ -78,5 +96,25 @@ async function plantillas() {
     clonedChildren.forEach(child => areaDeImpresion.appendChild(child));
   }
 }
+
+const templateType = {
+  1: personality.personality1,
+  2: personality.personality2,
+  3: personality.personality3,
+  4: personality.personality4,
+  5: personality.personality5,
+  6: personality.personality6,
+  7: personality.personality7,
+  8: personality.personality8,
+  9: personality.personality9,
+  10: personality.personality10,
+  11: personality.personality11,
+  12: personality.personality12,
+  13: personality.personality13,
+  14: personality.personality14,
+  15: personality.personality15,
+  16: personality.personality16,
+  17: personality.personality17,
+};
 
 window.addEventListener('load', plantillas, { once: true });
