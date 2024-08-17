@@ -27,6 +27,52 @@ body {
   background-color: rgb(251, 251, 252);
 }
 
+.View-20292 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  --View-20292-width: 1366;
+  --View-20292-height: 599;
+  --View-20292-source: url(&quot;https://hatch.one/_/api/resources/-O-hCAUsVZXIfh-ECp5K/data/sha256:e0551922d8983147811f31ec4e6e894d7f8ecf430d70f759ce36e89e0d37dd97&quot;);
+  transition: undefined;
+
+  video {
+    position: inherit;
+    object-fit: cover;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    filter: invert(100%);
+  }
+
+  z-index: -1;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url('../images/videoframe_9938.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Mantiene el fondo fijo durante el scroll */
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.1;
+  filter: invert(100%);
+  z-index: -1;
+}
+
 .btn:hover {
   box-shadow: 0px 0px 20px 0 #52a5b866;
 }
