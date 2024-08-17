@@ -1,13 +1,13 @@
 export class PersonalizedTemplates {
-  constructor({ codeUPCA, code128, modelNumber, description, prefixDataId }) {
+  constructor({ codeUPCA, code128, modelNumber, description, quantity, prefixDataId }) {
     this.dataSetId = 1;
     this.areaDeImpresion = document.getElementById('areaDeImpresion');
     this.codeUPCA = codeUPCA;
     this.code128 = code128;
     this.modelNumber = modelNumber;
     this.description = description;
+    this.quantity = quantity;
     this.prefixDataId = prefixDataId;
-    console.log('prefixDataId:', prefixDataId);
 
     if (!this.areaDeImpresion) {
       throw new Error('No se econtro el elemento #areaDeImpresion');
@@ -75,7 +75,9 @@ export class PersonalizedTemplates {
           <div draggable="true" class="texto-plano" data-id="${this.prefixDataId}-${++this
         .dataSetId}"
             style="opacity: 1; transform: translate(200.545px, 184.841px);">
-            <p class="texto plantilla-quantity">Total de Pz: <span class="qty">24</span> pz</p>
+            <p class="texto plantilla-quantity">Total de Pz: <span class="qty">${
+              this.quantity
+            }</span> pz</p>
           </div>        
       `;
 

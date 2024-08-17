@@ -39,13 +39,10 @@ async function plantillas() {
     const { type, id } = element.dataset;
 
     if (!type || !id) {
-      throw new Error("No se encontro el Data Set ['type'] || ['id']");
+      throw new Error("No se encontro el Data Set: ['type'] OR ['id']");
     }
 
     if (type.includes('personality-')) {
-      console.log('type:', type);
-      console.log('id:', id);
-
       // Crear una instancia de la clase PersonalizedTemplates
       const template = new PersonalizedTemplates({
         ...templateType[id],
