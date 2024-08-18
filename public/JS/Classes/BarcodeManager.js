@@ -1,8 +1,9 @@
 import { ValidateValue } from './Validation.js';
+import { CreateElementFigure } from './CreateElementFigure.js';
 
 export class BarcodeManager {
   constructor(areaDeImpresionSelector) {
-    this.dataSetId = 1;
+    this.dataSetId = 0;
     this.areaDeImpresion = document.querySelector(areaDeImpresionSelector);
     this.form = document.querySelector('#FormCode');
 
@@ -22,6 +23,16 @@ export class BarcodeManager {
       CodeUPCA: ({ value, type }) => this.setInsetCodeUPCA({ value, type }),
       Texto: ({ value }) => this.setInsertText({ value }),
     };
+  }
+
+  getBarcodeURL({ value, type }) {
+    const typeCode = this.typeCodeMap[type];
+    if (!typeCode) {
+      throw new Error(`Tipo de código no soportado: ${type}`);
+    }
+
+    const encodedValue = encodeURIComponent(value);
+    return `https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=${typeCode}`;
   }
 
   insertElement(e) {
@@ -54,45 +65,45 @@ export class BarcodeManager {
   }
 
   setInsertCode128({ value, type }) {
-    const encodedValue = encodeURIComponent(value.trim());
-    const html = `
-      <figure draggable="true" class="codigo-128" data-id="${this.dataSetId}" data-type="${type}">
-        <img alt='Barcode Generator TEC-IT' 
-        src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=Code128&translate-esc=on&eclevel=L' />
-      </figure>
-    `;
-    this.areaDeImpresion.insertAdjacentHTML('beforeend', html);
     this.dataSetId++;
+
+    const code128 = CreateElementFigure.createFigureElement({
+      dataSetId: this.dataSetId,
+      valueURL: value,
+      type,
+    });
+
+    this.areaDeImpresion.appendChild(code128);
   }
 
   setInsertCodeQr({ value, type }) {
-    const encodedValue = encodeURIComponent(value.trim());
-    const html = `
-      <figure draggable="true" class="codigo-QR" data-id="${
-        this.dataSetId
-      }" data-type="${type}" style="width: 180px;height: 190px;">
-        <img alt='Barcode Generator TEC-IT'
-        src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=QRCode&eclevel=L&dmsize=Default' />
-        <figcaption>${value.trim()}</figcaption>
-      </figure>
-    `;
-    this.areaDeImpresion.insertAdjacentHTML('beforeend', html);
     this.dataSetId++;
+
+    const codeQr = CreateElementFigure.createFigureElement({
+      dataSetId: this.dataSetId,
+      valueURL: value,
+      type,
+      dimensions: { width: '120px', height: '130px' },
+    });
+
+    this.areaDeImpresion.appendChild(codeQr);
   }
 
   setInsetCodeUPCA({ value, type }) {
-    const encodedValue = encodeURIComponent(value.trim());
-    const html = `
-      <figure draggable="true" class="codigo-upca" data-id="${this.dataSetId}" data-type="${type}">
-        <img alt='Barcode Generator TEC-IT' 
-        src='https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=UPCA' />
-      </figure>
-    `;
-    this.areaDeImpresion.insertAdjacentHTML('beforeend', html);
     this.dataSetId++;
+
+    const codeUPCA = CreateElementFigure.createFigureElement({
+      dataSetId: this.dataSetId,
+      valueURL: value,
+      type,
+    });
+
+    this.areaDeImpresion.appendChild(codeUPCA);
   }
 
   setInsertText({ value }) {
+    this.dataSetId++;
+
     const textoValue = value.trim().split('\n');
     const div = document.createElement('div');
     div.draggable = true;
@@ -107,6 +118,5 @@ export class BarcodeManager {
     });
 
     this.areaDeImpresion.appendChild(div);
-    this.dataSetId++;
   }
 }
