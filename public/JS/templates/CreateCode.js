@@ -35,18 +35,22 @@ export class CreateElementFigure {
   }
 
   getBarcodeURL() {
+    const typeCode = this.typeCodeMap[this.type];
     if (!typeCode) {
       throw new Error(`Tipo de código no soportado: ${this.type}`);
     }
 
     const encodedValue = encodeURIComponent(this.valueURL);
-    const typeCode = this.typeCodeMap[this.type];
     return `https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=${typeCode}`;
   }
 
-  createFigureElement() {
-    const encodedValue = value => encodeURIComponent(value);
+  createElementfigcaption() {
+    const figcaption = document.createElement('figcaption');
+    figcaption.textContent = this.valueURL;
+    return figcaption;
+  }
 
+  createFigureElement() {
     const figure = document.createElement('figure');
     figure.className = 'codigo-upca';
     figure.setAttribute('draggable', 'true');
@@ -62,6 +66,9 @@ export class CreateElementFigure {
     img.src = this.getBarcodeURL();
 
     figure.appendChild(img);
+    if (this.type === 'CodeQR') {
+      figure.appendChild(this.createElementfigcaption());
+    }
     return figure;
   }
 

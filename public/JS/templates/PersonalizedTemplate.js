@@ -1,6 +1,6 @@
 import { CreateElementDiv, CreateElementFigure } from './CreateCode.js';
 
-export class PersonalizedTemplates {
+export class PersonalizedTemplate {
   constructor({ codeUPCA, code128, modelNumber, description, quantity, prefixDataId }) {
     this.dataSetId = 0;
     this.areaDeImpresion = document.getElementById('areaDeImpresion');

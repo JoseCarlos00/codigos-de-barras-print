@@ -1,5 +1,7 @@
-import { PersonalizedTemplates } from './Template.js';
+import { PersonalizedTemplate } from './PersonalizedTemplate.js';
 import { personality } from './templateContent.js';
+
+import { QrTemplate } from './QrTemplate.js';
 
 async function plantillas() {
   try {
@@ -16,7 +18,7 @@ async function plantillas() {
     if (plantillaAcordion) {
       plantillaAcordion.addEventListener('click', handeCLickAcordionButtons);
     } else {
-      throw new Error('No se enontro el elemento .plantillas acordion');
+      throw new Error('No se enontro el elemento .plantillas.acordion');
     }
   } catch (error) {
     console.error('Error al crear las plantillas:', error);
@@ -25,6 +27,7 @@ async function plantillas() {
   function handeCLickAcordionButtons(e) {
     const element = e.target;
 
+    // Botones de plantilla
     // Verificar si el elemento tiene una clase que comienza con "plantilla-"
     const hasPlantillaClass = Array.from(element.classList).some(className =>
       className.startsWith('plantilla-')
@@ -44,14 +47,19 @@ async function plantillas() {
 
     if (type.includes('personality-')) {
       // Crear una instancia de la clase PersonalizedTemplates
-      const template = new PersonalizedTemplates({
-        ...templateType[id],
+      const template = new PersonalizedTemplate({
+        ...templatePersonalizeType[id],
         prefixDataId: type,
       });
 
       template.insertTemplate();
     } else {
-      insertPlantilla(type);
+      const templateQR = new QrTemplate({
+        prefixDataId: type,
+        value: `id: ${id}`,
+      });
+
+      templateQR.insertTemplate();
     }
   }
 
@@ -94,7 +102,7 @@ async function plantillas() {
   }
 }
 
-const templateType = {
+const templatePersonalizeType = {
   1: personality.personality1,
   2: personality.personality2,
   3: personality.personality3,
