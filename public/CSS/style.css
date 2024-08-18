@@ -39,7 +39,7 @@ body {
   transform: matrix(1, 0, 0, 1, 0, 0);
   --View-20292-width: 1366;
   --View-20292-height: 599;
-  --View-20292-source: url(&quot;https://hatch.one/_/api/resources/-O-hCAUsVZXIfh-ECp5K/data/sha256:e0551922d8983147811f31ec4e6e894d7f8ecf430d70f759ce36e89e0d37dd97&quot;);
+  /* --View-20292-source: url(&quot;https://hatch.one/_/api/resources/-O-hCAUsVZXIfh-ECp5K/data/sha256:e0551922d8983147811f31ec4e6e894d7f8ecf430d70f759ce36e89e0d37dd97&quot;); */
   transition: undefined;
 
   video {
