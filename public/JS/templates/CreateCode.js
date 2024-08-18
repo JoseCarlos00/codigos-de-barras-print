@@ -14,6 +14,12 @@ export class CreateElementFigure {
     CodeUPCA: 'UPCA',
   };
 
+  typeClassName = {
+    CodeQR: 'codigo-QR',
+    Code128: 'codigo-128',
+    CodeUPCA: 'codigo-upca',
+  };
+
   constructor({
     prefixDataId,
     dataSetId,
@@ -52,7 +58,7 @@ export class CreateElementFigure {
 
   createFigureElement() {
     const figure = document.createElement('figure');
-    figure.className = 'codigo-upca';
+    figure.className = this.typeClassName[this.type];
     figure.setAttribute('draggable', 'true');
     figure.dataset.id = `${this.prefixDataId}-${this.dataSetId}`;
     figure.dataset.type = this.type;
@@ -66,6 +72,7 @@ export class CreateElementFigure {
     img.src = this.getBarcodeURL();
 
     figure.appendChild(img);
+
     if (this.type === 'CodeQR') {
       figure.appendChild(this.createElementfigcaption());
     }
@@ -77,7 +84,7 @@ export class CreateElementFigure {
    * @param {Object} configuration
    * @returns retorna un elemento [Figure] con la configuracion pasada
    */
-  static createFigureElemen(configuration) {
+  static createFigureElement(configuration) {
     const element = new CreateElementFigure(configuration);
     return element.createFigureElement();
   }

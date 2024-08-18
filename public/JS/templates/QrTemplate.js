@@ -17,7 +17,7 @@ export class QrTemplate {
   createFigureElement({ valueURL, dimensions, position, type }) {
     this.dataSetId++;
 
-    const elementFigure = CreateElementFigure.createFigureElemen({
+    const elementFigure = CreateElementFigure.createFigureElement({
       prefixDataId: this.prefixDataId,
       dataSetId: this.dataSetId,
       valueURL,
