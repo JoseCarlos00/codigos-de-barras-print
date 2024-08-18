@@ -165,25 +165,25 @@
             <div class="accordion" id="plantillas">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#code-qr" aria-expanded="false" aria-controls="code-qr">
+                  <button class="accordion-button font-weight-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-qr" aria-expanded="true" aria-controls="code-qr">
                     Codigo QR
                   </button>
                 </h2>
 
-                <div id="code-qr" class="accordion-collapse collapse">
+                <div id="code-qr" class="accordion-collapse show">
                   <div class="accordion-body">
 
                     <div class="d-grid gap-2">
-                      <buton disabled data-type="usuarios-mariano" class="disabled plantilla-qr btn btn-primary">
+                      <buton data-id="1" data-type="usuarios-mariano" class="plantilla-qr btn btn-primary">
                         Usuarios Mariano
                       </buton>
-                      <buton disabled data-type="banda-ascensor" class="disabled plantilla-qr btn btn-primary">Banda -
+                      <buton data-id="2" data-type="banda-ascensor" class="plantilla-qr btn btn-primary">Banda -
                         Ascensor -
                         Etiquetado |
                         Individual
                       </buton>
-                      <buton disabled data-type="banda-ascensor-multi" class=" disabled plantilla-qr btn btn-primary">
+                      <buton data-id="3" data-type="banda-ascensor-multi" class="plantilla-qr btn btn-primary">
                         Banda -
                         Ascensor -
                         Etiquetado |
@@ -302,7 +302,7 @@
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse"
+                  <button class="accordion-button font-weight-bold collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#code-128" aria-expanded="false" aria-controls="code-128">
                     Code-128
                   </button>
@@ -315,12 +315,12 @@
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button  font-weight-bold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#code-personality" aria-expanded="true" aria-controls="code-personality">
+                  <button class="accordion-button font-weight-bold collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-personality" aria-expanded="false" aria-controls="code-personality">
                     Personalizado
                   </button>
                 </h2>
-                <div id="code-personality" class="accordion-collapse show">
+                <div id="code-personality" class="accordion-collapse collapse">
                   <div class="accordion-body">
                     <buton data-id="1" data-type="personality-1" class="mb-1 plantilla-personality btn btn-primary">
                       1832 Morado
