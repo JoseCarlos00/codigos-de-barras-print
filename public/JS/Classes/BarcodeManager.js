@@ -1,5 +1,4 @@
-import { createCodeQr } from '../CrearCodes/CodeQr.js';
-import { ValidateValue } from './Validations.js';
+import { ValidateValue } from './Validation.js';
 
 export class BarcodeManager {
   constructor(areaDeImpresionSelector) {

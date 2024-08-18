@@ -1,4 +1,4 @@
-import { ValidateValue } from './Classes/Validations.js';
+import { ValidateValue } from './Classes/Validation.js';
 
 let elementSelected = null;
 const MODAL_ID = 'myModaChangeText';
