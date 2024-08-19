@@ -38,7 +38,7 @@
   </style>
 </head>
 
-<body>
+<body class="dev">
 
   <!-- <div data-id_="flower blossom bloom-fill 2" class="View-20292">
     <video data-private="true" src="./public/images/videoframe_9938.mp4" autoplay="" loop="" preload="metadata"
@@ -137,7 +137,7 @@
 
             <form class="radio-inputs mb-2">
               <label class="radio">
-                <input type="radio" name="margin" checked="" value="Sin margen">
+                <input type="radio" name="margin" value="Sin margen" checked>
                 <span class="name">Sin Margen</span>
               </label>
 
@@ -165,13 +165,13 @@
             <div class="accordion" id="plantillas">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button font-weight-bold" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#code-qr" aria-expanded="true" aria-controls="code-qr">
+                  <button class="accordion-button font-weight-bold collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#code-qr" aria-expanded="false" aria-controls="code-qr">
                     Codigo QR
                   </button>
                 </h2>
 
-                <div id="code-qr" class="accordion-collapse show">
+                <div id="code-qr" class="accordion-collapse collapse">
                   <div class="accordion-body">
 
                     <div class="d-grid gap-2">
@@ -292,50 +292,6 @@
     </div>
   </section>
 
-  <script>
-    // Función para inicializar el estado seleccionado
-    function initSelectedState() {
-      const radioInputSelected = localStorage.getItem('selectMargin');
-      const areaDeImpresion = document.getElementById('areaDeImpresion');
-      const headerPrint = document.querySelector('.main header')
-
-      if (radioInputSelected) {
-        const radioInputs = document.querySelectorAll('.main header .radio-inputs input[type="radio"]');
-        radioInputs.forEach(input => {
-          input.checked = input.value === radioInputSelected;
-        });
-
-        areaDeImpresion.classList.toggle('not-margin', radioInputSelected === 'Sin margen');
-        areaDeImpresion.classList.toggle('with-margin', radioInputSelected === 'Con margen');
-        // headerPrint.classList.toggle('mb-40', radioInputSelected === 'Sin margen');
-      }
-    }
-
-    // Llama a la función de inicialización al cargar la página
-    window.addEventListener('load', initSelectedState);
-
-    // Escucha los cambios en los inputs de radio
-    const radioInputs = document.querySelectorAll('.main header .radio-inputs input[type="radio"]');
-    const areaDeImpresion = document.getElementById('areaDeImpresion');
-    const headerPrint = document.querySelector('.main header')
-
-    radioInputs.forEach(input => {
-      input.addEventListener('change', function () {
-        const valueInput = this.value;
-
-        // headerPrint.classList.toggle('mb-40', valueInput === 'Con margen');
-        areaDeImpresion.classList.toggle('with-margin', valueInput === 'Con margen');
-        areaDeImpresion.classList.toggle('not-margin', valueInput === 'Sin margen');
-
-        if (valueInput === 'Con margen' && this.checked) {
-          localStorage.setItem('selectMargin', valueInput);
-        } else {
-          localStorage.removeItem('selectMargin');
-        }
-      });
-    });
-  </script>
-
 
   <!-- Cambio de  Dimensiones -->
   <section class="d-print-none fade d-none">
@@ -404,49 +360,50 @@
           </div>
         </form>
 
-        <button id="insertList" hidden>Abrir Modal</button>
       </div>
     </div>
-
-    <script>
-      const modalInsert = document.getElementById('myModaChangeText');
-      const btnOpenModal = document.getElementById('insertList');
-      const btnCloseModal = document.querySelector('.modal-container-insert .close');
-      const inputTextarea = document.getElementById('changeData')
-
-
-      // Cuando el usuario hace clic en el botón, abre el modal
-      btnOpenModal.addEventListener('click', function () {
-        modalInsert.style.display = 'block';
-      });
-
-      // Cuando el usuario hace clic en <span> (x), cierra el modal
-      btnCloseModal.addEventListener('click', function () {
-        modalInsert.style.display = 'none';
-      });
-
-
-      // Cuando el usuario hace clic fuera del modal, ciérralo
-      window.addEventListener('click', function (e) {
-        const element = e.target;
-
-        if (element == modalInsert) {
-          modalInsert.style.display = 'none';
-        }
-      });
-
-      // Cuando el usuario apreta la tecla Esc, ciérralo
-      window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          if (modalInsert.style.display === 'block') {
-            modalInsert.style.display = 'none';
-          }
-        }
-      });
-
-
-    </script>
   </section>
+
+
+  <!-- Menu Contextual -->
+  <div id="context-menu" class="context-menu">
+    <ul>
+      <li id="copy-option">Copiar</li>
+      <li id="paste-option">Pegar</li>
+    </ul>
+  </div>
+
+  <style>
+    .context-menu {
+      display: none;
+      position: absolute;
+      border: 1px solid rgb(27, 27, 29);
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      border-radius: 4px;
+      background-color: rgb(27, 27, 29);
+      color: #e4e2e3;
+      font-size: 12px;
+    }
+
+    .context-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .context-menu li {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-right: 24px;
+      padding-left: 18px;
+      cursor: pointer;
+    }
+
+    .context-menu li:hover {
+      background-color: #323234;
+    }
+  </style>
 
   <footer class="d-print-none">
     <small style="color: rgb(165, 160, 160);">Create by @Jose Carlos</small>
@@ -462,9 +419,11 @@
 
   <script type="module" src="./public/JS/index.js"></script>
   <script type="module" src="./public/JS/dragAndDrog.js"></script>
-  <script type="module" src="./public/JS/editContent.js"></script>
+  <script type="module" src="./public/JS/editContent/editContent.js"></script>
   <script type="module" src="./public/JS/templates/plantillas.js"></script>
   <script type="module" src="./public/JS/print.js"></script>
+  <script type="module" src="./public/JS/initSelectedState.js"></script>
+  <script type="module" src="./public/JS/ContextMenuHandler.js"></script>
 </body>
 
 </html>
