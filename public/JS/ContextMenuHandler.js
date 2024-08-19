@@ -1,4 +1,5 @@
 import { editarContenido } from './editContent/editContent.js';
+import { ChangeFontSize } from './fontSize.js';
 
 class ContextMenuHandler {
   handleSelectedElement = {
@@ -9,10 +10,11 @@ class ContextMenuHandler {
   constructor() {
     this.selectedElement = null;
     this.contextMenu = null;
-    this.init();
+    this.changeFontSize = new ChangeFontSize();
+    this.initialize();
   }
 
-  async init() {
+  async initialize() {
     try {
       await this.initializeContextMenu();
       this.setupEventListeners();
@@ -34,23 +36,33 @@ class ContextMenuHandler {
     return new Promise((resolve, reject) => {
       const editOption = document.getElementById('edit-option');
       const deleteOption = document.getElementById('delete-option');
+      const changeFontSizeOption = document.getElementById('font-size-option');
+
       const areaDeImpresion = document.getElementById('areaDeImpresion');
 
-      if (!editOption || !deleteOption || !areaDeImpresion) {
-        reject({ message: 'No se encontraron los elementos' });
+      /**
+       * TODO: Mostrar los elementos que no existen
+       */
+      if (!editOption || !deleteOption || !areaDeImpresion || !changeFontSizeOption) {
+        reject({
+          message: 'No se encontraron los elementos necesrios para inicializar el menuContextual',
+        });
         return;
       }
 
-      resolve({ editOption, deleteOption, areaDeImpresion });
+      resolve({ editOption, deleteOption, areaDeImpresion, changeFontSizeOption });
     });
   }
 
   async setupEventListeners() {
     try {
-      const { editOption, deleteOption, areaDeImpresion } = await this.verifyAllElementExist();
+      const { editOption, deleteOption, changeFontSizeOption, areaDeImpresion } =
+        await this.verifyAllElementExist();
 
       editOption.addEventListener('click', () => this.handleEditContent());
       deleteOption.addEventListener('click', () => this.handleDeleteContent());
+      changeFontSizeOption.addEventListener('click', () => this.handleChangeFontSize());
+
       areaDeImpresion.addEventListener('contextmenu', e => this.handleOpenMenu(e));
       document.addEventListener('click', () => this.hideContextMenu());
     } catch (error) {
@@ -95,6 +107,29 @@ class ContextMenuHandler {
     } catch (error) {
       console.error(
         'Errro: ha ocurrido un error al eliminar el contenido desde el menuContextual',
+        error
+      );
+    }
+  }
+
+  async handleChangeFontSize() {
+    try {
+      await this.validateElementSelected();
+
+      const modal = document.querySelector('#myModalChangeFontSize');
+
+      if (!modal) {
+        throw new Error('No se encontro el modal para cambiar el tamaño de fuente');
+      }
+
+      if (this.changeFontSize) {
+        modal.style.display = 'block';
+
+        this.changeFontSize.setElementSelected(this.selectedElement);
+      }
+    } catch (error) {
+      console.error(
+        'Errro: ha ocurrido un error cambiar el tamaño de fuente desde el menuContextual',
         error
       );
     }

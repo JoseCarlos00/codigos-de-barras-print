@@ -1,5 +1,4 @@
 import { toggleRedimensionarListener, cambiarDimensiones, resetElement } from './resize.js';
-import { setElementoSize } from './fontSize.js';
 import { handleDragOver, handleDragLeave } from './drag-and-drog/functions.js';
 import { savePosition } from './undoAndRedo.js';
 
@@ -195,7 +194,6 @@ function handleClick(e) {
   } else if (e.target.nodeName === 'P') {
     const elemento = e.target.closest('div.texto-plano');
     setData(elemento);
-    setElementoSize(elemento, true);
   } else {
     // Desmarcar todos los elementos
     const elementosSelected = document.querySelectorAll('.area-de-impresion .selected');
@@ -205,7 +203,6 @@ function handleClick(e) {
       });
 
       resetElement();
-      setElementoSize(null, false);
     }
   }
 }

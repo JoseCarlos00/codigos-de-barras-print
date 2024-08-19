@@ -68,10 +68,6 @@
   }
 }
 
-.modal-container-personality #myModalChangeFontSize {
-  background-color: #09f;
-}
-
 .modal-container-personality .modal-content button.close {
   --white: #fff;
   --width-button-close: 30px;
