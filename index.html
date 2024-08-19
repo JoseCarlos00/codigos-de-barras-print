@@ -333,7 +333,7 @@
           </svg>
         </button>
 
-        <form id="FormChangeText" action="" class="insertar-item" data-type="">
+        <form id="FormChangeText" action="" class="insertar-item mb-3" data-type="">
           <label for="changeData">Por favor, ingresa el nuevo contenido:</label>
           <textarea id="changeData" name="itemsRegisters" required class="form-control" rows="2"></textarea>
 
@@ -353,25 +353,6 @@
           </div>
         </form>
 
-      </div>
-    </div>
-  </section>
-
-  <section class="modal-container-personality d-print-none">
-    <div id="myModalChangeFontSize" class="modal">
-      <div class="modal-content">
-
-        <button type="button" aria-label="Close" data-balloon-pos="left" class="close">
-          <svg aria-hidden="true" focusable="false" data-prefix="fad" role="img" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512" class="fa-circle-xmark">
-            <path fill="currentColor"
-              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
-              class="fa-secondary"></path>
-            <path fill="currentColor"
-              d="M209 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47z"
-              class="fa-primary"></path>
-          </svg>
-        </button>
 
         <form name="FormFontSize" id="FormFontSize" class="form-font-size mb-3 bg-info rounded-1 p-2">
           <label class="form-label">Tamaño de fuente:</label>
@@ -382,7 +363,93 @@
           </div>
 
           <input type="range" class="form-range" min="6" max="100" name="fontSizeRange" value="16">
+
         </form>
+
+        <div class="container position-relative">
+          <form class="geSidebarContainer geFormatContainer">
+            <div class=""
+              style="white-space: nowrap; color: rgb(97, 97, 97); text-align: left; cursor: default; border-bottom: none;">
+              <div
+                style="padding: 10px 0px 6px 14px; white-space: nowrap; overflow: hidden; width: 200px; font-weight: bold;">
+                Fuente</div>
+
+              <div class="geToolbarContainer"
+                style="padding: 2px 0px 2px 14px; position: relative; margin-left: -2px; border-width: 0px;">
+                <a class="geColorBtn" title="Familia de la fuente"
+                  style="display: inline-flex; box-sizing: border-box; width: 211px; height: 22px; border-width: 1px; border-style: solid; margin: 0px; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden; position: relative;">Times
+                  New Roman
+                  <div class="geAdaptiveAsset"
+                    style="display: inline-block; background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZD0iTTI0IDMwLjEgMTIuNyAxOC43NWwxLjYtMS42IDkuNyA5LjcgOS43LTkuNyAxLjYgMS42NVoiLz48L3N2Zz4=&quot;); background-repeat: no-repeat; background-position: 50% 1px; background-size: 18px 18px; opacity: 0.6; height: 100%; width: 14px; text-align: center; flex-grow: 1; position: absolute; right: 2px;">
+                  </div>
+                </a>
+              </div>
+
+              <div class="geToolbarContainer"
+                style="padding: 2px 0px 2px 14px; position: relative; margin-left: -3px; border-width: 0px;">
+
+                <a class="geButton geColorBtn" title="Negrita (Ctrl+B)"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 2px 1px 1px; width: 24px; height: 20px;">
+
+                  <div class="geSprite geSprite-bold"></div>
+                </a>
+
+                <a class="geButton geColorBtn" title="Cursiva (Ctrl+I)"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 2px 1px 1px; width: 24px; height: 20px;">
+
+                  <div class="geSprite geSprite-italic"></div>
+                </a>
+
+                <a class="geButton geColorBtn" title="Subrayar (Ctrl+U)"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 12px 1px 1px; width: 24px; height: 20px;">
+
+                  <div class="geSprite geSprite-underline"></div>
+                </a>
+
+                <input spellcheck="false" data-ms-editor="true"
+                  style="position: absolute; border-width: 1px; border-style: solid; text-align: right; margin-top: 4px; left: 161px; width: 53px; height: 23px; box-sizing: border-box;">
+                <div class="geBtnStepper" style="position: absolute; margin-top: 4px; left: 214px;">
+
+                  <div class="geBtnUp" style="position: relative; height: 10px; width: 10px;"></div>
+                  <div class="geBtnDown" style="position: relative; height: 10px; width: 10px; border: none;"></div>
+                </div>
+
+              </div>
+
+              <div class="geToolbarContainer"
+                style="padding: 2px 0px 0px 14px; position: relative; margin-left: -3px; border-width: 0px;">
+                <a class="geButton geColorBtn" title="Izquierda"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 2px 1px 1px; width: 24px; height: 20px;">
+
+                  <div class="geSprite geSprite-left"></div>
+                </a>
+                <a class="geButton geColorBtn" title="Centrar"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 2px 1px 1px; width: 24px; height: 20px; background-image: linear-gradient(rgb(197, 236, 255) 0px, rgb(135, 212, 251) 100%);">
+
+                  <div class="geSprite geSprite-center"></div>
+                </a>
+                <a class="geButton geColorBtn" title="Derecha"
+                  style="border-radius: 3px; opacity: 1; border: 1px solid rgb(160, 160, 160); padding: 3px 1px 4px 4px; margin: 1px 12px 1px 1px; width: 24px; height: 20px;">
+
+                  <div class="geSprite geSprite-right"></div>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <style>
+          @media print {
+            .ms-editor-squiggles-container {
+              display: none !important;
+            }
+          }
+
+          .ms-editor-squiggles-container {
+            all: initial;
+          }
+        </style>
 
       </div>
     </div>
@@ -395,7 +462,7 @@
     <ul>
       <li id="edit-option">Editar</li>
       <li id="delete-option">Eliminar</li>
-      <li id="font-size-option" class="disabled">Cambiar tamaño de letra</li>
+      <li id="font-size-option" class="">Fuente</li>
     </ul>
   </div>
 
