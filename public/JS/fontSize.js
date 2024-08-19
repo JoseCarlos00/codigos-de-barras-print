@@ -4,7 +4,7 @@ export class ChangeFontSize {
     this.inputRange = null;
     this.inputNumber = null;
     this.formChangeFontSize = document.getElementById('FormFontSize');
-    this.modal = document.querySelector('#myModalChangeFontSize');
+    this.modal = document.querySelector('#myModalChangeText');
 
     this.initialize();
   }

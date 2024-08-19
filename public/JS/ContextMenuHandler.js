@@ -116,7 +116,7 @@ class ContextMenuHandler {
     try {
       await this.validateElementSelected();
 
-      const modal = document.querySelector('#myModalChangeFontSize');
+      const modal = document.querySelector('#myModalChangeText');
 
       if (!modal) {
         throw new Error('No se encontro el modal para cambiar el tamaño de fuente');
