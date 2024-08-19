@@ -1,11 +1,11 @@
 import { CreateElementFigure } from './CreateCode.js';
 
 export class QrTemplate {
-  constructor({ prefixDataId, value }) {
+  constructor({ prefixDataId, template = [] }) {
     this.dataSetId = 0;
     this.areaDeImpresion = document.getElementById('areaDeImpresion');
     this.prefixDataId = prefixDataId;
-    this.value = value;
+    this.template = template;
   }
 
   validateAreaDeImpresion() {
@@ -30,22 +30,31 @@ export class QrTemplate {
   }
 
   insertTemplate() {
-    this.validateAreaDeImpresion();
+    try {
+      this.validateAreaDeImpresion();
 
-    console.log('[Crear Plantilla QR]');
-    console.log('prefixDataId:', this.prefixDataId);
-    console.log('prefixDataId:', this.value);
+      // Limpiar área de impresión
+      this.areaDeImpresion.innerHTML = '';
 
-    const codeQR1 = this.createFigureElement({
-      valueURL: this.value,
-      dimensions: { height: '67px', width: '67' },
-      position: { x: '170.545px', y: '262.659px' },
-      type: 'CodeQR',
-    });
+      if (this.template.length === 0) {
+        throw new Error('No se encontraron valores');
+      }
 
-    console.log('codeQR1:', codeQR1);
+      // Crear Un array de elementos Creados
+      const elements = this.template.map(item => {
+        const { value, dimensions, position } = item;
+        return this.createFigureElement({
+          valueURL: value,
+          dimensions,
+          position,
+          type: 'CodeQR',
+        });
+      });
 
-    // Insertar elementos
-    this.areaDeImpresion.append(codeQR1);
+      // Insertar elementos
+      this.areaDeImpresion.append(...elements);
+    } catch (error) {
+      console.error('Class QrTemplate: error al insertar plantilla qr:', error);
+    }
   }
 }

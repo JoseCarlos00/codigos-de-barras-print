@@ -1,7 +1,8 @@
 import { PersonalizedTemplate } from './PersonalizedTemplate.js';
-import { personality } from './templateContent.js';
+import { personality } from './configuration/templatePersonalityContent.js';
 
 import { QrTemplate } from './QrTemplate.js';
+import { qrCongiguration } from './configuration/templateQrContent.js';
 
 async function plantillas() {
   try {
@@ -46,59 +47,20 @@ async function plantillas() {
     }
 
     if (type.includes('personality-')) {
-      // Crear una instancia de la clase PersonalizedTemplates
       const template = new PersonalizedTemplate({
         ...templatePersonalizeType[id],
         prefixDataId: type,
       });
 
       template.insertTemplate();
-    } else {
+    } else if (element.classList.contains('plantilla-qr')) {
       const templateQR = new QrTemplate({
+        ...templateQr[id],
         prefixDataId: type,
-        value: `id: ${id}`,
       });
 
       templateQR.insertTemplate();
     }
-  }
-
-  function getPlantilla(type) {
-    return new Promise((resolve, reject) => {
-      const platillaElementHTML = document.querySelector(
-        `section.plantillas .accordion div.plantilla.${type}`
-      );
-
-      if (!platillaElementHTML) {
-        console.error('No se encontro la plantilla HTML');
-        reject();
-        return;
-      }
-
-      resolve(platillaElementHTML);
-    });
-  }
-
-  async function insertPlantilla(type) {
-    const areaDeImpresion = document.getElementById('areaDeImpresion');
-
-    if (!areaDeImpresion) {
-      console.error('No existe el area de impresion');
-      reject();
-      return;
-    }
-
-    // Obtén el elemento fuente y el elemento destino
-    const source = await getPlantilla(type);
-
-    // Vacía el contenido del elemento destino
-    areaDeImpresion.innerHTML = '';
-
-    // Clona todos los nodos hijos del elemento fuente (profundidad completa)
-    const clonedChildren = Array.from(source.childNodes).map(child => child.cloneNode(true));
-
-    // Añade cada nodo clonado al elemento destino
-    clonedChildren.forEach(child => areaDeImpresion.appendChild(child));
   }
 }
 
@@ -120,6 +82,12 @@ const templatePersonalizeType = {
   15: personality.personality15,
   16: personality.personality16,
   17: personality.personality17,
+};
+
+const templateQr = {
+  1: qrCongiguration.usuariosMariano,
+  2: qrCongiguration.bandaAscensor,
+  3: qrCongiguration.bandaAscensorMulti,
 };
 
 window.addEventListener('load', plantillas, { once: true });
