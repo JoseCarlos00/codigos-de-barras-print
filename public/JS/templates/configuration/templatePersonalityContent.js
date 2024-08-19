@@ -25,14 +25,14 @@ export const personality = {
 
   personality4: {
     codeUPCA: '764784223788',
-    code128: 'D97409000121',
-    modelNumber: 'D97409000121',
+    code128: 'D97409000135',
+    modelNumber: 'D97409000135',
     description: '#1864 CATRIN CON BASE HOMBRE 20.5X18.5 CM',
     quantity: '48',
   },
   personality5: {
     codeUPCA: '764784224204',
-    code128: 'D97409040127',
+    code128: 'D97409000124',
     modelNumber: 'D97409000124',
     description: '#1887 MASCOTA PERRO CATRIN 23.5X17 CM',
     quantity: '48',
