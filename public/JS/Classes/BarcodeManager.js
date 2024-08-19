@@ -25,16 +25,6 @@ export class BarcodeManager {
     };
   }
 
-  getBarcodeURL({ value, type }) {
-    const typeCode = this.typeCodeMap[type];
-    if (!typeCode) {
-      throw new Error(`Tipo de código no soportado: ${type}`);
-    }
-
-    const encodedValue = encodeURIComponent(value);
-    return `https://barcode.tec-it.com/barcode.ashx?data=${encodedValue}&code=${typeCode}`;
-  }
-
   insertElement(e) {
     try {
       e.preventDefault();

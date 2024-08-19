@@ -1,4 +1,4 @@
-import { Stack, DataHistory } from './class.js';
+import { DataHistory } from './Classes/DataHistory.js';
 
 const historyStack = new DataHistory();
 
@@ -40,7 +40,6 @@ function applyAction(action) {
 // Función para deshacer la última acción
 function undo() {
   const undoBack = historyStack.back();
-  // console.log('back:', undoBack);
 
   if (undoBack) {
     const { xActual: x, yActual: y } = undoBack;
