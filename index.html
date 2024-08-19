@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./public/CSS/style.css">
   <link rel="stylesheet" href="./public/CSS/modal.css">
   <link rel="stylesheet" href="./public/CSS/print.css">
+  <link rel="stylesheet" href="./public/CSS/fuente.css">
 
   <link rel="shortcut icon" href="./public/images/favicon.png" type="image/x-icon">
 
@@ -315,11 +316,10 @@
 
   </section>
 
-  <!-- CERRAR MODAL POR DEFECTO -->
 
   <!-- Modal Cambio de Font size -->
   <section class="modal-container-personality d-print-none">
-    <div id="myModalChangeText" class="modal" style="display: block;">
+    <div id="myModalChangeText" class="modal">
       <div class="modal-content">
 
         <button type="button" aria-label="Close" data-balloon-pos="left" class="close">
@@ -367,12 +367,14 @@
 
         </form>
 
-        <div class="container position-relative">
-          <form class="geSidebarContainer geFormatContainer">
+        <hr>
+
+        <div class="container position-relative" style="opacity: .4;">
+          <div class="geSidebarContainer geFormatContainer">
             <div class="geFormatContainer">
               <div class="title-form">Fuente</div>
 
-              <div class="geToolbarContainer font-family">
+              <div class="geToolbarContainer font-family" style="opacity: .3;">
                 <a class="geColorBtn" title="Familia de la fuente">Times
                   New Roman
                   <div class="geAdaptiveAsset">
@@ -381,7 +383,7 @@
               </div>
 
               <div class="geToolbarContainer font-style">
-                <a class="geButton geColorBtn" title="Negrita (Ctrl+B)">
+                <a class="geButton geColorBtn selected" title="Negrita (Ctrl+B)">
                   <div class="geSprite geSprite-bold"></div>
                 </a>
 
@@ -393,8 +395,8 @@
                   <div class="geSprite geSprite-underline"></div>
                 </a>
 
-                <input class="change-font-size" spellcheck="false" data-ms-editor="true">
-                <div class="geBtnStepper position-absolute" style="margin-top: 4px; left: 214px;">
+                <input class="change-font-size" spellcheck="false" data-ms-editor="true" type="text" value="12 px">
+                <div class="geBtnStepper position-absolute" style="left: 214px;">
                   <div class="geBtnUp"></div>
                   <div class="geBtnDown"></div>
                 </div>
@@ -412,7 +414,73 @@
                 </a>
               </div>
             </div>
-          </form>
+
+            <div class="mxPopupMenu geToolbarMenu d-none">
+              <table class="mxPopupMenu">
+                <tbody>
+                  <tr class="mxPopupMenuItem" title="Helvetica">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: Helvetica;">Helvetica</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Verdana">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: Verdana;">Verdana</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Times New Roman">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: &quot;Times New Roman&quot;;">Times
+                      New
+                      Roman</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Garamond">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: Garamond;">Garamond</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Comic Sans MS">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: &quot;Comic Sans MS&quot;;">Comic
+                      Sans MS
+                    </td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Courier New">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: &quot;Courier New&quot;;">Courier
+                      New
+                    </td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Georgia">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: Georgia;">Georgia</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Lucida Console">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: &quot;Lucida Console&quot;;">Lucida
+                      Console</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr class="mxPopupMenuItem" title="Tahoma">
+                    <td class="mxPopupMenuIcon"></td>
+                    <td class="mxPopupMenuItem" align="left" style="font-family: Tahoma;">Tahoma</td>
+                    <td class="mxPopupMenuItem" style="padding-right: 6px; text-align: right;"></td>
+                  </tr>
+                  <tr>
+                    <td class="mxPopupMenuIcon" style="padding: 0px;"></td>
+                    <td colspan="2" style="padding: 0px;">
+                      <hr size="1">
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
 
