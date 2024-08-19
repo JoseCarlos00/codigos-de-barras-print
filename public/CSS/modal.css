@@ -27,7 +27,7 @@
   }
 }
 
-.modal-container-personality #myModaChangeText {
+.modal-container-personality #myModalChangeText {
   form.insertar-item {
     display: flex;
     flex-direction: column;

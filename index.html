@@ -112,18 +112,8 @@
 
           <!-- Cambio de Font-Size -->
           <div class="col">
-            <div class="d-block w-100 h-100 d-none" id="formChangeFontSize" tabindex="-1">
-              <form name="FormFontSize" class="form-font-size mb-3 bg-info rounded-1 p-2 fade">
-                <label class="form-label">Tamaño de fuente:</label>
+            <div class="d-block w-100 h-100 d-none" tabindex="-1">
 
-                <div class="input-group mb-3 w-50">
-                  <input class="form-control form-control-sm" type="number" name="fontSize" min="6" max="100"
-                    value="16">
-                  <span class="input-group-text">px</span>
-                </div>
-
-                <input type="range" class="form-range" min="6" max="100" name="fontSize2" value="16">
-              </form>
             </div>
           </div>
         </div>
@@ -365,7 +355,7 @@
   </section>
 
   <section class="modal-container-personality d-print-none">
-    <div id="myModaChangeText" class="modal">
+    <div id="myModalChangeFontSize" class="modal">
       <div class="modal-content">
 
         <button type="button" aria-label="Close" data-balloon-pos="left" class="close">
@@ -380,24 +370,15 @@
           </svg>
         </button>
 
-        <form id="FormChangeText" action="" class="insertar-item" data-type="">
-          <label for="changeData">Por favor, ingresa el nuevo contenido:</label>
-          <textarea id="changeData" name="itemsRegisters" required class="form-control" rows="2"></textarea>
+        <form name="FormFontSize" class="form-font-size mb-3 bg-info rounded-1 p-2">
+          <label class="form-label">Tamaño de fuente:</label>
 
-          <div class="form-buttons">
-            <button class="btn btn-primary" type="submit">
-              <span class="text">Cambiar</span>
-            </button>
-
-            <button id="clearInsertitems" class="btn btn-danger btn-sm" type="reset" aria-label="Limpiar"
-              data-balloon-pos="right">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path
-                  d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
-                  fill="#fff" />
-              </svg>
-            </button>
+          <div class="input-group mb-3 w-100">
+            <input class="form-control form-control-sm" type="number" name="fontSize" min="6" max="100" value="16">
+            <span class="input-group-text">px</span>
           </div>
+
+          <input type="range" class="form-range" min="6" max="100" name="fontSize2" value="16">
         </form>
 
       </div>
@@ -453,7 +434,7 @@
   </style>
 
   <footer class="d-print-none">
-    <small style="color: rgb(165, 160, 160);">Create by @Jose Carlos</small>
+    <small style="color: rgb(43, 41, 41);">Create by @Jose Carlos</small>
   </footer>
 
 

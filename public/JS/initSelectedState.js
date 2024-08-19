@@ -44,40 +44,58 @@ function initialSelectMargin() {
   }
 }
 
-function initialModal() {
-  try {
-    const modalInsert = document.getElementById('myModalChangeText');
-    const btnCloseModal = document.querySelector('.modal-container-insert .close');
+class ModalManager {
+  constructor(modals) {
+    this.modals = modals;
+    this.initialize();
+  }
 
-    // Cuando el usuario hace clic en <span> (x), cierra el modal
-    btnCloseModal.addEventListener('click', function () {
-      modalInsert.style.display = 'none';
-    });
+  initialize() {
+    // Asigna el evento de cierre al hacer clic fuera del modal
+    window.addEventListener('click', e => this.handleOutsideClick(e));
 
-    // Cuando el usuario hace clic fuera del modal, ciérralo
-    window.addEventListener('click', function (e) {
-      const element = e.target;
+    // Asigna el evento de cierre al presionar la tecla Esc
+    window.addEventListener('keydown', e => this.handleKeydown(e));
 
-      if (element == modalInsert) {
-        modalInsert.style.display = 'none';
+    // Asigna evento al button cerrar Modal
+    this.modals.forEach(modal => {
+      const btnClose = modal.querySelector('.close');
+      if (btnClose) {
+        btnClose.addEventListener('click', () => this.closeModal(modal));
+      } else {
+        console.error('No se encontro el elemento .modal > button.clode');
       }
     });
+  }
 
-    // Cuando el usuario apreta la tecla Esc, ciérralo
-    window.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        if (modalInsert.style.display === 'block') {
-          modalInsert.style.display = 'none';
+  handleOutsideClick(e) {
+    this.modals.forEach(modal => {
+      if (e.target === modal) {
+        this.closeModal(modal);
+      }
+    });
+  }
+
+  handleKeydown(e) {
+    if (e.key === 'Escape') {
+      this.modals.forEach(modal => {
+        if (modal.style.display === 'block') {
+          this.closeModal(modal);
         }
-      }
-    });
-  } catch (error) {
-    console.error('Error: ha ocurrido un error al inicalizar el estado del Modal', error);
+      });
+    }
+  }
+
+  closeModal(modal) {
+    modal.style.display = 'none';
   }
 }
 
 // Llama a la función de inicialización al cargar la página
 window.addEventListener('load', () => {
-  initialModal();
   initialSelectMargin();
+
+  // Inicializa el ModalManager con los modales que deseas manejar
+  const modals = document.querySelectorAll('.modal-container-personality .modal');
+  new ModalManager(modals);
 });
