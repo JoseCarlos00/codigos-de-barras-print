@@ -47,13 +47,15 @@
 
   <div class="background-image"></div>
 
-  <header class="container-fluid d-print-none">
-    <div class="row justify-content-center mt-3">
-      <div class="col-lg-4 col-md-12 ps-0">
-        <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
+  <div class="container-fluid d-print-none">
+    <div class="row justify-content-center">
+      <header class="col-lg-4 col-md-12">
+        <div class="title-header">
+          <h1>Impresion de <span id="titleDropdown">Codigo de Barras</span></h1>
+        </div>
 
         <div class="dropdown-container">
-          <ul id="dropdownMenu" class="dropdown-container-list">
+          <ul id="dropdownMenu" class="dropdown-container-list ps-0">
             <li><a class="btn btn-primary" href="#" data-id="Codigo de Barras" data-type="Code128">Code-128</a>
             </li>
             <li><a class="btn btn-primary" href="#" data-id="Código QR" data-type="CodeQR">Código QR</a></li>
@@ -61,9 +63,10 @@
             <li><a class="btn btn-primary" href="#" data-id="Código UPC-A" data-type="CodeUPCA">UPC-A</a></li>
           </ul>
         </div>
-      </div>
+      </header>
     </div>
-  </header>
+  </div>
+
 
   <section class="container-fluid d-print-none">
     <div class="row justify-content-center mt-3">
