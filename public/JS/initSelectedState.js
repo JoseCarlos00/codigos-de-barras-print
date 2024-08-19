@@ -46,7 +46,7 @@ function initialSelectMargin() {
 
 function initialModal() {
   try {
-    const modalInsert = document.getElementById('myModaChangeText');
+    const modalInsert = document.getElementById('myModalChangeText');
     const btnCloseModal = document.querySelector('.modal-container-insert .close');
 
     // Cuando el usuario hace clic en <span> (x), cierra el modal

@@ -1,7 +1,12 @@
+import { editarContenido } from './editContent/editContent.js';
+
 class ContextMenuHandler {
+  handleSelectedElement = {
+    P: ({ element }) => element.closest('div.texto-plano'),
+    IMG: ({ element }) => element.closest('figure'),
+  };
+
   constructor() {
-    this.selectedElementForCopy = null;
-    this.selectedElementForPaste = null;
     this.selectedElement = null;
     this.contextMenu = null;
     this.init();
@@ -27,52 +32,111 @@ class ContextMenuHandler {
 
   verifyAllElementExist() {
     return new Promise((resolve, reject) => {
-      const copyOption = document.getElementById('copy-option');
-      const pasteOption = document.getElementById('paste-option');
+      const editOption = document.getElementById('edit-option');
+      const deleteOption = document.getElementById('delete-option');
       const areaDeImpresion = document.getElementById('areaDeImpresion');
 
-      if (!copyOption || !pasteOption || !areaDeImpresion) {
+      if (!editOption || !deleteOption || !areaDeImpresion) {
         reject({ message: 'No se encontraron los elementos' });
         return;
       }
 
-      resolve({ copyOption, pasteOption, areaDeImpresion });
+      resolve({ editOption, deleteOption, areaDeImpresion });
     });
   }
 
   async setupEventListeners() {
-    const { copyOption, pasteOption, areaDeImpresion } = await this.verifyAllElementExist();
+    try {
+      const { editOption, deleteOption, areaDeImpresion } = await this.verifyAllElementExist();
 
-    copyOption.addEventListener('click', () => this.handleClickCopy());
-    pasteOption.addEventListener('click', () => this.handlePaste());
-    areaDeImpresion.addEventListener('contextmenu', e => this.handleOpenMenu(e));
-    document.addEventListener('click', () => this.hideContextMenu());
+      editOption.addEventListener('click', () => this.handleEditContent());
+      deleteOption.addEventListener('click', () => this.handleDeleteContent());
+      areaDeImpresion.addEventListener('contextmenu', e => this.handleOpenMenu(e));
+      document.addEventListener('click', () => this.hideContextMenu());
+    } catch (error) {
+      console.error(
+        'Error: ha ocurrido un error al inicializar los eventos del menuContextual:',
+        error
+      );
+    }
   }
 
-  handleOpenMenu(e) {
-    e.preventDefault();
+  validateElementSelected() {
+    return new Promise(resolve => {
+      console.log('[validateElementSelected]', this.selectedElement);
 
-    const element = e.target;
-    const nodeName = element.nodeName;
+      if (!this.selectedElement) {
+        throw new Error('No se encontro el elemento selecionado');
+      }
 
-    console.log('handleOpenMenu:', '[', nodeName, ']', element);
+      resolve();
+    });
+  }
 
-    const x = e.pageX;
-    const y = e.pageY;
+  async handleEditContent() {
+    try {
+      await this.validateElementSelected();
 
-    if (this.contextMenu) {
-      this.contextMenu.style.display = 'block';
-      this.contextMenu.style.left = `${x}px`;
-      this.contextMenu.style.top = `${y}px`;
-    } else {
-      // ToastAlert.showAlertFullTop('No se encontró el menú', 'error');
-      console.error('No se encontró el menú', 'error');
+      editarContenido({ element: this.selectedElement });
+      this.selectedElement = null;
+    } catch (error) {
+      console.error(
+        'Errror: ha ocurrido un error al editar el contenido desde el menuContextual',
+        error
+      );
+    }
+  }
+
+  async handleDeleteContent() {
+    try {
+      await this.validateElementSelected();
+      this.selectedElement.remove();
+      this.selectedElement = null;
+    } catch (error) {
+      console.error(
+        'Errro: ha ocurrido un error al eliminar el contenido desde el menuContextual',
+        error
+      );
     }
   }
 
   hideContextMenu() {
     if (this.contextMenu) {
       this.contextMenu.style.display = 'none';
+    }
+  }
+
+  handleOpenMenu(e) {
+    try {
+      e.preventDefault();
+
+      const element = e.target;
+      const nodeName = element.nodeName;
+
+      console.log('handleOpenMenu:', '[', nodeName, ']', element);
+
+      // Verifica si el nodo es 'P' o 'IMG'
+      if (this.handleSelectedElement[nodeName]) {
+        // Asigna el elemento seleccionado utilizando la lógica correspondiente
+        this.selectedElement = this.handleSelectedElement[nodeName]({ element });
+      } else {
+        console.log(`El elemento ${nodeName} no es válido para selección.`);
+        this.selectedElement = null; // Opcional: Desasignar si no es P o IMG
+      }
+
+      const x = e.pageX;
+      const y = e.pageY;
+
+      if (this.contextMenu) {
+        this.contextMenu.style.display = 'block';
+        this.contextMenu.style.left = `${x}px`;
+        this.contextMenu.style.top = `${y}px`;
+      } else {
+        // ToastAlert.showAlertFullTop('No se encontró el menú', 'error');
+        console.error('No se encontró el menú', 'error');
+      }
+    } catch (error) {
+      console.error('Error: Ha ocurrido un error al abrir el menu Contextual');
     }
   }
 }

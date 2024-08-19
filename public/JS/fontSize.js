@@ -7,10 +7,6 @@ function changeFontZize(elemento, size) {
 }
 
 if (FormFontSize) {
-  // FormFontSize.fontSize.addEventListener('focus', function (e) {
-  //   e.target.select();
-  // });
-
   FormFontSize.fontSize.addEventListener('input', function (e) {
     const newZize = this.value;
 

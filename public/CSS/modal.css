@@ -1,6 +1,6 @@
 @import url(./balloon.css);
 
-.modal-container-insert {
+.modal-container-personality {
   .modal {
     display: none;
     position: fixed;
@@ -25,7 +25,9 @@
     width: 80%;
     width: fit-content;
   }
+}
 
+.modal-container-personality #myModaChangeText {
   form.insertar-item {
     display: flex;
     flex-direction: column;
@@ -66,7 +68,11 @@
   }
 }
 
-.modal-container-insert .modal-content button.close {
+.modal-container-personality #myModalChangeFontSize {
+  background-color: #09f;
+}
+
+.modal-container-personality .modal-content button.close {
   --white: #fff;
   --width-button-close: 30px;
   --with-close-times-color: var(--white);
@@ -128,17 +134,4 @@
     outline-offset: calc(1em * 1 / 16);
     outline-offset: var(--focus-outline-offset);
   }
-}
-
-.visually-hidden,
-.visually-hidden-focusable:not(:focus):not(:focus-within) {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
 }

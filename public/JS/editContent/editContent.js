@@ -1,7 +1,7 @@
 import { ValidateValue } from '../Classes/Validation.js';
 
 let elementSelected = null;
-const MODAL_ID = 'myModaChangeText';
+const MODAL_ID = 'myModalChangeText';
 const FORM_ID = 'FormChangeText';
 
 function inicio() {
@@ -36,21 +36,32 @@ const nodeHandlers = {
  * TODO validar que el contenido nuevo sea diferente al actual
  */
 export function editarContenido({ element }) {
-  if (!elementParams) {
+  if (!element) {
     throw new Error('No se ha seleccionado un elemento');
   }
 
   let elementSelected = null;
 
-  if (elementParams instanceof Event) {
+  if (element instanceof Event) {
+    elementSelected = element.target;
     // Si es un evento, obtenemos el elemento que disparó el evento
-    elementSelected = elementParams.target;
+  } else if (element instanceof HTMLElement) {
+    elementSelected = element;
+    // Si es un elemento HTML, lo usamos directamente
+  } else if (element.element) {
+    elementSelected = element.element;
+    // Si es un objeto con una propiedad `element`, la usamos
   } else {
-    // Si no es un evento, obtenemos el elemento que se seleccionó
-    elementSelected = elementParams.element;
+    throw new Error('El objeto proporcionado no es válido');
+    // Si no cumple con ninguna de las anteriores, lanzamos un error
   }
 
   const nodeName = elementSelected.nodeName;
+
+  if (!nodeName) {
+    console.error(`Error al obtener el nombre del nodo [${nodeName}]`);
+    return;
+  }
 
   if (nodeName === 'P' && elementSelected.classList.contains('plantilla-quantity')) {
     console.log('SI existe:', elementSelected);
@@ -114,62 +125,6 @@ async function modifyFigureContent({ figureElement }) {
     console.error('Error: a ocurrio un error al intentar modificar el contenido actual', error);
     alert('Error: a ocurrio un error al intentar modificar el contenido actual');
   }
-}
-
-function setNewValueFigureContent({ elemento }) {
-  if (!elemento) {
-    throw new Error('No se encontro el elemento a modificar');
-  }
-
-  const formChangeData = document.getElementById(FORM_ID);
-
-  if (!formChangeData) {
-    console.error('No se encontró el formulario');
-    return;
-  }
-
-  console.log('[setNewValueFigureContent]:', elemento);
-
-  const dataType = elemento.dataset['type'] ?? '';
-
-  console.log('setNewValueFigureContent:', dataType);
-
-  if (dataType === 'CodeUPCA') {
-    const result = ValidateValue.isValidUPCA({ value: formChangeData.changeData.value.trim() });
-
-    if (!result.result) {
-      alert(result.msg);
-      return;
-    }
-  }
-
-  const nuevoContenido = formChangeData.changeData.value.trim();
-
-  const figcaption = elemento.querySelector('figcaption');
-  const img = elemento.querySelector('img');
-  const type = elemento.dataset['type'];
-
-  const typeCodeMap = {
-    CodeQR: 'QRCode&eclevel=L&dmsize=Default',
-    Code128: 'Code128&translate-esc=on&eclevel=L',
-    CodeUPCA: 'UPCA',
-  };
-
-  const typeCode = type ? typeCodeMap[type] : '';
-
-  if (img) {
-    img.src = `https://barcode.tec-it.com/barcode.ashx?data=${encodeURIComponent(
-      nuevoContenido
-    )}&code=${typeCode}`;
-  }
-
-  if (figcaption) {
-    figcaption.textContent = `${nuevoContenido}`;
-  }
-
-  // Ocultar el modal después de guardar los cambios
-  hideModal();
-  elementSelected = null;
 }
 
 async function getDataValueFromElement(element) {
@@ -241,6 +196,58 @@ async function modifyTextContentQuantity({ elemento, qtyValue }) {
   } catch (error) {
     console.error('Ha ocurrido un error al cambiar la cantidad de la plantilla:', error);
   }
+}
+
+function setNewValueFigureContent({ elemento }) {
+  if (!elemento) {
+    throw new Error('No se encontro el elemento a modificar');
+  }
+
+  const formChangeData = document.getElementById(FORM_ID);
+
+  if (!formChangeData) {
+    console.error('No se encontró el formulario');
+    return;
+  }
+
+  const dataType = elemento.dataset['type'] ?? '';
+
+  if (dataType === 'CodeUPCA') {
+    const result = ValidateValue.isValidUPCA({ value: formChangeData.changeData.value.trim() });
+
+    if (!result.result) {
+      alert(result.msg);
+      return;
+    }
+  }
+
+  const nuevoContenido = formChangeData.changeData.value.trim();
+
+  const figcaption = elemento.querySelector('figcaption');
+  const img = elemento.querySelector('img');
+  const type = elemento.dataset['type'];
+
+  const typeCodeMap = {
+    CodeQR: 'QRCode&eclevel=L&dmsize=Default',
+    Code128: 'Code128&translate-esc=on&eclevel=L',
+    CodeUPCA: 'UPCA',
+  };
+
+  const typeCode = type ? typeCodeMap[type] : '';
+
+  if (img) {
+    img.src = `https://barcode.tec-it.com/barcode.ashx?data=${encodeURIComponent(
+      nuevoContenido
+    )}&code=${typeCode}`;
+  }
+
+  if (figcaption) {
+    figcaption.textContent = `${nuevoContenido}`;
+  }
+
+  // Ocultar el modal después de guardar los cambios
+  hideModal();
+  elementSelected = null;
 }
 
 function setNewValueQuantity({ elemento }) {
