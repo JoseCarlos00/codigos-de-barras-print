@@ -20,7 +20,7 @@ export const personality = {
     code128: 'D97409000120',
     modelNumber: 'D97409000120',
     description: '#1864 CATRIN CON BASE MUJER 20.5X18.5 CM',
-    quantity: '48',
+    quantity: '24',
   },
 
   personality4: {
@@ -28,21 +28,21 @@ export const personality = {
     code128: 'D97409000135',
     modelNumber: 'D97409000135',
     description: '#1864 CATRIN CON BASE HOMBRE 20.5X18.5 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality5: {
     codeUPCA: '764784224204',
     code128: 'D97409000124',
     modelNumber: 'D97409000124',
     description: '#1887 MASCOTA PERRO CATRIN 23.5X17 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality6: {
     codeUPCA: '764784223832',
     code128: 'D97409000123',
     modelNumber: 'D97409000123',
     description: '#1887 MASCOTA Gato CATRIN 23.5X17 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality7: {
     codeUPCA: '792058609976',
@@ -56,21 +56,21 @@ export const personality = {
     code128: 'D97409000119',
     modelNumber: 'D97409000119',
     description: '#762 ADORNO CALAVERA 45X33 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality9: {
     codeUPCA: '792058613089',
     code128: 'D97409000133',
     modelNumber: 'D97409000133',
     description: '#858 ADORNO MASCOTA CALAVERA PERRO 42X28 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality10: {
     codeUPCA: '792058613096',
     code128: 'D97409000134',
     modelNumber: 'D97409000134',
     description: '#858 ADORNO MASCOTA CALAVERA GATO 42X28 CM',
-    quantity: '48',
+    quantity: '24',
   },
   personality11: {
     codeUPCA: '764784223771',
