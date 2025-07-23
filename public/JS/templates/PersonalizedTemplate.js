@@ -58,14 +58,14 @@ export class PersonalizedTemplate {
       const codeUPCA = this.createFigureElement({
         valueURL: this.codeUPCA,
         dimensions: { height: '70px', width: '160px' },
-        position: { x: '-3.45456px', y: '262.659px' },
+        position: { x: '-3.45456px', y: '275.659px' },
         type: 'CodeUPCA',
       });
 
       const code128 = this.createFigureElement({
         valueURL: this.code128,
         dimensions: { height: '67px', width: '176px' },
-        position: { x: '170.545px', y: '262.659px' },
+        position: { x: '170.545px', y: '275.659px' },
         type: 'Code128',
       });
 
@@ -73,24 +73,29 @@ export class PersonalizedTemplate {
       const textElements = [
         {
           x: ejeX,
-          y: '13.6591px',
+          y: '80.6591px',
           html: `<p class="texto">STYLE N°/MODELO N°</p> <p class="texto">${this.modelNumber}</p>`,
         },
         {
-          x: '168.545px',
+          x: ejeX,
           y: '13.6591px',
+          html: `<p class="texto">Proveedor:</p> <p class="texto">JOI CANADIAN STRES, S.A DE C.V.</p>`,
+        },
+        {
+          x: '168.545px',
+          y: '80.6591px',
           html: `<p class="texto" style="letter-spacing: -0.3px;">Fantasias Miguel S.A. de C.V.</p>`,
         },
-        { x: ejeX, y: '94.6591px', html: `<p class="texto">Descripción:</p>` },
-        { x: ejeX, y: '124.841px', html: ` <p class="texto">${this.description}</p>` },
+        { x: ejeX, y: '143.6591px', html: `<p class="texto">Descripción:</p>` },
+        { x: ejeX, y: '169.841px', html: ` <p class="texto">${this.description}</p>` },
         {
           x: '22.5454px',
-          y: '184.841px',
-          html: `<p class="texto">Departamento:</p> <p class="texto">Art. Temporada</p>`,
+          y: '215.841px',
+          html: `<p class="texto">Departamento:</p> <p class="texto">Art. Fiesta</p>`,
         },
         {
           x: '200.545px',
-          y: '184.841px',
+          y: '225.841px',
           html: `<p class="texto plantilla-quantity">Total de Pz: <span class="qty">${this.quantity}</span> pz</p>`,
         },
       ].map(data => this.createTextElement(data));
