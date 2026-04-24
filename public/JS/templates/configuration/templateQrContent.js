@@ -45,12 +45,12 @@ export const qrCongiguration = {
         position: positionsUsuariosMariano.row1Col1,
       },
       {
-        value: 'Scale@2024',
+        value: 'Scale@2025',
         dimensions: dimensionsUsuariosMarinao,
         position: positionsUsuariosMariano.row3Col1,
       },
       {
-        value: 'Scale@2025',
+        value: 'Scale@2026',
         dimensions: dimensionsUsuariosMarinao,
         position: positionsUsuariosMariano.row3Col2,
       },
